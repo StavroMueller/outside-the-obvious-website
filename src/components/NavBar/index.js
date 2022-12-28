@@ -8,7 +8,7 @@ import Navbar from 'react-bootstrap/Navbar'
 const NavBar = () => {
   return (
     <>  
-      <Navbar bg="dark" expand="lg">
+      <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Brand>Outside The Obvious</Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
@@ -17,7 +17,7 @@ const NavBar = () => {
               <NavDropdown title="Gallery" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/gallery/fashion">Fashion</NavDropdown.Item>
                 <NavDropdown.Item href="/gallery/street">Street</NavDropdown.Item>
-                <NavDropdown.Item href="/gallery/drawing">Drawing</NavDropdown.Item>
+                <NavDropdown.Item href="/gallery/fine-art">Fine Art</NavDropdown.Item>
               </NavDropdown>
               <NavDropdown title="Books" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/books/midnightatmain">Midnight At Main</NavDropdown.Item>
@@ -26,7 +26,7 @@ const NavBar = () => {
               </NavDropdown>
               <Nav.Link href="/booking">Booking</Nav.Link>
               <Nav.Link href="/store">Store</Nav.Link>
-              <Nav.Link href="/something">About Julien</Nav.Link>
+              <Nav.Link href="/about">About Julien</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container> 

@@ -9,7 +9,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import NavBar from './components/NavBar';
+
 import Root from './pages/Root';
+import Street from './pages/gallery/Street';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -19,13 +22,34 @@ const router = createBrowserRouter([
     element: <Root />
   },
   {
-    path: "/something",
+    path: "/store",
+    element: <p>something</p>
+  },
+  {
+    path: "/about",
+    element: <p>something</p>
+  },
+  {
+    path: "/gallery/street",
+    element: <Street />
+  },
+  {
+    path: "/gallery/fashion",
+    element: <p>something</p>
+  },
+  {
+    path: "/gallery/fine-art",
+    element: <p>something</p>
+  },
+  {
+    path: "/booking",
     element: <p>something</p>
   }
 ])
 
 root.render(
   <React.StrictMode>
+    <NavBar />
     <RouterProvider router={router}/>
   </React.StrictMode>
 );
