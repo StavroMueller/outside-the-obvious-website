@@ -1,10 +1,12 @@
 import React from 'react';
+import NavBar from '../components/NavBar'
 
 const Root = () => {
   return (
     <>
       <div>
-        <p>This is the root page</p>
+      <NavBar />
+      <p>This is the root page</p>
       </div>
     </>
   )
