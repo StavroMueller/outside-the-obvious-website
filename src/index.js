@@ -13,6 +13,8 @@ import NavBar from './components/NavBar';
 
 import Root from './pages/Root';
 import Street from './pages/gallery/Street';
+import Fashion from './pages/gallery/Fashion';
+import FineArt from './pages/gallery/FineArt';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -35,11 +37,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/gallery/fashion",
-    element: <p>something</p>
+    element: <Fashion />
   },
   {
     path: "/gallery/fine-art",
-    element: <p>something</p>
+    element: <FineArt />
   },
   {
     path: "/booking",

@@ -1,10 +1,14 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row';
 
 const Root = () => {
   return (
     <>
       <div>
-      <p>welcome to my web zone</p>
+        <Container>
+          <p>Here it is my web zone</p>
+        </Container>
       </div>
     </>
   )
