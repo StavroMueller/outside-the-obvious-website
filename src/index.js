@@ -12,6 +12,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavBar';
 
 import Root from './pages/Root';
+import Booking from './pages/Booking';
+import About from './pages/About';
 import Street from './pages/gallery/Street';
 import Fashion from './pages/gallery/Fashion';
 import FineArt from './pages/gallery/FineArt';
@@ -29,7 +31,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/about",
-    element: <p>something</p>
+    element: <About />
   },
   {
     path: "/gallery/street",
@@ -45,7 +47,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/booking",
-    element: <p>something</p>
+    element: <Booking />
   }
 ])
 

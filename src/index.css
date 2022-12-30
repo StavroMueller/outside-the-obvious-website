@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.photo-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 30px;
+  width: auto
+}
+
+.photo-grid_column {
+  padding-left: 30px;
+  background-clip: padding-box;
+}
+
+.photo-grid_column > img {
+  padding: 15px;
+}
