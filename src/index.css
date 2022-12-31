@@ -16,15 +16,14 @@ code {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-left: 30px;
   width: auto
 }
 
 .photo-grid_column {
-  padding-left: 30px;
   background-clip: padding-box;
 }
 
 .photo-grid_column > img {
-  padding: 15px;
+  padding: .2rem;
+  border-radius: .5rem;
 }

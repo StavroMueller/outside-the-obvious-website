@@ -6,7 +6,7 @@ const GalleryImage = ({imageUrl}) => {
     console.log(imageUrl)
     return (
         <>
-            <img src={imageUrl} width="50%"></img>
+            <img src={imageUrl} width="90%"></img>
         </>
     )
 }

@@ -16,6 +16,7 @@ import Booking from './pages/Booking';
 import About from './pages/About';
 import Street from './pages/gallery/Street';
 import Fashion from './pages/gallery/Fashion';
+import Travel from './pages/gallery/Travel';
 import FineArt from './pages/gallery/FineArt';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path: "/gallery/fashion",
     element: <Fashion />
+  },
+  {
+    path: "/gallery/travel",
+    element: <Travel />
   },
   {
     path: "/gallery/fine-art",
