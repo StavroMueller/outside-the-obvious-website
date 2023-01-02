@@ -15,19 +15,19 @@ const NavBar = () => {
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <NavDropdown title="Gallery" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/gallery/fashion">Fashion</NavDropdown.Item>
-                <NavDropdown.Item href="/gallery/street">Street</NavDropdown.Item>
-                <NavDropdown.Item href="/gallery/travel">Travel</NavDropdown.Item>
-                <NavDropdown.Item href="/gallery/fine-art">Fine Art</NavDropdown.Item>
+                <NavDropdown.Item href="gallery/fashion">Fashion</NavDropdown.Item>
+                <NavDropdown.Item href="gallery/street">Street</NavDropdown.Item>
+                <NavDropdown.Item href="gallery/travel">Travel</NavDropdown.Item>
+                <NavDropdown.Item href="gallery/fine-art">Fine Art</NavDropdown.Item>
               </NavDropdown>
               <NavDropdown title="Books" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/books/midnightatmain">Midnight At Main</NavDropdown.Item>
-                <NavDropdown.Item href="/books/mis">mis</NavDropdown.Item>
-                <NavDropdown.Item href="/books/apoemoflima">A Poem Of Lima</NavDropdown.Item>
+                <NavDropdown.Item href="books/midnightatmain">Midnight At Main</NavDropdown.Item>
+                <NavDropdown.Item href="books/mis">mis</NavDropdown.Item>
+                <NavDropdown.Item href="books/apoemoflima">A Poem Of Lima</NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="/booking">Booking</Nav.Link>
-              <Nav.Link href="/store">Store</Nav.Link>
-              <Nav.Link href="/about">About Julien</Nav.Link>
+              <Nav.Link href="booking">Booking</Nav.Link>
+              <Nav.Link href="store">Store</Nav.Link>
+              <Nav.Link href="about">About Julien</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container> 
