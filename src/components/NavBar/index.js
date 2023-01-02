@@ -1,8 +1,9 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container'
-import Nav from 'react-bootstrap/Nav'
-import NavDropdown from 'react-bootstrap/NavDropdown'
-import Navbar from 'react-bootstrap/Navbar'
+import { Link } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Navbar from 'react-bootstrap/Navbar';
 
 
 const NavBar = () => {
@@ -13,21 +14,21 @@ const NavBar = () => {
           <Navbar.Brand>Outside The Obvious</Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link><Link to="/">Home</Link></Nav.Link>
               <NavDropdown title="Gallery" id="basic-nav-dropdown">
-                <NavDropdown.Item href="gallery/fashion">Fashion</NavDropdown.Item>
-                <NavDropdown.Item href="gallery/street">Street</NavDropdown.Item>
-                <NavDropdown.Item href="gallery/travel">Travel</NavDropdown.Item>
-                <NavDropdown.Item href="gallery/fine-art">Fine Art</NavDropdown.Item>
+                <NavDropdown.Item><Link to="gallery/fashion">Fashion</Link></NavDropdown.Item>
+                <NavDropdown.Item><Link to="gallery/street">Street</Link></NavDropdown.Item>
+                <NavDropdown.Item><Link to="gallery/travel">Travel</Link></NavDropdown.Item>
+                <NavDropdown.Item><Link to="gallery/fine-art">Fine Art</Link></NavDropdown.Item>
               </NavDropdown>
               <NavDropdown title="Books" id="basic-nav-dropdown">
-                <NavDropdown.Item href="books/midnightatmain">Midnight At Main</NavDropdown.Item>
-                <NavDropdown.Item href="books/mis">mis</NavDropdown.Item>
-                <NavDropdown.Item href="books/apoemoflima">A Poem Of Lima</NavDropdown.Item>
+                <NavDropdown.Item><Link to="books/midnightatmain">Fine Art</Link></NavDropdown.Item>
+                <NavDropdown.Item><Link to="books/mis">mis</Link></NavDropdown.Item>
+                <NavDropdown.Item><Link to="books/apoemoflima">A Poem Of Lima</Link></NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="booking">Booking</Nav.Link>
-              <Nav.Link href="store">Store</Nav.Link>
-              <Nav.Link href="about">About Julien</Nav.Link>
+              <Nav.Link><Link to="booking">Booking</Link></Nav.Link>
+              <Nav.Link><Link to="store">Store</Link></Nav.Link>
+              <Nav.Link><Link to="about">About</Link></Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container> 
@@ -36,4 +37,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default NavBar;

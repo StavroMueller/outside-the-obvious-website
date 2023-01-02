@@ -2,7 +2,7 @@
   "name": "outside-the-obvious-website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://stavromueller.github.io/outside-the-obvious-website",
+  "homepage": "http://stavromueller.github.io/outside-the-obvious-website/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -15,6 +15,7 @@
     "react-markdown": "^8.0.4",
     "react-masonry-css": "^1.0.16",
     "react-photo-album": "^2.0.0",
+    "react-router": "^6.6.1",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"

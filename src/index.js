@@ -2,7 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
   createBrowserRouter,
-  RouterProvider
+  RouterProvider,
+  HashRouter,
+  Switch,
+  Routes,
+  Route,
+  Link
 } from 'react-router-dom';
 import './index.css';
 import App from './App';
@@ -21,7 +26,7 @@ import FineArt from './pages/gallery/FineArt';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const router = createBrowserRouter([
+const routes = [
   {
     path: "/",
     element: <Root />
@@ -54,12 +59,22 @@ const router = createBrowserRouter([
     path: "/booking",
     element: <Booking />
   }
-])
+]
 
 root.render(
   <React.StrictMode>
-    <NavBar />
-    <RouterProvider router={router}/>
+    <HashRouter>
+      <NavBar />
+      <Routes>
+        <Route path ='/' element={<Root />} />
+        <Route path ='/about' element={<Root />} />
+        <Route path ='/gallery/street' element={<Street />} />
+        <Route path ='/gallery/fashion' element={<Fashion />} />
+        <Route path ='/gallery/travel' element={<Travel />} />
+        <Route path ='/gallery/fine-art' element={<FineArt />} />
+        <Route path ='/booking' element={<Booking />} />
+      </Routes>
+    </HashRouter>
   </React.StrictMode>
 );
 
