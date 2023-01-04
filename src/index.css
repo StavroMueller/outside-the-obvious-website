@@ -28,7 +28,7 @@ code {
   border-radius: .5rem;
 }
 
-.nav-bar > a {
-  color: inherit;
-  text-decoration: none;
+a.nav-link > a {
+  color: inherit !important;
+  text-decoration: none !important;
 }
