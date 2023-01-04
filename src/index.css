@@ -32,3 +32,8 @@ a.nav-link > a {
   color: inherit !important;
   text-decoration: none !important;
 }
+
+a.dropdown-item > a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
