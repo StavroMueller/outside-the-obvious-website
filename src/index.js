@@ -26,41 +26,6 @@ import FineArt from './pages/gallery/FineArt';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const routes = [
-  {
-    path: "/",
-    element: <Root />
-  },
-  {
-    path: "/store",
-    element: <p>something</p>
-  },
-  {
-    path: "/about",
-    element: <About />
-  },
-  {
-    path: "/gallery/street",
-    element: <Street />
-  },
-  {
-    path: "/gallery/fashion",
-    element: <Fashion />
-  },
-  {
-    path: "/gallery/travel",
-    element: <Travel />
-  },
-  {
-    path: "/gallery/fine-art",
-    element: <FineArt />
-  },
-  {
-    path: "/booking",
-    element: <Booking />
-  }
-]
-
 root.render(
   <React.StrictMode>
     <HashRouter>
