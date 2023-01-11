@@ -8,6 +8,9 @@ const Mis = () => {
     <Container>
       <Row>
         <Col>
+          title page thing goes here
+        </Col>
+        <Col>
           Intense taste, sound, and visuals coalesce into something special. Mis is a poetic and visual journey through the abstract aspects of dining that have been drawing humans to hospitality since the beginning of time.
         </Col>
       </Row>
