@@ -29,6 +29,8 @@ import LeicaX2 from './pages/reviews/LeicaX2';
 import RicohGRIII from './pages/reviews/RicohGRIII';
 import OlympusOMDEM1X from './pages/reviews/OlympusOMDEM1X';
 
+import Mis from './pages/books/Mis';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -46,6 +48,7 @@ root.render(
         <Route path ='/reviews/leicax2' element={<LeicaX2 />} />
         <Route path ='/reviews/ricohgriii' element={<RicohGRIII />} />
         <Route path ='/reviews/olympusomdem1x' element={<OlympusOMDEM1X />} />
+        <Route path ='/books/mis' element={<Mis />} />
         <Route path ='/booking' element={<Booking />} />
       </Routes>
     </HashRouter>
