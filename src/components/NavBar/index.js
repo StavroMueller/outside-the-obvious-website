@@ -26,6 +26,13 @@ const NavBar = () => {
                 <NavDropdown.Item><Link to="books/mis">mis</Link></NavDropdown.Item>
                 <NavDropdown.Item><Link to="books/apoemoflima">A Poem Of Lima</Link></NavDropdown.Item>
               </NavDropdown>
+              <NavDropdown title="Reviews" id="basic-nav-dropdown">
+                <NavDropdown.Item><Link to="reviews/leicam3">Leica M3</Link></NavDropdown.Item>
+                <NavDropdown.Item><Link to="reviews/leicax2">Leica X2</Link></NavDropdown.Item>
+                <NavDropdown.Item><Link to="reviews/leicaiiia">Leica iiia</Link></NavDropdown.Item>
+                <NavDropdown.Item><Link to="reviews/ricohgriii">Ricoh GRIII</Link></NavDropdown.Item>
+                <NavDropdown.Item><Link to="reviews/olympusomdem1x">Olympus OM-D E-M1X</Link></NavDropdown.Item>
+              </NavDropdown>
               <Nav.Link><Link to="booking">Booking</Link></Nav.Link>
               <Nav.Link><Link to="store">Store</Link></Nav.Link>
               <Nav.Link><Link to="about">About</Link></Nav.Link>

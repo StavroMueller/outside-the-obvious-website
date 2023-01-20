@@ -24,6 +24,11 @@ import Fashion from './pages/gallery/Fashion';
 import Travel from './pages/gallery/Travel';
 import FineArt from './pages/gallery/FineArt';
 
+import LeicaM3 from './pages/reviews/LeicaM3';
+import LeicaX2 from './pages/reviews/LeicaX2';
+import RicohGRIII from './pages/reviews/RicohGRIII';
+import OlympusOMDEM1X from './pages/reviews/OlympusOMDEM1X';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -37,6 +42,10 @@ root.render(
         <Route path ='/gallery/fashion' element={<Fashion />} />
         <Route path ='/gallery/travel' element={<Travel />} />
         <Route path ='/gallery/fine-art' element={<FineArt />} />
+        <Route path ='/reviews/leicam3' element={<LeicaM3 />} />
+        <Route path ='/reviews/leicax2' element={<LeicaX2 />} />
+        <Route path ='/reviews/ricohgriii' element={<RicohGRIII />} />
+        <Route path ='/reviews/olympusomdem1x' element={<OlympusOMDEM1X />} />
         <Route path ='/booking' element={<Booking />} />
       </Routes>
     </HashRouter>
