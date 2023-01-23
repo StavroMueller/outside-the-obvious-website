@@ -28,10 +28,11 @@ import APoemOfLima from './pages/books/APoemOfLima';
 import MidnightAtMain from './pages/books/MidnightAtMain';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const basename = document.querySelector('base')?.getAttribute('href') ?? '/'
 
 root.render(
   <React.StrictMode>
-    <HashRouter>
+    <HashRouter baseName={basename}>
       <NavBar />
       <Routes>
         <Route path ='/' element={<Root />} />
