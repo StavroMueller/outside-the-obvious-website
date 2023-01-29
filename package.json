@@ -13,7 +13,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
-    "react-markdown": "^8.0.4",
+    "react-markdown": "^8.0.5",
     "react-masonry-css": "^1.0.16",
     "react-photo-album": "^2.0.0",
     "react-router": "^6.6.1",
