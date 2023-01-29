@@ -1,5 +1,6 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container'
+import ReactMarkdown from 'react-markdown';
+import Container from 'react-bootstrap/Container';
 
 const RicohGRIII = () => {
     return (
