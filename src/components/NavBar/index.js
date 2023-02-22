@@ -5,13 +5,20 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Navbar from 'react-bootstrap/Navbar';
 
+import logo from '../../horizontal_logo.png'
+
 
 const NavBar = () => {
   return (
     <>  
       <Navbar bg="light" expand="md">
         <Container>
-          <Navbar.Brand>Outside The Obvious</Navbar.Brand>
+          <Navbar.Brand>
+            <img
+              src={logo}
+              height="50rem"
+            ></img>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav"/>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
