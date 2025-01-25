@@ -13,7 +13,6 @@ const Root = () => {
         <Container>
             <Row>
               <Col>
-                <p>Outside The Obvious is a multidisciplinary photography fine art, and fashion show consultant firm. We can do everything from planning your shows to providing distinctive photos.</p>
               </Col>
             </Row>
           <Gallery imageUrls={wotoUrls} />
