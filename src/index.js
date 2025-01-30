@@ -13,6 +13,7 @@ import NavBar from './components/NavBar';
 
 import Root from './pages/Root';
 import Booking from './pages/Booking';
+import Contact from './pages/Contact';
 import Street from './pages/gallery/Street';
 import Fashion from './pages/gallery/Fashion';
 import Travel from './pages/gallery/Travel';

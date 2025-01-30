@@ -2,6 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { SocialIcon } from 'react-social-icons';
 import Gallery from '../components/Gallery';
 import wotoFinder from '../utilities/wotoFinder';
 
@@ -13,6 +14,8 @@ const Root = () => {
         <Container>
             <Row>
               <Col>
+                <SocialIcon url="mailto:contact@outsidetheobvious.com"/>
+                <SocialIcon url="https://instagram.com/outsidetheobvious" />
               </Col>
             </Row>
           <Gallery imageUrls={wotoUrls} />

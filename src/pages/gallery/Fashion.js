@@ -18,7 +18,7 @@ const Fashion = () => {
     <>
       <Container>
         <h2>Fashion</h2>
-        <h3>A unique perspective is critical, especially in the world of fashion. We deliver results that are not only technically impressive, but uniquely identifiable. Don't just get photos, tell a story.</h3>
+        <h3>A unique perspective is critical, especially in the world of fashion. Don't just get photos, tell a story.</h3>
         <Gallery imageUrls={wotoUrls} />
       </Container>
     </>

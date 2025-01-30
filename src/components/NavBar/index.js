@@ -42,6 +42,7 @@ const NavBar = () => {
                 <NavDropdown.Item><Link to="reviews/olympusomdem1x">Olympus OM-D E-M1X</Link></NavDropdown.Item>
               </NavDropdown>
               <Nav.Link><Link to="booking">Booking</Link></Nav.Link>
+              <Nav.Link><Link to="contact">Contact</Link></Nav.Link>
               <Nav.Link><Link to="store">Store</Link></Nav.Link>
             </Nav>
           </Navbar.Collapse>
