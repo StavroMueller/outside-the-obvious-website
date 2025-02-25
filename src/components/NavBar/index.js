@@ -23,18 +23,18 @@ const NavBar = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link><Link to="/">Home</Link></Nav.Link>
-              <NavDropdown title="Gallery" id="basic-nav-dropdown">
+              <NavDropdown data-bs-theme="dark" title="Gallery" id="basic-nav-dropdown">
                 <NavDropdown.Item><Link to="gallery/fashion">Fashion</Link></NavDropdown.Item>
                 <NavDropdown.Item><Link to="gallery/street">Street</Link></NavDropdown.Item>
                 <NavDropdown.Item><Link to="gallery/travel">Travel</Link></NavDropdown.Item>
                 <NavDropdown.Item><Link to="gallery/fine-art">Fine Art</Link></NavDropdown.Item>
               </NavDropdown>
-              <NavDropdown title="Books" id="basic-nav-dropdown">
+              <NavDropdown data-bs-theme="dark" title="Books" id="basic-nav-dropdown">
                 <NavDropdown.Item><Link to="books/midnightatmain">Midnight at Main</Link></NavDropdown.Item>
                 <NavDropdown.Item><Link to="books/mis">mis</Link></NavDropdown.Item>
                 <NavDropdown.Item><Link to="books/apoemoflima">A Poem Of Lima</Link></NavDropdown.Item>
               </NavDropdown>
-              <NavDropdown title="Reviews" id="basic-nav-dropdown">
+              <NavDropdown data-bs-theme="dark" title="Reviews" id="basic-nav-dropdown">
                 <NavDropdown.Item><Link to="reviews/leicam3">Leica M3</Link></NavDropdown.Item>
                 <NavDropdown.Item><Link to="reviews/leicax2">Leica X2</Link></NavDropdown.Item>
                 <NavDropdown.Item><Link to="reviews/leicaiiia">Leica iiia</Link></NavDropdown.Item>
