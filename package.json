@@ -13,13 +13,14 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
-    "react-markdown": "^8.0.5",
+    "react-markdown": "^8.0.7",
     "react-masonry-css": "^1.0.16",
     "react-photo-album": "^2.0.0",
     "react-router": "^6.6.1",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "react-social-icons": "6.18",
+    "remark-gfm": "^4.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

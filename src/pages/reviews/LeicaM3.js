@@ -1,5 +1,6 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container'
+import Markdown from 'react-markdown'
 
 const LeicaM3 = () => {
     return (

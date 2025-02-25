@@ -18,6 +18,11 @@ const Root = () => {
                 <SocialIcon url="https://instagram.com/outsidetheobvious" />
               </Col>
             </Row>
+            <Row>
+              <Col>
+                <p>Some simple serif text, not a bunch of bullshit</p>
+              </Col>
+            </Row>
           <Gallery imageUrls={wotoUrls} />
         </Container>
       </div>
