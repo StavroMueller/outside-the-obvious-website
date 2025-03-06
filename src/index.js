@@ -1,55 +1,72 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import {
-  HashRouter,
-  Routes,
-  Route,
-} from 'react-router-dom';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { HashRouter, Link, Routes, Route } from "react-router-dom";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import NavBar from './components/NavBar';
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid2";
 
-import Root from './pages/Root';
-import Booking from './pages/Booking';
-import Contact from './pages/Contact';
-import Street from './pages/gallery/Street';
-import Fashion from './pages/gallery/Fashion';
-import Travel from './pages/gallery/Travel';
-import FineArt from './pages/gallery/FineArt';
+import NavBar from "./components/NavBar";
 
-import LeicaM3 from './pages/reviews/LeicaM3';
-import LeicaX2 from './pages/reviews/LeicaX2';
-import RicohGRIII from './pages/reviews/RicohGRIII';
-import OlympusOMDEM1X from './pages/reviews/OlympusOMDEM1X';
+import Root from "./pages/Root";
+import Booking from "./pages/Booking";
+import Contact from "./pages/Contact";
+import Street from "./pages/gallery/Street";
+import Fashion from "./pages/gallery/Fashion";
+import Travel from "./pages/gallery/Travel";
+import FineArt from "./pages/gallery/FineArt";
 
-import Mis from './pages/books/Mis';
-import APoemOfLima from './pages/books/APoemOfLima';
-import MidnightAtMain from './pages/books/MidnightAtMain';
+import LeicaM3 from "./pages/reviews/LeicaM3";
+import LeicaX2 from "./pages/reviews/LeicaX2";
+import RicohGRIII from "./pages/reviews/RicohGRIII";
+import OlympusOMDEM1X from "./pages/reviews/OlympusOMDEM1X";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-const basename = document.querySelector('base')?.getAttribute('href') ?? '/'
+import Mis from "./pages/books/Mis";
+import APoemOfLima from "./pages/books/APoemOfLima";
+import MidnightAtMain from "./pages/books/MidnightAtMain";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+const basename = document.querySelector("base")?.getAttribute("href") ?? "/";
 
 root.render(
   <React.StrictMode>
     <HashRouter baseName={basename}>
-      <NavBar />
-      <Routes>
-        <Route path ='/' element={<Root />} />
-        <Route path ='/gallery/street' element={<Street />} />
-        <Route path ='/gallery/fashion' element={<Fashion />} />
-        <Route path ='/gallery/travel' element={<Travel />} />
-        <Route path ='/gallery/fine-art' element={<FineArt />} />
-        <Route path ='/reviews/leicam3' element={<LeicaM3 />} />
-        <Route path ='/reviews/leicax2' element={<LeicaX2 />} />
-        <Route path ='/reviews/ricohgriii' element={<RicohGRIII />} />
-        <Route path ='/reviews/olympusomdem1x' element={<OlympusOMDEM1X />} />
-        <Route path ='/books/mis' element={<Mis />} />
-        <Route path ='/books/apoemoflima' element={<APoemOfLima />} />
-        <Route path ='/books/midnightatmain' element={<MidnightAtMain />} />
-        <Route path ='/booking' element={<Booking />} />
-      </Routes>
+      <Grid container>
+        <Grid size={3}>
+          <Tabs orientation="vertical">
+            <Tab component={Link} label="Home" to="/"></Tab>
+            <Tab component={Link} label="Fashion" to="/gallery/fashion"></Tab>
+            <Tab component={Link} label="Street" to="/gallery/street"></Tab>
+            <Tab component={Link} label="Travel" to="/gallery/travel"></Tab>
+            <Tab component={Link} label="Fine art" to="/gallery/art"></Tab>
+            <Tab component={Link} label="Reviews" to="/reviews"></Tab>
+          </Tabs>
+        </Grid>
+        <Grid size={9}>
+          <Routes>
+            <Route path="/" element={<Root />} />
+            <Route path="/gallery/street" element={<Street />} />
+            <Route path="/gallery/fashion" element={<Fashion />} />
+            <Route path="/gallery/travel" element={<Travel />} />
+            <Route path="/gallery/fine-art" element={<FineArt />} />
+            <Route path="/reviews/leicam3" element={<LeicaM3 />} />
+            <Route path="/reviews/leicax2" element={<LeicaX2 />} />
+            <Route path="/reviews/ricohgriii" element={<RicohGRIII />} />
+            <Route
+              path="/reviews/olympusomdem1x"
+              element={<OlympusOMDEM1X />}
+            />
+            <Route path="/books/mis" element={<Mis />} />
+            <Route path="/books/apoemoflima" element={<APoemOfLima />} />
+            <Route path="/books/midnightatmain" element={<MidnightAtMain />} />
+            <Route path="/booking" element={<Booking />} />
+          </Routes>
+        </Grid>
+      </Grid>
     </HashRouter>
   </React.StrictMode>
 );

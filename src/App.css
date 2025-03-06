@@ -27,6 +27,10 @@
   color: #61dafb;
 }
 
+.simple-sidebar {
+  width: 500rem;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
