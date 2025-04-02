@@ -5,6 +5,8 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import App from "./App";
+
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
@@ -34,40 +36,7 @@ const basename = document.querySelector("base")?.getAttribute("href") ?? "/";
 
 root.render(
   <React.StrictMode>
-    <HashRouter baseName={basename}>
-      <Grid container>
-        <Grid size={3}>
-          <Tabs orientation="vertical">
-            <Tab component={Link} label="Home" to="/"></Tab>
-            <Tab component={Link} label="Fashion" to="/gallery/fashion"></Tab>
-            <Tab component={Link} label="Street" to="/gallery/street"></Tab>
-            <Tab component={Link} label="Travel" to="/gallery/travel"></Tab>
-            <Tab component={Link} label="Fine art" to="/gallery/art"></Tab>
-            <Tab component={Link} label="Reviews" to="/reviews"></Tab>
-          </Tabs>
-        </Grid>
-        <Grid size={9}>
-          <Routes>
-            <Route path="/" element={<Root />} />
-            <Route path="/gallery/street" element={<Street />} />
-            <Route path="/gallery/fashion" element={<Fashion />} />
-            <Route path="/gallery/travel" element={<Travel />} />
-            <Route path="/gallery/fine-art" element={<FineArt />} />
-            <Route path="/reviews/leicam3" element={<LeicaM3 />} />
-            <Route path="/reviews/leicax2" element={<LeicaX2 />} />
-            <Route path="/reviews/ricohgriii" element={<RicohGRIII />} />
-            <Route
-              path="/reviews/olympusomdem1x"
-              element={<OlympusOMDEM1X />}
-            />
-            <Route path="/books/mis" element={<Mis />} />
-            <Route path="/books/apoemoflima" element={<APoemOfLima />} />
-            <Route path="/books/midnightatmain" element={<MidnightAtMain />} />
-            <Route path="/booking" element={<Booking />} />
-          </Routes>
-        </Grid>
-      </Grid>
-    </HashRouter>
+    <App />
   </React.StrictMode>
 );
 
