@@ -43,6 +43,7 @@ function App() {
               <Tab component={Link} label="Street" to="/gallery/street"></Tab>
               <Tab component={Link} label="Travel" to="/gallery/travel"></Tab>
               <Tab component={Link} label="Fine art" to="/gallery/art"></Tab>
+              <Tab component={Link} label="Contact" to="/contact"></Tab>
               <Tab component={Link} label="Reviews" to="/reviews"></Tab>
             </Tabs>
           </Grid>
