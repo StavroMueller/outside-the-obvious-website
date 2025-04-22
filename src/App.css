@@ -39,3 +39,17 @@
     transform: rotate(360deg);
   }
 }
+
+.fraunces-normal {
+  font-family: "Fraunces", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-variation-settings: "SOFT" 0, "WONK" 0;
+}
+
+.fraunces-h1 {
+  font-family: "Fraunces", serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+}

@@ -32,10 +32,10 @@ const basename = document.querySelector("base")?.getAttribute("href") ?? "/";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App fraunces-normal">
       <HashRouter baseName={basename}>
         <Grid container>
-          <Grid size={3}>
+          <Grid size={3} style={{ background: "lightgrey" }}>
             <Tabs orientation="vertical">
               <Tab component={Header}></Tab>
               <Tab component={Link} label="Home" to="/"></Tab>
@@ -55,7 +55,7 @@ function App() {
               <Tab component={Link} label="Contact" to="/contact"></Tab>
             </Tabs>
           </Grid>
-          <Grid size={9}>
+          <Grid size={9} sx={{ pt: 8 }} style={{ background: "darkgrey" }}>
             <Routes>
               <Route path="/" element={<Root />} />
               <Route path="/gallery/street" element={<Street />} />
@@ -86,7 +86,7 @@ function App() {
 }
 
 function Header() {
-  return <Typography variant="h6">Julien Clifford</Typography>;
+  return <h1 class="fraunces-h1">Julien Clifford</h1>;
 }
 
 export default App;
