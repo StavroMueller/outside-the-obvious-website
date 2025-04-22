@@ -47,6 +47,13 @@
   font-variation-settings: "SOFT" 0, "WONK" 0;
 }
 
+.fraunces-tabs {
+  font-family: "Fraunces", serif !important;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-variation-settings: "SOFT" 0, "WONK" 0;
+}
+
 .fraunces-h1 {
   font-family: "Fraunces", serif;
   font-optical-sizing: auto;

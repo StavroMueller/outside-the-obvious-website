@@ -36,7 +36,7 @@ function App() {
       <HashRouter baseName={basename}>
         <Grid container>
           <Grid size={3} style={{ background: "lightgrey" }}>
-            <Tabs orientation="vertical">
+            <Tabs orientation="vertical" class="fraunces-tabs">
               <Tab component={Header}></Tab>
               <Tab component={Link} label="Home" to="/"></Tab>
               <Tab component={Link} label="Fashion" to="/gallery/fashion"></Tab>
