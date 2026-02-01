@@ -1,14 +1,17 @@
 import React from 'react';
-import Row from 'react-bootstrap/Row'
 
-
-const GalleryImage = ({imageUrl}) => {
-    console.log(imageUrl)
-    return (
-        <>
-            <img src={imageUrl} width="90%"></img>
-        </>
-    )
-}
+const GalleryImage = ({ imageUrl }) => {
+  return (
+    <img
+      src={imageUrl}
+      alt=""
+      loading="lazy"
+      style={{
+        width: '100%',
+        display: 'block'
+      }}
+    />
+  );
+};
 
 export default GalleryImage;

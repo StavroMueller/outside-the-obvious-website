@@ -1,25 +1,26 @@
-import React from 'react'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row';
-import Masonry from 'react-masonry-css'
-
+import React from 'react';
+import Masonry from 'react-masonry-css';
 import GalleryImage from '../GalleryImage';
 
-const Gallery = ({imageUrls}) => {
-    console.log(imageUrls, "urls from component")
-    return (
-        <Container>
-            <Masonry breakpointCols={2} className="photo-grid" columnClassName="photo-grid_column">
-                {
-                    imageUrls.map((url, i) => {
-                        return (
-                            <GalleryImage imageUrl={url}/>
-                        )
-                    })
-                }
-            </Masonry>
-        </Container>
-    )
-}
+const breakpointColumns = {
+  default: 3,
+  1200: 2,
+  768: 2,
+  480: 1
+};
+
+const Gallery = ({ imageUrls }) => {
+  return (
+    <Masonry
+      breakpointCols={breakpointColumns}
+      className="photo-grid"
+      columnClassName="photo-grid_column"
+    >
+      {imageUrls.map((url, i) => (
+        <GalleryImage key={i} imageUrl={url} />
+      ))}
+    </Masonry>
+  );
+};
 
 export default Gallery;
