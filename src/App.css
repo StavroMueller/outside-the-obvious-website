@@ -715,4 +715,59 @@ a:hover {
   .marquee-text {
     font-size: 0.8rem;
   }
+
+  .hero-poem-container {
+    padding: 2rem;
+  }
+
+  .hero-cta-overlay {
+    bottom: 15%;
+  }
+}
+
+/* poem canvas hero section */
+.hero-poem-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+}
+
+.poem-canvas {
+  position: relative;
+}
+
+.poem-word {
+  transition: all 0.3s ease;
+}
+
+.poem-word:hover {
+  color: var(--accent) !important;
+  transform: scale(1.1) !important;
+}
+
+.hero-cta-overlay {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+/* e.e. cummings text styling */
+.ee-title {
+  line-height: 1.4;
+}
+
+.ee-text {
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.ee-quote {
+  border-left: none;
+  padding-left: 0;
 }
