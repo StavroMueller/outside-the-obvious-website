@@ -1,19 +1,27 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
+import { Link } from "react-router-dom";
 import wotoFinder from "../../utilities/wotoFinder";
 import Gallery from "../../components/Gallery";
-import Grid from "@mui/material/Grid2";
 
 const Travel = () => {
   const wotoUrls = wotoFinder("travel", 24);
+
   return (
-    <>
-      <Grid container>
-        <Gallery imageUrls={wotoUrls} />
-      </Grid>
-    </>
+    <div className="gallery-page">
+      <header className="gallery-header">
+        <h1 className="gallery-title">travel</h1>
+        <p className="gallery-subtitle">
+          places, faces, stories from the road
+        </p>
+      </header>
+      <Gallery imageUrls={wotoUrls} />
+      <div style={{ textAlign: 'center', marginTop: '4rem', marginBottom: '2rem' }}>
+        <Link to="/contact" className="cta-button">
+          work with me
+        </Link>
+      </div>
+    </div>
   );
 };
 
 export default Travel;
-

@@ -1,62 +1,773 @@
+/*
+  outside the obvious
+  e.e. cummings inspired aesthetic
+  dark, moody, poetic minimalism
+*/
+
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-accent: #1a1a1a;
+  --text-primary: #f5f0e8;
+  --text-secondary: #b8b0a0;
+  --text-muted: #6b6560;
+  --accent: #d4c4a8;
+  --accent-hover: #e8dcc8;
+  --border: #2a2a2a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
 .App {
-  text-align: center;
+  text-align: left;
+  background-color: var(--bg-primary);
+  min-height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* typography - all lowercase, e.e. cummings style */
+.cormorant {
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.cormorant-light {
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  text-transform: lowercase;
 }
 
-.App-header {
+.cormorant-medium {
+  font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+}
+
+/* hero typography */
+.hero-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  text-transform: lowercase;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  text-transform: lowercase;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.body-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  text-transform: lowercase;
+  color: var(--text-secondary);
+}
+
+.body-text-large {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-weight: 300;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: var(--text-secondary);
+}
+
+/* navigation */
+.nav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: lowercase;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-logo:hover {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* main content */
+.main-content {
+  padding-top: 120px;
+  min-height: 100vh;
+}
+
+/* hero section */
+.hero-section {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  padding: 0 8vw;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 900px;
+}
+
+.hero-tagline {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: var(--text-secondary);
+  margin: 2rem 0;
+  line-height: 1.6;
+}
+
+/* services section */
+.services-section {
+  padding: 8rem 8vw;
+  background-color: var(--bg-secondary);
+}
+
+.service-item {
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  transition: all 0.3s ease;
+}
+
+.service-item:hover {
+  padding-left: 1rem;
+}
+
+.service-item:last-child {
+  border-bottom: none;
+}
+
+.service-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: var(--text-primary);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.service-item:hover .service-title {
+  color: var(--accent);
+}
+
+.service-description {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  text-transform: lowercase;
+  color: var(--text-muted);
+  max-width: 400px;
+  text-align: right;
+}
+
+/* cta button */
+.cta-button {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: lowercase;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--text-secondary);
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 2rem;
+}
+
+.cta-button:hover {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+
+.cta-button-accent {
+  background-color: var(--accent);
+  color: var(--bg-primary);
+  border-color: var(--accent);
+}
+
+.cta-button-accent:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+/* gallery styling */
+.gallery-page {
+  padding: 140px 4vw 4rem;
+  min-height: 100vh;
+}
+
+.gallery-header {
+  margin-bottom: 3rem;
+}
+
+.gallery-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.gallery-subtitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  color: var(--text-muted);
+}
+
+/* photo grid */
+.photo-grid {
+  display: flex;
+  margin-left: -1rem;
+  width: auto;
+}
+
+.photo-grid_column {
+  padding-left: 1rem;
+  background-clip: padding-box;
+}
+
+.photo-grid_column > img {
+  margin-bottom: 1rem;
+  border-radius: 0;
+  padding: 0;
+  width: 100%;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.photo-grid_column > img:hover {
+  opacity: 0.9;
+  transform: scale(1.01);
+}
+
+/* contact section */
+.contact-section {
+  padding: 8rem 8vw;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-intro {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-weight: 300;
+  font-style: italic;
+  text-transform: lowercase;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  max-width: 600px;
+}
+
+.contact-email {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.contact-email:hover {
+  color: var(--accent);
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.social-link {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-link:hover {
+  color: var(--text-primary);
+}
+
+/* footer */
+.footer {
+  padding: 3rem 8vw;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  color: var(--text-muted);
+}
+
+/* about section */
+.about-section {
+  padding: 8rem 8vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  font-weight: 300;
+  line-height: 2;
+  text-transform: lowercase;
+  color: var(--text-secondary);
+}
+
+/* quote styling */
+.quote {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.8;
+  text-transform: lowercase;
+  color: var(--text-secondary);
+  padding: 2rem 0;
+  border-left: 2px solid var(--accent);
+  padding-left: 2rem;
+  margin: 3rem 0;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 1.5rem 2rem;
+  }
+
+  .nav-links {
+    gap: 1.5rem;
+  }
+
+  .hero-section {
+    padding: 0 5vw;
+  }
+
+  .services-section,
+  .contact-section {
+    padding: 4rem 5vw;
+  }
+
+  .service-item {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .service-description {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .about-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}
+
+/* remove old material-ui overrides */
+.MuiTabs-root {
+  display: none !important;
+}
+
+.MuiGrid2-root {
+  background: transparent !important;
+}
+
+/* link styling */
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* selection styling */
+::selection {
+  background-color: var(--accent);
+  color: var(--bg-primary);
+}
+
+/* now/next section — poetic status */
+.now-section {
+  padding: 2rem 8vw;
+  background-color: var(--bg-accent);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.now-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.now-label {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: lowercase;
+  color: var(--accent);
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--accent);
+}
+
+.now-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  color: var(--text-secondary);
+}
+
+/* scrolling marquee */
+.marquee-container {
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: lowercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-container:hover .marquee {
+  animation-play-state: paused;
+}
+
+/* books section */
+.books-section {
+  padding: 8rem 8vw;
+  background-color: var(--bg-primary);
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+.book-item {
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.book-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+}
+
+.book-description {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  text-transform: lowercase;
+  color: var(--text-muted);
+  margin: 0 0 1.5rem 0;
+}
+
+.book-year {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+/* experience/credentials section */
+.experience-section {
+  padding: 6rem 8vw;
+  background-color: var(--bg-secondary);
+  display: flex;
+  justify-content: center;
+  gap: 6rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.experience-item {
+  text-align: center;
+}
+
+.experience-number {
+  display: block;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.experience-label {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  color: var(--text-muted);
+}
+
+/* responsive additions */
+@media (max-width: 768px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .experience-section {
+    flex-direction: column;
+    gap: 3rem;
+    padding: 4rem 5vw;
+  }
+
+  .now-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .marquee-text {
+    font-size: 0.8rem;
+  }
+
+  .hero-poem-container {
+    padding: 2rem;
+  }
+
+  .hero-cta-overlay {
+    bottom: 15%;
+  }
+}
+
+/* poem canvas hero section */
+.hero-poem-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: blue;
+  padding: 4rem;
 }
 
-.App-link {
-  color: #61dafb;
+.poem-canvas {
+  position: relative;
 }
 
-.simple-sidebar {
-  width: 500rem;
+.poem-word {
+  transition: all 0.3s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.poem-word:hover {
+  color: var(--accent) !important;
+  transform: scale(1.1) !important;
 }
 
-.fraunces-normal {
-  font-family: "Fraunces", serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-variation-settings: "SOFT" 0, "WONK" 0;
+.hero-cta-overlay {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
 }
 
-.fraunces-tabs {
-  font-family: "Fraunces", serif !important;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-variation-settings: "SOFT" 0, "WONK" 0;
+/* e.e. cummings text styling */
+.ee-title {
+  line-height: 1.4;
 }
 
-.fraunces-h1 {
-  font-family: "Fraunces", serif;
-  font-optical-sizing: auto;
-  font-weight: 800;
-  font-variation-settings: "SOFT" 0, "WONK" 1;
+.ee-text {
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.ee-quote {
+  border-left: none;
+  padding-left: 0;
 }

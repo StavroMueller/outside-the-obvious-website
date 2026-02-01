@@ -1,15 +1,5 @@
-import logo from "./logo.svg";
 import "./App.css";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
 import { HashRouter, Link, Routes, Route } from "react-router-dom";
-
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid2";
 
 import Root from "./pages/Root";
 import Booking from "./pages/Booking";
@@ -28,65 +18,68 @@ import Mis from "./pages/books/Mis";
 import APoemOfLima from "./pages/books/APoemOfLima";
 import MidnightAtMain from "./pages/books/MidnightAtMain";
 
-const basename = document.querySelector("base")?.getAttribute("href") ?? "/";
-
 function App() {
   return (
-    <div className="App fraunces-normal">
-      <HashRouter baseName={basename}>
-        <Grid container>
-          <Grid size={3} style={{ background: "lightgrey" }}>
-            <Tabs orientation="vertical" class="fraunces-tabs">
-              <Tab component={Header}></Tab>
-              <Tab component={Link} label="Home" to="/"></Tab>
-              <Tab component={Link} label="Fashion" to="/gallery/fashion"></Tab>
-              <Tab component={Link} label="Street" to="/gallery/street"></Tab>
-              <Tab component={Link} label="Travel" to="/gallery/travel"></Tab>
-              {false && (
-                <>
-                  <Tab
-                    component={Link}
-                    label="Fine art"
-                    to="/gallery/art"
-                  ></Tab>
-                  <Tab component={Link} label="Reviews" to="/reviews"></Tab>
-                </>
-              )}
-              <Tab component={Link} label="Contact" to="/contact"></Tab>
-            </Tabs>
-          </Grid>
-          <Grid size={9} sx={{ pt: 8 }} style={{ background: "darkgrey" }}>
-            <Routes>
-              <Route path="/" element={<Root />} />
-              <Route path="/gallery/street" element={<Street />} />
-              <Route path="/gallery/fashion" element={<Fashion />} />
-              <Route path="/gallery/travel" element={<Travel />} />
-              <Route path="/gallery/fine-art" element={<FineArt />} />
-              <Route path="/reviews/leicam3" element={<LeicaM3 />} />
-              <Route path="/reviews/leicax2" element={<LeicaX2 />} />
-              <Route path="/reviews/ricohgriii" element={<RicohGRIII />} />
-              <Route
-                path="/reviews/olympusomdem1x"
-                element={<OlympusOMDEM1X />}
-              />
-              <Route path="/books/mis" element={<Mis />} />
-              <Route path="/books/apoemoflima" element={<APoemOfLima />} />
-              <Route
-                path="/books/midnightatmain"
-                element={<MidnightAtMain />}
-              />
-              <Route path="/booking" element={<Booking />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
-          </Grid>
-        </Grid>
+    <div className="App">
+      <HashRouter>
+        <nav className="nav-container">
+          <Link to="/" className="nav-logo">
+            outside the obvious
+          </Link>
+          <ul className="nav-links">
+            <li>
+              <Link to="/gallery/fashion" className="nav-link">
+                fashion
+              </Link>
+            </li>
+            <li>
+              <Link to="/gallery/street" className="nav-link">
+                street
+              </Link>
+            </li>
+            <li>
+              <Link to="/gallery/travel" className="nav-link">
+                travel
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="nav-link">
+                contact
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        <main>
+          <Routes>
+            <Route path="/" element={<Root />} />
+            <Route path="/gallery/street" element={<Street />} />
+            <Route path="/gallery/fashion" element={<Fashion />} />
+            <Route path="/gallery/travel" element={<Travel />} />
+            <Route path="/gallery/fine-art" element={<FineArt />} />
+            <Route path="/reviews/leicam3" element={<LeicaM3 />} />
+            <Route path="/reviews/leicax2" element={<LeicaX2 />} />
+            <Route path="/reviews/ricohgriii" element={<RicohGRIII />} />
+            <Route path="/reviews/olympusomdem1x" element={<OlympusOMDEM1X />} />
+            <Route path="/books/mis" element={<Mis />} />
+            <Route path="/books/apoemoflima" element={<APoemOfLima />} />
+            <Route path="/books/midnightatmain" element={<MidnightAtMain />} />
+            <Route path="/booking" element={<Booking />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+
+        <footer className="footer">
+          <span className="footer-text">
+            outside the obvious
+          </span>
+          <span className="footer-text">
+            fashion & editorial photography
+          </span>
+        </footer>
       </HashRouter>
     </div>
   );
-}
-
-function Header() {
-  return <h1 class="fraunces-h1">Julien Clifford</h1>;
 }
 
 export default App;
