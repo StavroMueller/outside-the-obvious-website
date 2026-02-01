@@ -1,5 +1,6 @@
 import "./App.css";
 import { HashRouter, Link, Routes, Route } from "react-router-dom";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 import Root from "./pages/Root";
 import Booking from "./pages/Booking";
@@ -20,65 +21,67 @@ import MidnightAtMain from "./pages/books/MidnightAtMain";
 
 function App() {
   return (
-    <div className="App">
-      <HashRouter>
-        <nav className="nav-container">
-          <Link to="/" className="nav-logo">
-            outside the obvious
-          </Link>
-          <ul className="nav-links">
-            <li>
-              <Link to="/gallery/fashion" className="nav-link">
-                fashion
-              </Link>
-            </li>
-            <li>
-              <Link to="/gallery/street" className="nav-link">
-                street
-              </Link>
-            </li>
-            <li>
-              <Link to="/gallery/travel" className="nav-link">
-                travel
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" className="nav-link">
-                contact
-              </Link>
-            </li>
-          </ul>
-        </nav>
+    <ErrorBoundary>
+      <div className="App">
+        <HashRouter>
+          <nav className="nav-container">
+            <Link to="/" className="nav-logo">
+              outside the obvious
+            </Link>
+            <ul className="nav-links">
+              <li>
+                <Link to="/gallery/fashion" className="nav-link">
+                  fashion
+                </Link>
+              </li>
+              <li>
+                <Link to="/gallery/street" className="nav-link">
+                  street
+                </Link>
+              </li>
+              <li>
+                <Link to="/gallery/travel" className="nav-link">
+                  travel
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="nav-link">
+                  contact
+                </Link>
+              </li>
+            </ul>
+          </nav>
 
-        <main>
-          <Routes>
-            <Route path="/" element={<Root />} />
-            <Route path="/gallery/street" element={<Street />} />
-            <Route path="/gallery/fashion" element={<Fashion />} />
-            <Route path="/gallery/travel" element={<Travel />} />
-            <Route path="/gallery/fine-art" element={<FineArt />} />
-            <Route path="/reviews/leicam3" element={<LeicaM3 />} />
-            <Route path="/reviews/leicax2" element={<LeicaX2 />} />
-            <Route path="/reviews/ricohgriii" element={<RicohGRIII />} />
-            <Route path="/reviews/olympusomdem1x" element={<OlympusOMDEM1X />} />
-            <Route path="/books/mis" element={<Mis />} />
-            <Route path="/books/apoemoflima" element={<APoemOfLima />} />
-            <Route path="/books/midnightatmain" element={<MidnightAtMain />} />
-            <Route path="/booking" element={<Booking />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
+          <main>
+            <Routes>
+              <Route path="/" element={<Root />} />
+              <Route path="/gallery/street" element={<Street />} />
+              <Route path="/gallery/fashion" element={<Fashion />} />
+              <Route path="/gallery/travel" element={<Travel />} />
+              <Route path="/gallery/fine-art" element={<FineArt />} />
+              <Route path="/reviews/leicam3" element={<LeicaM3 />} />
+              <Route path="/reviews/leicax2" element={<LeicaX2 />} />
+              <Route path="/reviews/ricohgriii" element={<RicohGRIII />} />
+              <Route path="/reviews/olympusomdem1x" element={<OlympusOMDEM1X />} />
+              <Route path="/books/mis" element={<Mis />} />
+              <Route path="/books/apoemoflima" element={<APoemOfLima />} />
+              <Route path="/books/midnightatmain" element={<MidnightAtMain />} />
+              <Route path="/booking" element={<Booking />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </main>
 
-        <footer className="footer">
-          <span className="footer-text">
-            outside the obvious
-          </span>
-          <span className="footer-text">
-            fashion & editorial photography
-          </span>
-        </footer>
-      </HashRouter>
-    </div>
+          <footer className="footer">
+            <span className="footer-text">
+              outside the obvious
+            </span>
+            <span className="footer-text">
+              fashion & editorial photography
+            </span>
+          </footer>
+        </HashRouter>
+      </div>
+    </ErrorBoundary>
   );
 }
 
