@@ -9,11 +9,20 @@ const PoemCanvas = ({
 }) => {
   const [visibleWords, setVisibleWords] = useState([]);
 
+  // Seeded random for consistent renders
+  const seededRandom = (seed) => {
+    const x = Math.sin(seed * 9999) * 10000;
+    return x - Math.floor(x);
+  };
+
   const words = useMemo(() => {
+    if (!poem) return [];
     return poem.split(/\s+/).filter(word => word.length > 0);
   }, [poem]);
 
   const wordPositions = useMemo(() => {
+    if (words.length === 0) return [];
+
     const positions = [];
     const rows = [];
     let currentRow = [];
@@ -41,22 +50,31 @@ const PoemCanvas = ({
       const baseY = 15 + (rowIndex * 18);
       let baseX = 5;
 
-      row.forEach((item, wordIndex) => {
-        const randomOffsetX = (Math.random() - 0.5) * 15 * scatterIntensity;
-        const randomOffsetY = (Math.random() - 0.5) * 12 * scatterIntensity;
-        const randomRotation = (Math.random() - 0.5) * 8 * scatterIntensity;
-        const randomScale = 0.9 + Math.random() * 0.3;
+      row.forEach((item) => {
+        const seed = item.index * 1000 + rowIndex;
+        const randomOffsetX = (seededRandom(seed) - 0.5) * 15 * scatterIntensity;
+        const randomOffsetY = (seededRandom(seed + 1) - 0.5) * 12 * scatterIntensity;
+        const randomRotation = (seededRandom(seed + 2) - 0.5) * 8 * scatterIntensity;
+        const randomScale = 0.9 + seededRandom(seed + 3) * 0.3;
+        const caseRandom = seededRandom(seed + 4);
+
+        let formattedWord = item.word;
+        if (caseRandom > 0.7 && caseRandom <= 0.9) {
+          formattedWord = item.word.toLowerCase();
+        } else if (caseRandom > 0.9) {
+          formattedWord = item.word.toUpperCase();
+        }
 
         positions[item.index] = {
-          word: item.word,
+          word: formattedWord,
           x: Math.max(2, Math.min(88, baseX + randomOffsetX)),
           y: Math.max(5, Math.min(90, baseY + randomOffsetY)),
           rotation: randomRotation,
           scale: randomScale,
-          opacity: 0.7 + Math.random() * 0.3
+          opacity: 0.7 + seededRandom(seed + 5) * 0.3
         };
 
-        baseX += item.word.length * 2.8 + 6 + (Math.random() * 4);
+        baseX += item.word.length * 2.8 + 6 + (seededRandom(seed + 6) * 4);
       });
     });
 
@@ -64,6 +82,9 @@ const PoemCanvas = ({
   }, [words, scatterIntensity]);
 
   useEffect(() => {
+    if (words.length === 0) return;
+
+    setVisibleWords([]);
     const timers = [];
 
     words.forEach((_, index) => {
@@ -76,15 +97,9 @@ const PoemCanvas = ({
     return () => timers.forEach(timer => clearTimeout(timer));
   }, [words, staggerDelay]);
 
-  const formatWord = (word) => {
-    if (Math.random() > 0.7) {
-      return word.toLowerCase();
-    }
-    if (Math.random() > 0.9) {
-      return word.toUpperCase();
-    }
-    return word;
-  };
+  if (!poem || words.length === 0) {
+    return null;
+  }
 
   return (
     <div
@@ -118,7 +133,7 @@ const PoemCanvas = ({
             userSelect: 'none'
           }}
         >
-          {formatWord(pos.word)}
+          {pos.word}
         </span>
       ))}
     </div>
