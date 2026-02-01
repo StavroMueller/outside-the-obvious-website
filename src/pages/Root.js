@@ -27,6 +27,26 @@ const Root = () => {
         </div>
       </section>
 
+      {/* currently / next — poetic status */}
+      <section className="now-section">
+        <div className="now-content">
+          <span className="now-label">next</span>
+          <span className="now-text">new york fashion week — february 2025</span>
+        </div>
+      </section>
+
+      {/* scrolling marquee — fashion weeks */}
+      <div className="marquee-container">
+        <div className="marquee">
+          <span className="marquee-text">
+            nyfw · paris fashion week · milan · london · backstage · runway · editorial · lookbook · campaign · nyfw · paris fashion week · milan · london · backstage · runway · editorial · lookbook · campaign ·&nbsp;
+          </span>
+          <span className="marquee-text">
+            nyfw · paris fashion week · milan · london · backstage · runway · editorial · lookbook · campaign · nyfw · paris fashion week · milan · london · backstage · runway · editorial · lookbook · campaign ·&nbsp;
+          </span>
+        </div>
+      </div>
+
       {/* services section */}
       <section className="services-section">
         <h2 className="section-title">services</h2>
@@ -96,6 +116,65 @@ const Root = () => {
         </div>
       </section>
 
+      {/* books section */}
+      <section className="books-section">
+        <h2 className="section-title">published works</h2>
+        <p className="body-text" style={{ marginBottom: '3rem' }}>
+          photographs that became poetry. poetry that became books.
+        </p>
+
+        <div className="books-grid">
+          <div className="book-item">
+            <h3 className="book-title">midnight at main</h3>
+            <p className="book-description">
+              downtown houston, after hours.
+              neon and shadow. strangers and ghosts.
+            </p>
+            <span className="book-year">2024</span>
+          </div>
+
+          <div className="book-item">
+            <h3 className="book-title">a poem of lima</h3>
+            <p className="book-description">
+              images that rhyme.
+              peru through a lens of longing.
+            </p>
+            <span className="book-year">2023</span>
+          </div>
+
+          <div className="book-item">
+            <h3 className="book-title">mis</h3>
+            <p className="book-description">
+              a visual journey through abstract dining.
+              hospitality as art form.
+            </p>
+            <span className="book-year">2022</span>
+          </div>
+        </div>
+
+        <div style={{ marginTop: '3rem' }}>
+          <Link to="/contact" className="cta-button">
+            inquire about prints & books
+          </Link>
+        </div>
+      </section>
+
+      {/* experience / credentials — subtle flex */}
+      <section className="experience-section">
+        <div className="experience-item">
+          <span className="experience-number">5+</span>
+          <span className="experience-label">years shooting fashion</span>
+        </div>
+        <div className="experience-item">
+          <span className="experience-number">3</span>
+          <span className="experience-label">published books</span>
+        </div>
+        <div className="experience-item">
+          <span className="experience-number">nyfw</span>
+          <span className="experience-label">fashion week 2025</span>
+        </div>
+      </section>
+
       {/* about section */}
       <section className="about-section">
         <div>
@@ -106,8 +185,11 @@ const Root = () => {
             the moment between takes when everything feels electric.
           </p>
           <p className="about-text" style={{ marginTop: '1.5rem' }}>
-            whether it's backstage at fashion week or on the street at midnight,
+            from backstage at new york fashion week to midnight shoots in downtown houston,
             i'm chasing energy, tension, and everything that lives outside the obvious.
+          </p>
+          <p className="about-text" style={{ marginTop: '1.5rem', fontStyle: 'italic', color: '#6b6560' }}>
+            currently: preparing for nyfw february 2025.
           </p>
         </div>
         <div>

@@ -541,3 +541,178 @@ a:hover {
   background-color: var(--accent);
   color: var(--bg-primary);
 }
+
+/* now/next section — poetic status */
+.now-section {
+  padding: 2rem 8vw;
+  background-color: var(--bg-accent);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.now-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.now-label {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: lowercase;
+  color: var(--accent);
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--accent);
+}
+
+.now-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  color: var(--text-secondary);
+}
+
+/* scrolling marquee */
+.marquee-container {
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: lowercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-container:hover .marquee {
+  animation-play-state: paused;
+}
+
+/* books section */
+.books-section {
+  padding: 8rem 8vw;
+  background-color: var(--bg-primary);
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+.book-item {
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.book-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+}
+
+.book-description {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  text-transform: lowercase;
+  color: var(--text-muted);
+  margin: 0 0 1.5rem 0;
+}
+
+.book-year {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+/* experience/credentials section */
+.experience-section {
+  padding: 6rem 8vw;
+  background-color: var(--bg-secondary);
+  display: flex;
+  justify-content: center;
+  gap: 6rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.experience-item {
+  text-align: center;
+}
+
+.experience-number {
+  display: block;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.experience-label {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  color: var(--text-muted);
+}
+
+/* responsive additions */
+@media (max-width: 768px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .experience-section {
+    flex-direction: column;
+    gap: 3rem;
+    padding: 4rem 5vw;
+  }
+
+  .now-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .marquee-text {
+    font-size: 0.8rem;
+  }
+}
