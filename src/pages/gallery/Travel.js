@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import wotoFinder from "../../utilities/wotoFinder";
 import Gallery from "../../components/Gallery";
+import PoemCanvas from "../../components/PoemCanvas";
 
 const Travel = () => {
   const wotoUrls = wotoFinder("travel", 24);
@@ -10,9 +11,11 @@ const Travel = () => {
     <div className="gallery-page">
       <header className="gallery-header">
         <h1 className="gallery-title">travel</h1>
-        <p className="gallery-subtitle">
-          places, faces, stories from the road
-        </p>
+        <PoemCanvas
+          size="small"
+          poem="we leave ourselves scattered in places we have never been"
+          scatterIntensity={0.2}
+        />
       </header>
       <Gallery imageUrls={wotoUrls} />
       <div style={{ textAlign: 'center', marginTop: '4rem', marginBottom: '2rem' }}>

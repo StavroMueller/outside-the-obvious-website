@@ -1,13 +1,42 @@
 import React, { useEffect, useState, useMemo } from 'react';
 
+const sizeConfig = {
+  small: {
+    height: '120px',
+    minHeight: '100px',
+    fontSize: 'clamp(0.85rem, 1.5vw, 1.1rem)',
+    verticalSpacing: 35,
+    startY: 20,
+    scatterMultiplier: 0.5
+  },
+  medium: {
+    height: '200px',
+    minHeight: '180px',
+    fontSize: 'clamp(1rem, 2vw, 1.4rem)',
+    verticalSpacing: 30,
+    startY: 15,
+    scatterMultiplier: 0.7
+  },
+  large: {
+    height: '70vh',
+    minHeight: '500px',
+    fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
+    verticalSpacing: 14,
+    startY: 10,
+    scatterMultiplier: 1
+  }
+};
+
 const PoemCanvas = ({
   poem,
   className = '',
+  size = 'large',
   fadeInDuration = 800,
   staggerDelay = 150,
   scatterIntensity = 0.3
 }) => {
   const [visibleWords, setVisibleWords] = useState([]);
+  const config = sizeConfig[size] || sizeConfig.large;
 
   // Seeded random for consistent renders
   const seededRandom = (seed) => {
@@ -27,7 +56,7 @@ const PoemCanvas = ({
     const rows = [];
     let currentRow = [];
     let currentRowWidth = 0;
-    const maxRowWidth = 70; // Reduced to prevent overflow
+    const maxRowWidth = size === 'small' ? 90 : 70; // Reduced to prevent overflow
 
     words.forEach((word, i) => {
       const wordWidth = word.length * 3.5; // More generous width estimate
@@ -48,8 +77,9 @@ const PoemCanvas = ({
 
     // Calculate vertical spacing based on number of rows
     const totalRows = rows.length;
-    const verticalSpacing = Math.min(14, 70 / totalRows); // Distribute rows evenly
-    const startY = 10;
+    const verticalSpacing = Math.min(config.verticalSpacing, 70 / totalRows); // Distribute rows evenly
+    const startY = config.startY;
+    const scatter = scatterIntensity * config.scatterMultiplier;
 
     rows.forEach((row, rowIndex) => {
       const baseY = startY + (rowIndex * verticalSpacing);
@@ -63,9 +93,9 @@ const PoemCanvas = ({
         const baseX = 10 + (wordIndex + 1) * wordSpacing - (wordSpacing / 2);
 
         // Reduced scatter to prevent overlap
-        const randomOffsetX = (seededRandom(seed) - 0.5) * 8 * scatterIntensity;
-        const randomOffsetY = (seededRandom(seed + 1) - 0.5) * 4 * scatterIntensity;
-        const randomRotation = (seededRandom(seed + 2) - 0.5) * 4 * scatterIntensity;
+        const randomOffsetX = (seededRandom(seed) - 0.5) * 8 * scatter;
+        const randomOffsetY = (seededRandom(seed + 1) - 0.5) * 4 * scatter;
+        const randomRotation = (seededRandom(seed + 2) - 0.5) * 4 * scatter;
         const randomScale = 0.95 + seededRandom(seed + 3) * 0.1;
         const caseRandom = seededRandom(seed + 4);
 
@@ -88,23 +118,24 @@ const PoemCanvas = ({
     });
 
     return positions;
-  }, [words, scatterIntensity]);
+  }, [words, scatterIntensity, size, config]);
 
   useEffect(() => {
     if (words.length === 0) return;
 
     setVisibleWords([]);
     const timers = [];
+    const delay = size === 'small' ? staggerDelay * 0.5 : staggerDelay;
 
     words.forEach((_, index) => {
       const timer = setTimeout(() => {
         setVisibleWords(prev => [...prev, index]);
-      }, index * staggerDelay);
+      }, index * delay);
       timers.push(timer);
     });
 
     return () => timers.forEach(timer => clearTimeout(timer));
-  }, [words, staggerDelay]);
+  }, [words, staggerDelay, size]);
 
   if (!poem || words.length === 0) {
     return null;
@@ -116,8 +147,8 @@ const PoemCanvas = ({
       style={{
         position: 'relative',
         width: '100%',
-        height: '70vh',
-        minHeight: '500px',
+        height: config.height,
+        minHeight: config.minHeight,
         overflow: 'hidden'
       }}
     >
@@ -133,10 +164,10 @@ const PoemCanvas = ({
             opacity: visibleWords.includes(index) ? pos.opacity : 0,
             transition: `opacity ${fadeInDuration}ms ease-out, transform 0.3s ease`,
             fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
+            fontSize: config.fontSize,
             fontWeight: 300,
             letterSpacing: '0.05em',
-            color: 'var(--text-primary)',
+            color: size === 'small' ? 'var(--text-muted)' : 'var(--text-primary)',
             whiteSpace: 'nowrap',
             cursor: 'default',
             userSelect: 'none'
