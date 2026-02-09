@@ -5,7 +5,7 @@ const PoemCanvas = ({
   className = '',
   fadeInDuration = 800,
   staggerDelay = 150,
-  scatterIntensity = 0.4
+  scatterIntensity = 0.3
 }) => {
   const [visibleWords, setVisibleWords] = useState([]);
 
@@ -27,10 +27,10 @@ const PoemCanvas = ({
     const rows = [];
     let currentRow = [];
     let currentRowWidth = 0;
-    const maxRowWidth = 85;
+    const maxRowWidth = 70; // Reduced to prevent overflow
 
     words.forEach((word, i) => {
-      const wordWidth = word.length * 2.5;
+      const wordWidth = word.length * 3.5; // More generous width estimate
 
       if (currentRowWidth + wordWidth > maxRowWidth && currentRow.length > 0) {
         rows.push([...currentRow]);
@@ -39,23 +39,34 @@ const PoemCanvas = ({
       }
 
       currentRow.push({ word, index: i });
-      currentRowWidth += wordWidth + 8;
+      currentRowWidth += wordWidth + 5;
     });
 
     if (currentRow.length > 0) {
       rows.push(currentRow);
     }
 
-    rows.forEach((row, rowIndex) => {
-      const baseY = 15 + (rowIndex * 18);
-      let baseX = 5;
+    // Calculate vertical spacing based on number of rows
+    const totalRows = rows.length;
+    const verticalSpacing = Math.min(14, 70 / totalRows); // Distribute rows evenly
+    const startY = 10;
 
-      row.forEach((item) => {
+    rows.forEach((row, rowIndex) => {
+      const baseY = startY + (rowIndex * verticalSpacing);
+
+      // Distribute words horizontally across the row
+      const rowWidth = 80;
+      const wordSpacing = rowWidth / (row.length + 1);
+
+      row.forEach((item, wordIndex) => {
         const seed = item.index * 1000 + rowIndex;
-        const randomOffsetX = (seededRandom(seed) - 0.5) * 15 * scatterIntensity;
-        const randomOffsetY = (seededRandom(seed + 1) - 0.5) * 12 * scatterIntensity;
-        const randomRotation = (seededRandom(seed + 2) - 0.5) * 8 * scatterIntensity;
-        const randomScale = 0.9 + seededRandom(seed + 3) * 0.3;
+        const baseX = 10 + (wordIndex + 1) * wordSpacing - (wordSpacing / 2);
+
+        // Reduced scatter to prevent overlap
+        const randomOffsetX = (seededRandom(seed) - 0.5) * 8 * scatterIntensity;
+        const randomOffsetY = (seededRandom(seed + 1) - 0.5) * 4 * scatterIntensity;
+        const randomRotation = (seededRandom(seed + 2) - 0.5) * 4 * scatterIntensity;
+        const randomScale = 0.95 + seededRandom(seed + 3) * 0.1;
         const caseRandom = seededRandom(seed + 4);
 
         let formattedWord = item.word;
@@ -67,14 +78,12 @@ const PoemCanvas = ({
 
         positions[item.index] = {
           word: formattedWord,
-          x: Math.max(2, Math.min(88, baseX + randomOffsetX)),
-          y: Math.max(5, Math.min(90, baseY + randomOffsetY)),
+          x: Math.max(5, Math.min(90, baseX + randomOffsetX)),
+          y: Math.max(5, Math.min(85, baseY + randomOffsetY)),
           rotation: randomRotation,
           scale: randomScale,
-          opacity: 0.7 + seededRandom(seed + 5) * 0.3
+          opacity: 0.8 + seededRandom(seed + 5) * 0.2
         };
-
-        baseX += item.word.length * 2.8 + 6 + (seededRandom(seed + 6) * 4);
       });
     });
 
@@ -107,8 +116,8 @@ const PoemCanvas = ({
       style={{
         position: 'relative',
         width: '100%',
-        height: '60vh',
-        minHeight: '400px',
+        height: '70vh',
+        minHeight: '500px',
         overflow: 'hidden'
       }}
     >
@@ -124,7 +133,7 @@ const PoemCanvas = ({
             opacity: visibleWords.includes(index) ? pos.opacity : 0,
             transition: `opacity ${fadeInDuration}ms ease-out, transform 0.3s ease`,
             fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontSize: 'clamp(1.2rem, 3vw, 2.2rem)',
+            fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
             fontWeight: 300,
             letterSpacing: '0.05em',
             color: 'var(--text-primary)',
