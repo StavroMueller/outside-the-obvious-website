@@ -49,6 +49,16 @@ function App() {
                   contact
                 </Link>
               </li>
+              <li>
+                <a
+                  href="https://instagram.com/outsidetheobvious"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="nav-link nav-social"
+                >
+                  @
+                </a>
+              </li>
             </ul>
           </nav>
 
@@ -78,6 +88,14 @@ function App() {
             <span className="footer-text">
               fashion & editorial photography
             </span>
+            <a
+              href="https://instagram.com/outsidetheobvious"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-social"
+            >
+              @outsidetheobvious
+            </a>
           </footer>
         </HashRouter>
       </div>

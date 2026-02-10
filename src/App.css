@@ -424,6 +424,26 @@ body {
   color: var(--text-muted);
 }
 
+.footer-social {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-social:hover {
+  color: var(--text-primary);
+}
+
+.nav-social {
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
 /* about section */
 .about-section {
   padding: 8rem 8vw;
