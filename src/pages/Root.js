@@ -191,24 +191,30 @@ const Root = () => {
         </div>
       </section>
 
-      {/* experience / credentials — subtle flex */}
+      {/* experience / credentials — the flex */}
       <section className="experience-section">
         <div className="experience-item">
-          <span className="experience-number">5+</span>
+          <span className="experience-number">2018</span>
           <span className="experience-label">
-            years of<br />beautiful mistakes
+            shooting fashion<br />before it was cool<br />(it was always cool)
+          </span>
+        </div>
+        <div className="experience-item">
+          <span className="experience-number">90+</span>
+          <span className="experience-label">
+            runway shows<br />90 chances to blink<br />&nbsp;&nbsp;(i didn't)
           </span>
         </div>
         <div className="experience-item">
           <span className="experience-number">3</span>
           <span className="experience-label">
-            books that<br />exist now
+            published books<br />that people actually<br />&nbsp;&nbsp;bought
           </span>
         </div>
         <div className="experience-item">
           <span className="experience-number">nyfw</span>
           <span className="experience-label">
-            february<br />2025
+            new york calls<br />february 2025
           </span>
         </div>
       </section>
@@ -225,12 +231,16 @@ const Root = () => {
             julien clifford<br />
             houston, texas<br />
             <br />
+            since 2018<br />
+            &nbsp;&nbsp;90+ runway shows<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;and still counting<br />
+            <br />
             i like the space between<br />
             &nbsp;&nbsp;the pose and the person<br />
             the accident that becomes<br />
             &nbsp;&nbsp;&nbsp;the only true thing<br />
             <br />
-            from backstage at fashion week<br />
+            from backstage at nyfw<br />
             to 3am on main street<br />
             &nbsp;&nbsp;i'm just looking<br />
             &nbsp;&nbsp;&nbsp;&nbsp;for what's already there

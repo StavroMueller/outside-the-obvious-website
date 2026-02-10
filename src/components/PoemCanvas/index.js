@@ -33,7 +33,8 @@ const PoemCanvas = ({
   size = 'large',
   fadeInDuration = 800,
   staggerDelay = 150,
-  scatterIntensity = 0.3
+  scatterIntensity = 0.3,
+  layout = 'cascade' // 'cascade' for E.E. Cummings style, 'scattered' for original
 }) => {
   const [visibleWords, setVisibleWords] = useState([]);
   const config = sizeConfig[size] || sizeConfig.large;
@@ -53,79 +54,130 @@ const PoemCanvas = ({
     if (words.length === 0) return [];
 
     const positions = [];
-    const rows = [];
-    let currentRow = [];
-    let currentRowWidth = 0;
-    const maxRowWidth = size === 'small' ? 90 : 70; // Reduced to prevent overflow
+    const totalWords = words.length;
 
-    words.forEach((word, i) => {
-      const wordWidth = word.length * 3.5; // More generous width estimate
+    if (layout === 'cascade') {
+      // E.E. Cummings cascading vertical style
+      // Each word flows down with organic horizontal movement
+      const verticalStep = 80 / totalWords; // Distribute across 80% of height
+      const startY = 8;
 
-      if (currentRowWidth + wordWidth > maxRowWidth && currentRow.length > 0) {
-        rows.push([...currentRow]);
-        currentRow = [];
-        currentRowWidth = 0;
-      }
+      // Create a flowing path using multiple sine waves
+      let currentX = 15 + seededRandom(42) * 30; // Start position 15-45%
 
-      currentRow.push({ word, index: i });
-      currentRowWidth += wordWidth + 5;
-    });
+      words.forEach((word, i) => {
+        const seed = i * 1000;
 
-    if (currentRow.length > 0) {
-      rows.push(currentRow);
-    }
+        // Organic horizontal movement - drift with occasional jumps
+        const drift = (seededRandom(seed) - 0.5) * 15;
+        const waviness = Math.sin(i * 0.7) * 12;
+        const jump = seededRandom(seed + 1) > 0.85 ? (seededRandom(seed + 2) - 0.5) * 25 : 0;
 
-    // Calculate vertical spacing based on number of rows
-    const totalRows = rows.length;
-    const verticalSpacing = Math.min(config.verticalSpacing, 70 / totalRows); // Distribute rows evenly
-    const startY = config.startY;
-    const scatter = scatterIntensity * config.scatterMultiplier;
+        currentX = currentX + drift * 0.3 + waviness * 0.2 + jump;
+        // Keep within bounds but allow more range
+        currentX = Math.max(8, Math.min(75, currentX));
 
-    rows.forEach((row, rowIndex) => {
-      const baseY = startY + (rowIndex * verticalSpacing);
+        // Slight indent variation based on word
+        const indent = (seededRandom(seed + 3) - 0.3) * 8;
 
-      // Distribute words horizontally across the row
-      const rowWidth = 80;
-      const wordSpacing = rowWidth / (row.length + 1);
+        const y = startY + (i * verticalStep);
+        const x = currentX + indent;
 
-      row.forEach((item, wordIndex) => {
-        const seed = item.index * 1000 + rowIndex;
-        const baseX = 10 + (wordIndex + 1) * wordSpacing - (wordSpacing / 2);
+        // Subtle variations
+        const randomRotation = (seededRandom(seed + 4) - 0.5) * 2 * scatterIntensity;
+        const randomScale = 0.97 + seededRandom(seed + 5) * 0.06;
+        const caseRandom = seededRandom(seed + 6);
 
-        // Reduced scatter to prevent overlap
-        const randomOffsetX = (seededRandom(seed) - 0.5) * 8 * scatter;
-        const randomOffsetY = (seededRandom(seed + 1) - 0.5) * 4 * scatter;
-        const randomRotation = (seededRandom(seed + 2) - 0.5) * 4 * scatter;
-        const randomScale = 0.95 + seededRandom(seed + 3) * 0.1;
-        const caseRandom = seededRandom(seed + 4);
-
-        let formattedWord = item.word;
-        if (caseRandom > 0.7 && caseRandom <= 0.9) {
-          formattedWord = item.word.toLowerCase();
+        let formattedWord = word;
+        if (caseRandom > 0.75 && caseRandom <= 0.9) {
+          formattedWord = word.toLowerCase();
         } else if (caseRandom > 0.9) {
-          formattedWord = item.word.toUpperCase();
+          formattedWord = word.toUpperCase();
         }
 
-        positions[item.index] = {
+        positions[i] = {
           word: formattedWord,
-          x: Math.max(5, Math.min(90, baseX + randomOffsetX)),
-          y: Math.max(5, Math.min(85, baseY + randomOffsetY)),
+          x: Math.max(5, Math.min(85, x)),
+          y: Math.max(3, Math.min(92, y)),
           rotation: randomRotation,
           scale: randomScale,
-          opacity: 0.8 + seededRandom(seed + 5) * 0.2
+          opacity: 0.85 + seededRandom(seed + 7) * 0.15
         };
       });
-    });
+    } else {
+      // Original scattered layout
+      const rows = [];
+      let currentRow = [];
+      let currentRowWidth = 0;
+      const maxRowWidth = size === 'small' ? 90 : 70;
+
+      words.forEach((word, i) => {
+        const wordWidth = word.length * 3.5;
+
+        if (currentRowWidth + wordWidth > maxRowWidth && currentRow.length > 0) {
+          rows.push([...currentRow]);
+          currentRow = [];
+          currentRowWidth = 0;
+        }
+
+        currentRow.push({ word, index: i });
+        currentRowWidth += wordWidth + 5;
+      });
+
+      if (currentRow.length > 0) {
+        rows.push(currentRow);
+      }
+
+      const totalRows = rows.length;
+      const verticalSpacing = Math.min(config.verticalSpacing, 70 / totalRows);
+      const startY = config.startY;
+      const scatter = scatterIntensity * config.scatterMultiplier;
+
+      rows.forEach((row, rowIndex) => {
+        const baseY = startY + (rowIndex * verticalSpacing);
+        const rowWidth = 80;
+        const wordSpacing = rowWidth / (row.length + 1);
+
+        row.forEach((item, wordIndex) => {
+          const seed = item.index * 1000 + rowIndex;
+          const baseX = 10 + (wordIndex + 1) * wordSpacing - (wordSpacing / 2);
+
+          const randomOffsetX = (seededRandom(seed) - 0.5) * 8 * scatter;
+          const randomOffsetY = (seededRandom(seed + 1) - 0.5) * 4 * scatter;
+          const randomRotation = (seededRandom(seed + 2) - 0.5) * 4 * scatter;
+          const randomScale = 0.95 + seededRandom(seed + 3) * 0.1;
+          const caseRandom = seededRandom(seed + 4);
+
+          let formattedWord = item.word;
+          if (caseRandom > 0.7 && caseRandom <= 0.9) {
+            formattedWord = item.word.toLowerCase();
+          } else if (caseRandom > 0.9) {
+            formattedWord = item.word.toUpperCase();
+          }
+
+          positions[item.index] = {
+            word: formattedWord,
+            x: Math.max(5, Math.min(90, baseX + randomOffsetX)),
+            y: Math.max(5, Math.min(85, baseY + randomOffsetY)),
+            rotation: randomRotation,
+            scale: randomScale,
+            opacity: 0.8 + seededRandom(seed + 5) * 0.2
+          };
+        });
+      });
+    }
 
     return positions;
-  }, [words, scatterIntensity, size, config]);
+  }, [words, scatterIntensity, size, config, layout]);
 
   useEffect(() => {
     if (words.length === 0) return;
 
     setVisibleWords([]);
     const timers = [];
-    const delay = size === 'small' ? staggerDelay * 0.5 : staggerDelay;
+    const baseDelay = size === 'small' ? staggerDelay * 0.5 : staggerDelay;
+    // Faster stagger for cascade layout
+    const delay = layout === 'cascade' ? baseDelay * 0.6 : baseDelay;
 
     words.forEach((_, index) => {
       const timer = setTimeout(() => {
@@ -135,7 +187,7 @@ const PoemCanvas = ({
     });
 
     return () => timers.forEach(timer => clearTimeout(timer));
-  }, [words, staggerDelay, size]);
+  }, [words, staggerDelay, size, layout]);
 
   if (!poem || words.length === 0) {
     return null;
