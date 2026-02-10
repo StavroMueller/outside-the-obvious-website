@@ -664,7 +664,8 @@ a:hover {
   background-color: var(--bg-secondary);
   display: flex;
   justify-content: center;
-  gap: 6rem;
+  flex-wrap: wrap;
+  gap: 4rem 5rem;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
