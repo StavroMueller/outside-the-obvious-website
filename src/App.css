@@ -761,6 +761,19 @@ a:hover {
   position: relative;
 }
 
+/* Ensure adequate height on landscape/wide screens */
+@media (orientation: landscape) and (max-height: 500px) {
+  .poem-canvas {
+    min-height: 400px !important;
+  }
+}
+
+@media (orientation: landscape) and (min-width: 768px) and (max-height: 700px) {
+  .poem-canvas {
+    min-height: 500px;
+  }
+}
+
 .poem-word {
   transition: all 0.3s ease;
 }

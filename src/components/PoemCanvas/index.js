@@ -7,7 +7,8 @@ const sizeConfig = {
     fontSize: 'clamp(0.85rem, 1.5vw, 1.1rem)',
     verticalSpacing: 35,
     startY: 20,
-    scatterMultiplier: 0.5
+    scatterMultiplier: 0.5,
+    minVerticalStep: 8
   },
   medium: {
     height: '200px',
@@ -15,7 +16,8 @@ const sizeConfig = {
     fontSize: 'clamp(1rem, 2vw, 1.4rem)',
     verticalSpacing: 30,
     startY: 15,
-    scatterMultiplier: 0.7
+    scatterMultiplier: 0.7,
+    minVerticalStep: 6
   },
   large: {
     height: '70vh',
@@ -23,7 +25,8 @@ const sizeConfig = {
     fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
     verticalSpacing: 14,
     startY: 10,
-    scatterMultiplier: 1
+    scatterMultiplier: 1,
+    minVerticalStep: 5
   }
 };
 
@@ -59,8 +62,10 @@ const PoemCanvas = ({
     if (layout === 'cascade') {
       // E.E. Cummings cascading vertical style
       // Each word flows down with organic horizontal movement
-      const verticalStep = 80 / totalWords; // Distribute across 80% of height
-      const startY = 8;
+      // Ensure minimum spacing so words don't overlap on landscape/short screens
+      const idealStep = 80 / totalWords;
+      const verticalStep = Math.max(idealStep, config.minVerticalStep || 5);
+      const startY = 6;
 
       // Create a flowing path using multiple sine waves
       let currentX = 15 + seededRandom(42) * 30; // Start position 15-45%
@@ -193,13 +198,26 @@ const PoemCanvas = ({
     return null;
   }
 
+  // Calculate dynamic height for cascade layout to prevent overlap
+  const dynamicHeight = useMemo(() => {
+    if (layout === 'cascade' && size === 'large') {
+      const minStepPercent = config.minVerticalStep || 5;
+      const neededHeight = words.length * minStepPercent + 15; // 15% buffer
+      if (neededHeight > 80) {
+        // Need more than default, scale up
+        return `max(70vh, ${Math.ceil(neededHeight * 6)}px)`;
+      }
+    }
+    return config.height;
+  }, [layout, size, words.length, config]);
+
   return (
     <div
       className={`poem-canvas ${className}`}
       style={{
         position: 'relative',
         width: '100%',
-        height: config.height,
+        height: dynamicHeight,
         minHeight: config.minHeight,
         overflow: 'hidden'
       }}
