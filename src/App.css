@@ -792,3 +792,155 @@ a:hover {
   border-left: none;
   padding-left: 0;
 }
+
+/* hello / rfid landing page */
+.hello-page {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+}
+
+.hello-hero {
+  padding: 2rem 8vw 0;
+}
+
+.hello-intro {
+  padding: 0 8vw 4rem;
+  text-align: center;
+}
+
+.hello-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  color: var(--text-primary);
+  line-height: 1.8;
+}
+
+.hello-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background-color: var(--border);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.hello-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  background-color: var(--bg-primary);
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.hello-card:hover {
+  background-color: var(--bg-secondary);
+}
+
+.hello-card-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.hello-card-sub {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.hello-now {
+  padding: 2rem 8vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background-color: var(--bg-secondary);
+}
+
+.hello-now-label {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: lowercase;
+  color: var(--accent);
+}
+
+.hello-now-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  color: var(--text-secondary);
+}
+
+.hello-cta {
+  padding: 5rem 8vw;
+  text-align: center;
+}
+
+.hello-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-button-outline {
+  background-color: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.cta-button-outline:hover {
+  background-color: var(--accent);
+  color: var(--bg-primary);
+}
+
+.hello-footer {
+  padding: 3rem 8vw;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.hello-small {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .hello-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hello-now {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .hello-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
