@@ -3,6 +3,7 @@ import { HashRouter, Link, Routes, Route } from "react-router-dom";
 import ErrorBoundary from "./components/ErrorBoundary";
 
 import Root from "./pages/Root";
+import Hello from "./pages/Hello";
 import Booking from "./pages/Booking";
 import Contact from "./pages/Contact";
 import Street from "./pages/gallery/Street";
@@ -65,6 +66,7 @@ function App() {
           <main>
             <Routes>
               <Route path="/" element={<Root />} />
+              <Route path="/hello" element={<Hello />} />
               <Route path="/gallery/street" element={<Street />} />
               <Route path="/gallery/fashion" element={<Fashion />} />
               <Route path="/gallery/travel" element={<Travel />} />
