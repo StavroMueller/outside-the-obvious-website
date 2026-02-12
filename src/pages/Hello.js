@@ -54,7 +54,7 @@ END:VCARD`;
       <section className="hello-intro">
         <p className="hello-text ee-text">
           i'm julien<br />
-          &nbsp;&nbsp;i make pictures<br />
+          &nbsp;&nbsp;i take pictures<br />
           &nbsp;&nbsp;&nbsp;&nbsp;that feel like something
         </p>
       </section>
