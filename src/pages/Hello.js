@@ -15,6 +15,29 @@ const Hello = () => {
             touching
               curious`;
 
+  const downloadVCard = () => {
+    const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Julien Clifford
+N:Clifford;Julien;;;
+ORG:Outside The Obvious
+TITLE:Fashion & Editorial Photographer
+URL:https://outsidetheobvious.com
+X-SOCIALPROFILE;TYPE=instagram:https://instagram.com/outsidetheobvious
+NOTE:Fashion photographer since 2018. 90+ runway shows. NYFW.
+END:VCARD`;
+
+    const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'julien-clifford.vcf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="hello-page">
       {/* hero greeting */}
@@ -98,6 +121,12 @@ const Hello = () => {
           >
             @outsidetheobvious
           </a>
+          <button
+            onClick={downloadVCard}
+            className="cta-button cta-button-outline"
+          >
+            save my contact
+          </button>
         </div>
       </section>
 
