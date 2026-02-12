@@ -194,10 +194,6 @@ const PoemCanvas = ({
     return () => timers.forEach(timer => clearTimeout(timer));
   }, [words, staggerDelay, size, layout]);
 
-  if (!poem || words.length === 0) {
-    return null;
-  }
-
   // Calculate dynamic height for cascade layout to prevent overlap
   const dynamicHeight = useMemo(() => {
     if (layout === 'cascade' && size === 'large') {
@@ -210,6 +206,10 @@ const PoemCanvas = ({
     }
     return config.height;
   }, [layout, size, words.length, config]);
+
+  if (!poem || words.length === 0) {
+    return null;
+  }
 
   return (
     <div
