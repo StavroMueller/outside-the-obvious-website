@@ -7,8 +7,7 @@ const sizeConfig = {
     fontSize: 'clamp(0.85rem, 1.5vw, 1.1rem)',
     verticalSpacing: 35,
     startY: 20,
-    scatterMultiplier: 0.5,
-    minVerticalStep: 8
+    scatterMultiplier: 0.5
   },
   medium: {
     height: '200px',
@@ -16,8 +15,7 @@ const sizeConfig = {
     fontSize: 'clamp(1rem, 2vw, 1.4rem)',
     verticalSpacing: 30,
     startY: 15,
-    scatterMultiplier: 0.7,
-    minVerticalStep: 6
+    scatterMultiplier: 0.7
   },
   large: {
     height: '70vh',
@@ -25,8 +23,7 @@ const sizeConfig = {
     fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
     verticalSpacing: 14,
     startY: 10,
-    scatterMultiplier: 1,
-    minVerticalStep: 5
+    scatterMultiplier: 1
   }
 };
 
@@ -62,10 +59,9 @@ const PoemCanvas = ({
     if (layout === 'cascade') {
       // E.E. Cummings cascading vertical style
       // Each word flows down with organic horizontal movement
-      // Ensure minimum spacing so words don't overlap on landscape/short screens
-      const idealStep = 80 / totalWords;
-      const verticalStep = Math.max(idealStep, config.minVerticalStep || 5);
-      const startY = 6;
+      // Always fit within the container - no scrolling
+      const verticalStep = 80 / totalWords;
+      const startY = 8;
 
       // Create a flowing path using multiple sine waves
       let currentX = 15 + seededRandom(42) * 30; // Start position 15-45%
@@ -194,19 +190,6 @@ const PoemCanvas = ({
     return () => timers.forEach(timer => clearTimeout(timer));
   }, [words, staggerDelay, size, layout]);
 
-  // Calculate dynamic height for cascade layout to prevent overlap
-  const dynamicHeight = useMemo(() => {
-    if (layout === 'cascade' && size === 'large') {
-      const minStepPercent = config.minVerticalStep || 5;
-      const neededHeight = words.length * minStepPercent + 15; // 15% buffer
-      if (neededHeight > 80) {
-        // Need more than default, scale up
-        return `max(70vh, ${Math.ceil(neededHeight * 6)}px)`;
-      }
-    }
-    return config.height;
-  }, [layout, size, words.length, config]);
-
   if (!poem || words.length === 0) {
     return null;
   }
@@ -217,7 +200,7 @@ const PoemCanvas = ({
       style={{
         position: 'relative',
         width: '100%',
-        height: dynamicHeight,
+        height: config.height,
         minHeight: config.minHeight,
         overflow: 'hidden'
       }}
