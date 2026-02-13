@@ -6,6 +6,7 @@ import wotoFinder from '../utilities/wotoFinder';
 
 const Root = () => {
   const featuredImages = [...wotoFinder('fashion', 4)];
+  const poemImages = [...wotoFinder('fashion', 6)];
 
   const heroPoem = `somewhere between the shutter and the skin
     lives a truth that doesn't know its name
@@ -20,6 +21,7 @@ const Root = () => {
         <div className="hero-poem-container">
           <PoemCanvas
             poem={heroPoem}
+            images={poemImages}
             scatterIntensity={0.5}
             staggerDelay={120}
             fadeInDuration={1000}
