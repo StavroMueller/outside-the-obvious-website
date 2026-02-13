@@ -32,10 +32,40 @@ const PoemCanvas = ({
   images = [],
   className = '',
   size = 'large',
+  layout = 'cascade',
+
+  // Timing
   fadeInDuration = 800,
   staggerDelay = 150,
+
+  // Word positioning
   scatterIntensity = 0.3,
-  layout = 'cascade'
+  wordStartX = 15,
+  wordStartXRange = 30,
+  wordMinX = 8,
+  wordMaxX = 75,
+  wordDriftAmount = 15,
+  wordWaveFrequency = 0.7,
+  wordWaveAmplitude = 12,
+  wordJumpChance = 0.85,
+  wordJumpAmount = 25,
+  wordIndentRange = 8,
+  wordVerticalSpread = 80,
+  wordStartY = 8,
+
+  // Image positioning
+  imageLeftMin = 2,
+  imageLeftRange = 13,
+  imageRightMin = 78,
+  imageRightRange = 17,
+  imageVerticalSpread = 70,
+  imageVerticalOffset = 10,
+  imageVerticalRandomness = 15,
+  imageMinSize = 60,
+  imageSizeRange = 40,
+  imageMaxRotation = 12,
+  imageOpacity = 0.6,
+  imageGrayscale = 30
 }) => {
   const [visibleWords, setVisibleWords] = useState([]);
   const [visibleImages, setVisibleImages] = useState([]);
@@ -58,28 +88,28 @@ const PoemCanvas = ({
 
     return images.map((url, i) => {
       const seed = (i + 1) * 7777;
-      // Alternate between left side (0-15%) and right side (75-95%)
       const isLeft = i % 2 === 0;
       const x = isLeft
-        ? 2 + seededRandom(seed) * 13
-        : 78 + seededRandom(seed) * 17;
+        ? imageLeftMin + seededRandom(seed) * imageLeftRange
+        : imageRightMin + seededRandom(seed) * imageRightRange;
 
-      // Distribute vertically with some randomness
-      const baseY = (i / images.length) * 70 + 10;
-      const y = baseY + (seededRandom(seed + 1) - 0.5) * 15;
+      const baseY = (i / images.length) * imageVerticalSpread + imageVerticalOffset;
+      const y = baseY + (seededRandom(seed + 1) - 0.5) * imageVerticalRandomness;
 
-      const rotation = (seededRandom(seed + 2) - 0.5) * 12;
-      const imageSize = 60 + seededRandom(seed + 3) * 40; // 60-100px
+      const rotation = (seededRandom(seed + 2) - 0.5) * imageMaxRotation;
+      const imgSize = imageMinSize + seededRandom(seed + 3) * imageSizeRange;
 
       return {
         url,
         x: Math.max(1, Math.min(85, x)),
         y: Math.max(5, Math.min(85, y)),
         rotation,
-        size: imageSize
+        size: imgSize
       };
     });
-  }, [images]);
+  }, [images, imageLeftMin, imageLeftRange, imageRightMin, imageRightRange,
+      imageVerticalSpread, imageVerticalOffset, imageVerticalRandomness,
+      imageMaxRotation, imageMinSize, imageSizeRange]);
 
   const wordPositions = useMemo(() => {
     if (words.length === 0) return [];
@@ -88,21 +118,22 @@ const PoemCanvas = ({
     const totalWords = words.length;
 
     if (layout === 'cascade') {
-      const verticalStep = 80 / totalWords;
-      const startY = 8;
-      let currentX = 15 + seededRandom(42) * 30;
+      const verticalStep = wordVerticalSpread / totalWords;
+      let currentX = wordStartX + seededRandom(42) * wordStartXRange;
 
       words.forEach((word, i) => {
         const seed = i * 1000;
-        const drift = (seededRandom(seed) - 0.5) * 15;
-        const waviness = Math.sin(i * 0.7) * 12;
-        const jump = seededRandom(seed + 1) > 0.85 ? (seededRandom(seed + 2) - 0.5) * 25 : 0;
+        const drift = (seededRandom(seed) - 0.5) * wordDriftAmount;
+        const waviness = Math.sin(i * wordWaveFrequency) * wordWaveAmplitude;
+        const jump = seededRandom(seed + 1) > wordJumpChance
+          ? (seededRandom(seed + 2) - 0.5) * wordJumpAmount
+          : 0;
 
         currentX = currentX + drift * 0.3 + waviness * 0.2 + jump;
-        currentX = Math.max(8, Math.min(75, currentX));
+        currentX = Math.max(wordMinX, Math.min(wordMaxX, currentX));
 
-        const indent = (seededRandom(seed + 3) - 0.3) * 8;
-        const y = startY + (i * verticalStep);
+        const indent = (seededRandom(seed + 3) - 0.3) * wordIndentRange;
+        const y = wordStartY + (i * verticalStep);
         const x = currentX + indent;
 
         const randomRotation = (seededRandom(seed + 4) - 0.5) * 2 * scatterIntensity;
@@ -186,7 +217,9 @@ const PoemCanvas = ({
     }
 
     return positions;
-  }, [words, scatterIntensity, size, config, layout]);
+  }, [words, scatterIntensity, size, config, layout, wordStartX, wordStartXRange,
+      wordMinX, wordMaxX, wordDriftAmount, wordWaveFrequency, wordWaveAmplitude,
+      wordJumpChance, wordJumpAmount, wordIndentRange, wordVerticalSpread, wordStartY]);
 
   // Stagger words appearing
   useEffect(() => {
@@ -216,7 +249,6 @@ const PoemCanvas = ({
     const baseDelay = size === 'small' ? staggerDelay * 0.5 : staggerDelay;
     const wordDelay = layout === 'cascade' ? baseDelay * 0.6 : baseDelay;
 
-    // Calculate when each image should appear (spread throughout the poem)
     const totalDuration = words.length * wordDelay;
     const imageInterval = totalDuration / (images.length + 1);
 
@@ -257,7 +289,7 @@ const PoemCanvas = ({
             width: `${pos.size}px`,
             height: `${pos.size}px`,
             transform: `rotate(${pos.rotation}deg)`,
-            opacity: visibleImages.includes(index) ? 0.6 : 0,
+            opacity: visibleImages.includes(index) ? imageOpacity : 0,
             transition: `opacity ${fadeInDuration * 1.5}ms ease-out`,
             overflow: 'hidden',
             pointerEvents: 'none'
@@ -270,7 +302,7 @@ const PoemCanvas = ({
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              filter: 'grayscale(30%)'
+              filter: `grayscale(${imageGrayscale}%)`
             }}
           />
         </div>
