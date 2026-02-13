@@ -54,9 +54,28 @@ END:VCARD`;
       <section className="hello-intro">
         <p className="hello-text ee-text">
           i'm julien<br />
-          &nbsp;&nbsp;i make pictures<br />
+          &nbsp;&nbsp;i take pictures<br />
           &nbsp;&nbsp;&nbsp;&nbsp;that feel like something
         </p>
+        <div className="hello-buttons" style={{ marginTop: '2rem' }}>
+          <Link to="/contact" className="cta-button">
+            work with me
+          </Link>
+          <a
+            href="https://instagram.com/outsidetheobvious"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cta-button cta-button-outline"
+          >
+            @outsidetheobvious
+          </a>
+          <button
+            onClick={downloadVCard}
+            className="cta-button cta-button-outline"
+          >
+            save my contact
+          </button>
+        </div>
       </section>
 
       {/* what i do - quick overview */}
@@ -100,34 +119,6 @@ END:VCARD`;
         <span className="hello-now-text">
           preparing for nyfw &mdash; february 2025
         </span>
-      </section>
-
-      {/* cta */}
-      <section className="hello-cta">
-        <p className="hello-text ee-text" style={{ marginBottom: '2rem' }}>
-          let's make<br />
-          &nbsp;&nbsp;something<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;together
-        </p>
-        <div className="hello-buttons">
-          <Link to="/contact" className="cta-button">
-            work with me
-          </Link>
-          <a
-            href="https://instagram.com/outsidetheobvious"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cta-button cta-button-outline"
-          >
-            @outsidetheobvious
-          </a>
-          <button
-            onClick={downloadVCard}
-            className="cta-button cta-button-outline"
-          >
-            save my contact
-          </button>
-        </div>
       </section>
 
       {/* footer note */}
