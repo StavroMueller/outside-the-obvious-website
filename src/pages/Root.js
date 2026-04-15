@@ -59,8 +59,7 @@ const Root = () => {
       <RevealSection className="services-section">
         <h2 className="section-title ee-title">
           what i<br />
-          &nbsp;&nbsp;&nbsp;do<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(badly)
+          &nbsp;&nbsp;&nbsp;do
         </h2>
 
         <Link to="/gallery/fashion" style={{ textDecoration: 'none' }}>
