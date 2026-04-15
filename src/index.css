@@ -18,8 +18,8 @@ body {
   font-family: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #0a0a0a;
-  color: #f5f0e8;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   line-height: 1.6;
   text-transform: lowercase;
 }

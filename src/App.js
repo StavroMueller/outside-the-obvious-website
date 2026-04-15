@@ -70,6 +70,13 @@ function App() {
                 </li>
               </ul>
             </nav>
+            {menuOpen && (
+              <div
+                className="nav-backdrop"
+                onClick={() => setMenuOpen(false)}
+                aria-hidden="true"
+              />
+            )}
           </header>
 
           <main id="main-content">

@@ -17,6 +17,7 @@ const Root = () => {
 
   return (
     <>
+      <h1 className="sr-only">outside the obvious — fashion & editorial photography by julien clifford</h1>
       {/* hero section with scattered poem */}
       <section className="hero-section" style={{ padding: 0 }}>
         <div className="hero-poem-container">
