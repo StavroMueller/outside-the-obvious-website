@@ -61,8 +61,8 @@ const PoemCanvas = ({
   imageVerticalSpread = 70,
   imageVerticalOffset = 10,
   imageVerticalRandomness = 15,
-  imageMinSize = 60,
-  imageSizeRange = 40,
+  imageMinSize = 130,
+  imageSizeRange = 120,
   imageMaxRotation = 12,
   imageOpacity = 0.6,
   imageGrayscale = 30
@@ -278,7 +278,9 @@ const PoemCanvas = ({
       }}
     >
       {/* Scattered images */}
-      {imagePositions.map((pos, index) => (
+      {imagePositions.map((pos, index) => {
+        const responsiveSize = `calc(${Math.round(pos.size * 0.35)}px + ${(pos.size / 25).toFixed(1)}vw)`;
+        return (
         <div
           key={`img-${index}`}
           className="poem-image"
@@ -286,8 +288,8 @@ const PoemCanvas = ({
             position: 'absolute',
             left: `${pos.x}%`,
             top: `${pos.y}%`,
-            width: `${pos.size}px`,
-            height: `${pos.size}px`,
+            width: responsiveSize,
+            height: responsiveSize,
             transform: `rotate(${pos.rotation}deg)`,
             opacity: visibleImages.includes(index) ? imageOpacity : 0,
             transition: `opacity ${fadeInDuration * 1.5}ms ease-out`,
@@ -306,7 +308,8 @@ const PoemCanvas = ({
             }}
           />
         </div>
-      ))}
+        );
+      })}
 
       {/* Words */}
       {wordPositions.map((pos, index) => (

@@ -17,35 +17,27 @@ const Contact = () => {
         i have a way<br />
         &nbsp;&nbsp;of seeing<br />
         <br />
-        let's find out what happens<br />
-        &nbsp;&nbsp;when we collide
-      </p>
-
-      <div style={{ marginTop: '3rem' }}>
-        <a href="mailto:contact@outsidetheobvious.com" className="contact-email">
-          contact@outsidetheobvious.com
-        </a>
-      </div>
-
-      <div className="social-links">
+        find me at{' '}
         <a
           href="https://instagram.com/outsidetheobvious"
           target="_blank"
           rel="noopener noreferrer"
-          className="social-link"
+          className="poem-link poem-link-ig"
         >
           @outsidetheobvious
-        </a>
-      </div>
-
-      <div style={{ marginTop: '4rem' }}>
-        <p className="body-text ee-text">
-          houston, texas<br />
-          (but i travel<br />
-          &nbsp;&nbsp;wherever the light<br />
-          &nbsp;&nbsp;&nbsp;takes me)
-        </p>
-      </div>
+        </a><br />
+        &nbsp;&nbsp;or write to{' '}
+        <a href="mailto:contact@outsidetheobvious.com" className="poem-link">
+          contact@outsidetheobvious.com
+        </a><br />
+        <br />
+        houston, texas<br />
+        &nbsp;&nbsp;(but i travel<br />
+        &nbsp;&nbsp;&nbsp;wherever the light takes me)<br />
+        <br />
+        let's find out what happens<br />
+        &nbsp;&nbsp;when we collide
+      </p>
 
       <div style={{ marginTop: '4rem' }}>
         <h3 className="section-title ee-title" style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>
