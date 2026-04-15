@@ -1,15 +1,16 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
 
 const FineArt = () => {
   return (
-    <>
-      <Container>
-        <h2>Fine Art</h2>
-        <h3>Training is important. To be a good photographer, having artistic fundamentals is critical.</h3>
-      </Container>
-    </>
-  )
-}
+    <div className="gallery-page">
+      <header className="gallery-header">
+        <h1 className="gallery-title">fine art</h1>
+        <p className="body-text ee-text" style={{ marginTop: '1rem' }}>
+          coming soon
+        </p>
+      </header>
+    </div>
+  );
+};
 
 export default FineArt;

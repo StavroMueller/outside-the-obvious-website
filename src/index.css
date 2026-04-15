@@ -39,21 +39,3 @@ button {
   cursor: pointer;
 }
 
-/* photo grid - masonry layout */
-.photo-grid {
-  display: flex;
-  margin-left: -1rem;
-  width: auto;
-}
-
-.photo-grid_column {
-  padding-left: 1rem;
-  background-clip: padding-box;
-}
-
-.photo-grid_column > img {
-  margin-bottom: 1rem;
-  width: 100%;
-  border-radius: 0;
-  padding: 0;
-}

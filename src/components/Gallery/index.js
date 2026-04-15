@@ -9,7 +9,7 @@ const breakpointColumns = {
   480: 1
 };
 
-const Gallery = ({ imageUrls }) => {
+const Gallery = ({ imageUrls, genre }) => {
   return (
     <Masonry
       breakpointCols={breakpointColumns}
@@ -17,7 +17,7 @@ const Gallery = ({ imageUrls }) => {
       columnClassName="photo-grid_column"
     >
       {imageUrls.map((url, i) => (
-        <GalleryImage key={i} imageUrl={url} />
+        <GalleryImage key={i} imageUrl={url} genre={genre} />
       ))}
     </Masonry>
   );

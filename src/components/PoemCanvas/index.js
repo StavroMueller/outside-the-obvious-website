@@ -67,8 +67,8 @@ const PoemCanvas = ({
   imageOpacity = 0.6,
   imageGrayscale = 30
 }) => {
-  const [visibleWords, setVisibleWords] = useState([]);
-  const [visibleImages, setVisibleImages] = useState([]);
+  const [visibleWordCount, setVisibleWordCount] = useState(0);
+  const [visibleImageCount, setVisibleImageCount] = useState(0);
   const config = sizeConfig[size] || sizeConfig.large;
 
   // Seeded random for consistent renders
@@ -225,14 +225,14 @@ const PoemCanvas = ({
   useEffect(() => {
     if (words.length === 0) return;
 
-    setVisibleWords([]);
+    setVisibleWordCount(0);
     const timers = [];
     const baseDelay = size === 'small' ? staggerDelay * 0.5 : staggerDelay;
     const delay = layout === 'cascade' ? baseDelay * 0.6 : baseDelay;
 
     words.forEach((_, index) => {
       const timer = setTimeout(() => {
-        setVisibleWords(prev => [...prev, index]);
+        setVisibleWordCount(index + 1);
       }, index * delay);
       timers.push(timer);
     });
@@ -244,7 +244,7 @@ const PoemCanvas = ({
   useEffect(() => {
     if (images.length === 0) return;
 
-    setVisibleImages([]);
+    setVisibleImageCount(0);
     const timers = [];
     const baseDelay = size === 'small' ? staggerDelay * 0.5 : staggerDelay;
     const wordDelay = layout === 'cascade' ? baseDelay * 0.6 : baseDelay;
@@ -254,7 +254,7 @@ const PoemCanvas = ({
 
     images.forEach((_, index) => {
       const timer = setTimeout(() => {
-        setVisibleImages(prev => [...prev, index]);
+        setVisibleImageCount(index + 1);
       }, (index + 1) * imageInterval);
       timers.push(timer);
     });
@@ -291,7 +291,7 @@ const PoemCanvas = ({
             width: responsiveSize,
             height: responsiveSize,
             transform: `rotate(${pos.rotation}deg)`,
-            opacity: visibleImages.includes(index) ? imageOpacity : 0,
+            opacity: index < visibleImageCount ? imageOpacity : 0,
             transition: `opacity ${fadeInDuration * 1.5}ms ease-out`,
             overflow: 'hidden',
             pointerEvents: 'none'
@@ -321,7 +321,7 @@ const PoemCanvas = ({
             left: `${pos.x}%`,
             top: `${pos.y}%`,
             transform: `rotate(${pos.rotation}deg) scale(${pos.scale})`,
-            opacity: visibleWords.includes(index) ? pos.opacity : 0,
+            opacity: index < visibleWordCount ? pos.opacity : 0,
             transition: `opacity ${fadeInDuration}ms ease-out, transform 0.3s ease`,
             fontFamily: "'Cormorant Garamond', Georgia, serif",
             fontSize: config.fontSize,

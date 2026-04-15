@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Gallery from '../components/Gallery';
 import PoemCanvas from '../components/PoemCanvas';
+import RevealSection from '../components/RevealSection';
 import wotoFinder from '../utilities/wotoFinder';
 
 const Root = () => {
-  const featuredImages = [...wotoFinder('fashion', 4)];
-  const poemImages = [...wotoFinder('fashion', 6)];
+  const featuredImages = useMemo(() => wotoFinder('fashion', 4), []);
+  const poemImages = useMemo(() => wotoFinder('fashion', 6), []);
 
   const heroPoem = `somewhere between the shutter and the skin
     lives a truth that doesn't know its name
@@ -55,7 +56,7 @@ const Root = () => {
       </div>
 
       {/* services section - poetic */}
-      <section className="services-section">
+      <RevealSection className="services-section">
         <h2 className="section-title ee-title">
           what i<br />
           &nbsp;&nbsp;&nbsp;do<br />
@@ -105,22 +106,22 @@ const Root = () => {
             </p>
           </div>
         </Link>
-      </section>
+      </RevealSection>
 
       {/* quote section */}
-      <section style={{ padding: '6rem 8vw', backgroundColor: '#0a0a0a' }}>
+      <RevealSection style={{ padding: '6rem 8vw', backgroundColor: 'var(--bg-primary)' }}>
         <blockquote className="quote ee-quote">
           <span style={{ display: 'block', marginLeft: '2rem' }}>"i carry your heart</span>
           <span style={{ display: 'block', marginLeft: '4rem' }}>(i carry it in</span>
           <span style={{ display: 'block', marginLeft: '6rem' }}>my heart)"</span>
-          <span style={{ display: 'block', marginTop: '1.5rem', fontSize: '1rem', fontStyle: 'normal', color: '#6b6560', marginLeft: '3rem' }}>
+          <span style={{ display: 'block', marginTop: '1.5rem', fontSize: '1rem', fontStyle: 'normal', color: 'var(--text-muted)', marginLeft: '3rem' }}>
             — e.e. cummings
           </span>
         </blockquote>
-      </section>
+      </RevealSection>
 
       {/* featured work */}
-      <section style={{ padding: '4rem 4vw 6rem', backgroundColor: '#111111' }}>
+      <RevealSection style={{ padding: '4rem 4vw 6rem', backgroundColor: 'var(--bg-secondary)' }}>
         <div style={{ marginBottom: '3rem', paddingLeft: '4vw' }}>
           <h2 className="section-title ee-title">
             things i've<br />
@@ -131,16 +132,16 @@ const Root = () => {
             &nbsp;&nbsp;they saw me)
           </p>
         </div>
-        <Gallery imageUrls={featuredImages} />
+        <Gallery imageUrls={featuredImages} genre="fashion" />
         <div style={{ textAlign: 'center', marginTop: '3rem' }}>
           <Link to="/gallery/fashion" className="cta-button">
             see more
           </Link>
         </div>
-      </section>
+      </RevealSection>
 
       {/* books section */}
-      <section className="books-section">
+      <RevealSection className="books-section">
         <h2 className="section-title ee-title">
           words &<br />
           &nbsp;&nbsp;&nbsp;pictures<br />
@@ -191,10 +192,10 @@ const Root = () => {
             inquire
           </Link>
         </div>
-      </section>
+      </RevealSection>
 
       {/* experience / credentials — the flex */}
-      <section className="experience-section">
+      <RevealSection className="experience-section">
         <div className="experience-item">
           <span className="experience-number">2018</span>
           <span className="experience-label">
@@ -219,10 +220,10 @@ const Root = () => {
             new york calls<br />february 2025
           </span>
         </div>
-      </section>
+      </RevealSection>
 
       {/* about section */}
-      <section className="about-section">
+      <RevealSection className="about-section">
         <div>
           <h2 className="section-title ee-title">
             who<br />
@@ -247,7 +248,7 @@ const Root = () => {
             &nbsp;&nbsp;i'm just looking<br />
             &nbsp;&nbsp;&nbsp;&nbsp;for what's already there
           </p>
-          <p className="about-text" style={{ marginTop: '2rem', fontStyle: 'italic', color: '#6b6560' }}>
+          <p className="about-text" style={{ marginTop: '2rem', fontStyle: 'italic', color: 'var(--text-muted)' }}>
             currently: preparing to disappear into new york
           </p>
         </div>
@@ -263,12 +264,12 @@ const Root = () => {
             &nbsp;&nbsp;presence"
           </p>
         </div>
-      </section>
+      </RevealSection>
 
       {/* cta section */}
-      <section style={{
+      <RevealSection style={{
         padding: '8rem 8vw',
-        backgroundColor: '#111111',
+        backgroundColor: 'var(--bg-secondary)',
         textAlign: 'center'
       }}>
         <h2 className="section-title ee-title" style={{ marginBottom: '1.5rem' }}>
@@ -284,7 +285,7 @@ const Root = () => {
         <Link to="/contact" className="cta-button cta-button-accent">
           reach out
         </Link>
-      </section>
+      </RevealSection>
     </>
   );
 };

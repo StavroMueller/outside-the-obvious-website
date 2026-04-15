@@ -17,7 +17,7 @@ const Fashion = () => {
           scatterIntensity={0.2}
         />
       </header>
-      <Gallery imageUrls={wotoUrls} />
+      <Gallery imageUrls={wotoUrls} genre="fashion" />
       <div style={{ textAlign: 'center', marginTop: '4rem', marginBottom: '2rem' }}>
         <Link to="/contact" className="cta-button">
           book a fashion shoot

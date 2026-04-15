@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import { HashRouter, Link, Routes, Route } from "react-router-dom";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -11,59 +12,67 @@ import Fashion from "./pages/gallery/Fashion";
 import Travel from "./pages/gallery/Travel";
 import FineArt from "./pages/gallery/FineArt";
 
-import LeicaM3 from "./pages/reviews/LeicaM3";
-import LeicaX2 from "./pages/reviews/LeicaX2";
-import RicohGRIII from "./pages/reviews/RicohGRIII";
-import OlympusOMDEM1X from "./pages/reviews/OlympusOMDEM1X";
-
-import Mis from "./pages/books/Mis";
-import APoemOfLima from "./pages/books/APoemOfLima";
-import MidnightAtMain from "./pages/books/MidnightAtMain";
-
 function App() {
+  const [menuOpen, setMenuOpen] = React.useState(false);
+
   return (
     <ErrorBoundary>
       <div className="App">
         <HashRouter>
-          <nav className="nav-container">
-            <Link to="/" className="nav-logo">
-              outside the obvious
-            </Link>
-            <ul className="nav-links">
-              <li>
-                <Link to="/gallery/fashion" className="nav-link">
-                  fashion
-                </Link>
-              </li>
-              <li>
-                <Link to="/gallery/street" className="nav-link">
-                  street
-                </Link>
-              </li>
-              <li>
-                <Link to="/gallery/travel" className="nav-link">
-                  travel
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="nav-link">
-                  contact
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="https://instagram.com/outsidetheobvious"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="nav-link nav-social"
-                >
-                  @
-                </a>
-              </li>
-            </ul>
-          </nav>
+          <a href="#main-content" className="skip-link">
+            skip to content
+          </a>
+          <header>
+            <nav className="nav-container" aria-label="main navigation">
+              <Link to="/" className="nav-logo">
+                outside the obvious
+              </Link>
+              <button
+                className="nav-toggle"
+                onClick={() => setMenuOpen(!menuOpen)}
+                aria-expanded={menuOpen}
+                aria-controls="nav-menu"
+                aria-label="toggle navigation menu"
+              >
+                <span className="nav-toggle-bar" />
+                <span className="nav-toggle-bar" />
+              </button>
+              <ul className={`nav-links${menuOpen ? ' nav-links--open' : ''}`} id="nav-menu">
+                <li>
+                  <Link to="/gallery/fashion" className="nav-link" onClick={() => setMenuOpen(false)}>
+                    fashion
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/gallery/street" className="nav-link" onClick={() => setMenuOpen(false)}>
+                    street
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/gallery/travel" className="nav-link" onClick={() => setMenuOpen(false)}>
+                    travel
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="nav-link" onClick={() => setMenuOpen(false)}>
+                    contact
+                  </Link>
+                </li>
+                <li>
+                  <a
+                    href="https://instagram.com/outsidetheobvious"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="nav-link nav-social"
+                  >
+                    @
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </header>
 
-          <main>
+          <main id="main-content">
             <Routes>
               <Route path="/" element={<Root />} />
               <Route path="/hello" element={<Hello />} />
@@ -71,19 +80,12 @@ function App() {
               <Route path="/gallery/fashion" element={<Fashion />} />
               <Route path="/gallery/travel" element={<Travel />} />
               <Route path="/gallery/fine-art" element={<FineArt />} />
-              <Route path="/reviews/leicam3" element={<LeicaM3 />} />
-              <Route path="/reviews/leicax2" element={<LeicaX2 />} />
-              <Route path="/reviews/ricohgriii" element={<RicohGRIII />} />
-              <Route path="/reviews/olympusomdem1x" element={<OlympusOMDEM1X />} />
-              <Route path="/books/mis" element={<Mis />} />
-              <Route path="/books/apoemoflima" element={<APoemOfLima />} />
-              <Route path="/books/midnightatmain" element={<MidnightAtMain />} />
               <Route path="/booking" element={<Booking />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </main>
 
-          <footer className="footer">
+          <footer className="footer" role="contentinfo">
             <span className="footer-text">
               outside the obvious
             </span>
