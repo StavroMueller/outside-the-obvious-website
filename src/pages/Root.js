@@ -38,10 +38,11 @@ const Root = () => {
 
       {/* currently / next — poetic status */}
       <section className="now-section">
-        <div className="now-content">
+        <Link to="/print-room" className="now-content now-content-link">
           <span className="now-label">soon</span>
           <span className="now-text">new york fashion week &mdash; the city that never stops looking</span>
-        </div>
+          <span className="now-cta">visit the print room &rarr;</span>
+        </Link>
       </section>
 
       {/* scrolling marquee — fashion weeks */}

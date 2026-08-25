@@ -7,6 +7,7 @@ import Root from "./pages/Root";
 import Hello from "./pages/Hello";
 import Booking from "./pages/Booking";
 import Contact from "./pages/Contact";
+import PrintRoom from "./pages/PrintRoom";
 import Street from "./pages/gallery/Street";
 import Fashion from "./pages/gallery/Fashion";
 import Travel from "./pages/gallery/Travel";
@@ -54,6 +55,11 @@ function App() {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/print-room" className="nav-link" onClick={() => setMenuOpen(false)}>
+                    print room
+                  </Link>
+                </li>
+                <li>
                   <Link to="/contact" className="nav-link" onClick={() => setMenuOpen(false)}>
                     contact
                   </Link>
@@ -83,6 +89,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Root />} />
               <Route path="/hello" element={<Hello />} />
+              <Route path="/print-room" element={<PrintRoom />} />
               <Route path="/gallery/street" element={<Street />} />
               <Route path="/gallery/fashion" element={<Fashion />} />
               <Route path="/gallery/travel" element={<Travel />} />
