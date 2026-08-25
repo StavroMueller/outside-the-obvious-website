@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PoemCanvas from "../components/PoemCanvas";
 import printRoomItems from "../data/printRoom";
+import merchShopUrl from "../data/merch";
 
 const PrintRoom = () => {
   return (
@@ -45,6 +46,33 @@ const PrintRoom = () => {
             )}
           </div>
         ))}
+      </div>
+
+      <div className="print-room-grid">
+        <div className="print-room-item">
+          <h2 className="print-room-title">the wearables</h2>
+          <p className="print-room-meta">shirts &mdash; hats &mdash; etc.</p>
+          <p className="print-room-description">
+            take the pictures off the wall and put them on
+          </p>
+          {merchShopUrl ? (
+            <a
+              href={merchShopUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-button"
+            >
+              visit the merch shop
+            </a>
+          ) : (
+            <p className="print-room-coming-soon">
+              merch shop coming soon &mdash;{' '}
+              <Link to="/contact" className="print-room-inquire-link">
+                inquire
+              </Link>
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );

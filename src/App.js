@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { HashRouter, Link, Routes, Route } from "react-router-dom";
 import ErrorBoundary from "./components/ErrorBoundary";
+import merchShopUrl from "./data/merch";
 
 import Root from "./pages/Root";
 import Hello from "./pages/Hello";
@@ -59,6 +60,19 @@ function App() {
                     print room
                   </Link>
                 </li>
+                {merchShopUrl && (
+                  <li>
+                    <a
+                      href={merchShopUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="nav-link"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      merch
+                    </a>
+                  </li>
+                )}
                 <li>
                   <Link to="/contact" className="nav-link" onClick={() => setMenuOpen(false)}>
                     contact
