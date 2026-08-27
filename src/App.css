@@ -1291,6 +1291,139 @@ a:hover {
   border-color: var(--text-secondary);
 }
 
+/* ---- field notes: mailing list signup ---- */
+.newsletter {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.newsletter-heading {
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.newsletter-blurb {
+  font-size: 0.95rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  color: var(--text-muted);
+  max-width: 34ch;
+  margin: 0 0 1.5rem 0;
+}
+
+/* underlines, not boxes — the form should read like the rest of the page */
+.newsletter-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 1.5rem;
+  max-width: 42rem;
+}
+
+.newsletter-input {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 0;
+  min-width: 16rem;
+  flex: 1 1 16rem;
+  transition: border-color 0.3s ease;
+}
+
+.newsletter-input::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+.newsletter-input:hover,
+.newsletter-input:focus {
+  border-bottom-color: var(--accent);
+}
+
+.newsletter-input:disabled {
+  opacity: 0.5;
+}
+
+.newsletter-submit {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: lowercase;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--text-secondary);
+  padding: 0.7rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.newsletter-submit:hover:not(:disabled) {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+
+.newsletter-submit:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* empty while idle, so it takes no room until there's something to say */
+.newsletter-status:empty {
+  display: none;
+}
+
+.newsletter-status {
+  font-size: 0.95rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  color: var(--accent);
+  margin: 1.5rem 0 0 0;
+}
+
+.newsletter-status-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* the footer copy is quieter than the print room's */
+.newsletter--footer {
+  padding: 3rem 8vw 0;
+  border-top: 1px solid var(--border);
+}
+
+/* one rule between content and footer, not two */
+.newsletter--footer + .footer {
+  border-top: none;
+}
+
+.newsletter--print-room {
+  padding: 4rem 0 0;
+}
+
+@media (max-width: 768px) {
+  .newsletter-input {
+    min-width: 100%;
+  }
+
+  .newsletter-submit {
+    width: 100%;
+  }
+}
+
 /* ---- a11y: reduced motion ---- */
 @media (prefers-reduced-motion: reduce) {
   .reveal {
@@ -1325,7 +1458,9 @@ a:hover {
   .print-room-inquire-link,
   .now-cta,
   .experience-number,
-  .quote {
+  .quote,
+  .newsletter-input,
+  .newsletter-submit {
     transition: none;
   }
 }

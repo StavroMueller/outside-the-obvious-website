@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.css";
-import { HashRouter, Link, Routes, Route } from "react-router-dom";
+import { HashRouter, Link, Routes, Route, useLocation } from "react-router-dom";
 import ErrorBoundary from "./components/ErrorBoundary";
+import Newsletter from "./components/Newsletter";
 import merchShopUrl from "./data/merch";
 
 import Root from "./pages/Root";
@@ -13,6 +14,14 @@ import Street from "./pages/gallery/Street";
 import Fashion from "./pages/gallery/Fashion";
 import Travel from "./pages/gallery/Travel";
 import FineArt from "./pages/gallery/FineArt";
+
+// The print room makes its own, higher-intent ask for the mailing list. Two
+// signup forms on one page reads as desperate, so the footer sits that one out.
+const FooterNewsletter = () => {
+  const { pathname } = useLocation();
+  if (pathname === "/print-room") return null;
+  return <Newsletter className="newsletter--footer" />;
+};
 
 function App() {
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -112,6 +121,8 @@ function App() {
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </main>
+
+          <FooterNewsletter />
 
           <footer className="footer" role="contentinfo">
             <span className="footer-text">

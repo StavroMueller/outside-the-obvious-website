@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PoemCanvas from "../components/PoemCanvas";
+import Newsletter from "../components/Newsletter";
 import printRoomItems from "../data/printRoom";
 import merchShopUrl from "../data/merch";
 
@@ -74,6 +75,12 @@ const PrintRoom = () => {
           )}
         </div>
       </div>
+
+      <Newsletter
+        className="newsletter--print-room"
+        heading="know when the next one drops"
+        blurb="new shows, new prints, new books — before they go up. letters, rarely."
+      />
     </div>
   );
 };
