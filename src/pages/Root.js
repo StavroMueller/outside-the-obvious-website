@@ -53,39 +53,47 @@ const Root = () => {
       {/* Name, one line on the work, and a way to book, all before the first scroll.
           The photographs follow straight after. */}
       <section id="intro" className="home-section home-intro">
-        <div className="home-intro-copy">
-          <h1 className="home-name">julien clifford</h1>
-          <p className="home-role">photographer. houston, texas.</p>
-          <Verse>{`
-            i photograph fashion shows
-              from backstage,
-                and life aboard tall ships.
-            most of it happens
-              before anyone is watching.
-          `}</Verse>
-          <Verse className="home-facts">{`
-            90+ runway shows photographed
-              (and still counting)
-            crew aboard the 1877 barque elissa, galveston.
-          `}</Verse>
-          <Link to="/#contact" className="cta-button">
-            commission a shoot
-          </Link>
+        <div className="home-section-header home-intro-copy">
+          <div className="home-section-title">
+            <h1 className="home-name">julien clifford</h1>
+            <p className="home-role">photographer. houston, texas.</p>
+          </div>
+          <div className="home-section-body">
+            <Verse>{`
+              i photograph fashion shows
+                from backstage,
+                  and life aboard tall ships.
+              most of it happens
+                before anyone is watching.
+            `}</Verse>
+            <Verse className="home-facts">{`
+              90+ runway shows photographed
+                (and still counting)
+              crew aboard the 1877 barque elissa, galveston.
+            `}</Verse>
+            <Link to="/#contact" className="cta-button">
+              commission a shoot
+            </Link>
+          </div>
         </div>
         <PhotoGallery images={heroImages} />
       </section>
 
       <RevealSection id="before-the-show" className="home-section">
         <div className="home-section-header">
-          <h2 className="home-heading">before the show</h2>
-          <Verse>{`
-            the hour before the doors open.
-              fittings, makeup, last alterations,
-                models waiting in clothes
-                  they cannot sit down in.
-            shot at new york fashion week
-              and in houston, since 2018.
-          `}</Verse>
+          <div className="home-section-title">
+            <h2 className="home-heading">before the show</h2>
+          </div>
+          <div className="home-section-body">
+            <Verse>{`
+              the hour before the doors open.
+                fittings, makeup, last alterations,
+                  models waiting in clothes
+                    they cannot sit down in.
+              shot at new york fashion week
+                and in houston, since 2018.
+            `}</Verse>
+          </div>
         </div>
         <PhotoGallery images={beforeTheShowImages} />
         {/* TODO (missing asset): the 4x5 Grid Show photograph should sit last in this
@@ -95,17 +103,21 @@ const Root = () => {
 
       <RevealSection id="night-watch" className="home-section home-section--alt">
         <div className="home-section-header">
-          <h2 className="home-heading">night watch</h2>
-          <Verse>{`
-            i crew these ships;
-              i do not visit them.
-            night watches, make ready,
-              day sails out of galveston,
-                and one long sail to new york.
-            some of it is shot on film
-              and developed by hand,
-                weeks after it happened.
-          `}</Verse>
+          <div className="home-section-title">
+            <h2 className="home-heading">night watch</h2>
+          </div>
+          <div className="home-section-body">
+            <Verse>{`
+              i crew these ships;
+                i do not visit them.
+              night watches, make ready,
+                day sails out of galveston,
+                  and one long sail to new york.
+              some of it is shot on film
+                and developed by hand,
+                  weeks after it happened.
+            `}</Verse>
+          </div>
         </div>
         {/* TODO (missing assets): no tallship photographs are in the repo yet. The six
             slots below render as marked placeholders until public/gallery/tallships/1.jpg
@@ -115,81 +127,97 @@ const Root = () => {
 
       <RevealSection id="hands" className="home-section">
         <div className="home-section-header">
-          <h2 className="home-heading">hands</h2>
-          <Verse>{`
-            a small series that runs through both.
-              hands pinning a hem.
-              hands on a line in the dark.
-            the work is mostly done by hands,
-              and the hands are usually
-                the honest part of the photograph.
-          `}</Verse>
+          <div className="home-section-title">
+            <h2 className="home-heading">hands</h2>
+          </div>
+          <div className="home-section-body">
+            <Verse>{`
+              a small series that runs through both.
+                hands pinning a hem.
+                hands on a line in the dark.
+              the work is mostly done by hands,
+                and the hands are usually
+                  the honest part of the photograph.
+            `}</Verse>
+          </div>
         </div>
         <PhotoGallery images={handsImages} />
       </RevealSection>
 
       <RevealSection id="prints" className="home-section home-section--alt">
         <div className="home-section-header">
-          <h2 className="home-heading">prints</h2>
-          <Verse>{`
-            prints of selected photographs
-              are available through the print room.
-          `}</Verse>
-          <Link to="/print-room" className="cta-button">
-            visit the print room
-          </Link>
-          {/* TODO (print details): add one line each, below the link, once confirmed.
-              Do not guess them.
-              - Sizes offered:
-              - Editions:
-              - Signed or not: */}
+          <div className="home-section-title">
+            <h2 className="home-heading">prints</h2>
+          </div>
+          <div className="home-section-body">
+            <Verse>{`
+              prints of selected photographs
+                are available through the print room.
+            `}</Verse>
+            <Link to="/print-room" className="cta-button">
+              visit the print room
+            </Link>
+            {/* TODO (print details): add one line each, below the link, once confirmed.
+                Do not guess them.
+                - Sizes offered:
+                - Editions:
+                - Signed or not: */}
+          </div>
         </div>
       </RevealSection>
 
       <RevealSection id="about" className="home-section">
         <div className="home-section-header">
-          <h2 className="home-heading">about</h2>
-          <Verse>{`
-            julien clifford, houston, texas.
-            photographing fashion since 2018:
-              more than ninety runway shows,
-                three published books.
-          `}</Verse>
-          <Verse>{`
-            i run atelier actara,
-              which produces fashion shows,
-                so the backstage photographs
-                  are taken from inside the work.
-            at sea i am crew,
-              not a passenger.
-            both bodies of work are the same subject,
-              in the end:
-                people getting something ready
-                  that the audience will only see finished.
-          `}</Verse>
-          <Verse>{`
-            i photograph the space
-              where you almost were.
-          `}</Verse>
-          {/* TODO (CV): a short list of the three book titles and exhibition history
-              goes here. Do not invent titles or exhibitions. */}
+          <div className="home-section-title">
+            <h2 className="home-heading">about</h2>
+          </div>
+          <div className="home-section-body">
+            <Verse>{`
+              julien clifford, houston, texas.
+              photographing fashion since 2018:
+                more than ninety runway shows,
+                  three published books.
+            `}</Verse>
+            <Verse>{`
+              i run atelier actara,
+                which produces fashion shows,
+                  so the backstage photographs
+                    are taken from inside the work.
+              at sea i am crew,
+                not a passenger.
+              both bodies of work are the same subject,
+                in the end:
+                  people getting something ready
+                    that the audience will only see finished.
+            `}</Verse>
+            <Verse>{`
+              i photograph the space
+                where you almost were.
+            `}</Verse>
+            {/* TODO (CV): a short list of the three book titles and exhibition history
+                goes here. Do not invent titles or exhibitions. */}
+          </div>
         </div>
       </RevealSection>
 
       <RevealSection id="contact" className="home-section home-section--alt">
         <div className="home-section-header">
-          <h2 className="home-heading">contact</h2>
-          <p className="home-copy home-verse">
-            {'for commissions, exhibitions and prints:\n  '}
-            <ContactEmail />
-          </p>
-          <p className="home-copy">
-            instagram:{' '}
-            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
-              @outsidetheobvious
-            </a>
-          </p>
-          <ContactButton />
+          <div className="home-section-title">
+            <h2 className="home-heading">contact</h2>
+          </div>
+          <div className="home-section-body">
+            <p className="home-copy home-verse">
+              {'for commissions, exhibitions and prints:\n  '}
+              <ContactEmail />
+            </p>
+            <p className="home-copy">
+              instagram:{' '}
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+                @outsidetheobvious
+              </a>
+            </p>
+            <ContactButton />
+          </div>
         </div>
       </RevealSection>
     </>

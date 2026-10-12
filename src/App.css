@@ -1345,9 +1345,12 @@ a:hover {
   padding-top: 8rem;
 }
 
-.home-intro-copy,
+/* heading on the left, copy on the right, across the full width */
 .home-section-header {
-  max-width: 42rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 4rem;
+  align-items: start;
   padding: 0 4vw;
   margin-bottom: 3rem;
 }
@@ -1467,8 +1470,8 @@ a:hover {
     padding-top: 7rem;
   }
 
-  .home-intro-copy,
   .home-section-header {
+    grid-template-columns: 1fr;
     padding: 0;
   }
 }
