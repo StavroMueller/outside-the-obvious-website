@@ -1329,3 +1329,149 @@ a:hover {
     transition: none;
   }
 }
+
+/* ---- homepage ---- */
+/* Same typefaces, colours and spacing as the rest of the site. */
+.home-section {
+  padding: 5rem 4vw;
+  scroll-margin-top: 5rem;
+}
+
+.home-section--alt {
+  background-color: var(--bg-secondary);
+}
+
+.home-intro {
+  padding-top: 8rem;
+}
+
+/* heading on the left, copy on the right, across the full width */
+.home-section-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 4rem;
+  align-items: start;
+  padding: 0 4vw;
+  margin-bottom: 3rem;
+}
+
+.home-intro-copy {
+  margin-bottom: 4rem;
+}
+
+.home-section-header .cta-button {
+  margin-top: 0.5rem;
+}
+
+.home-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin: 0 0 0.75rem;
+}
+
+.home-role {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin: 0 0 2rem;
+}
+
+.home-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin: 0 0 1.5rem;
+}
+
+.home-copy {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-weight: 300;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  margin: 0 0 1.5rem;
+}
+
+/* copy set as stepped lines; the indent lives in the text itself */
+.home-verse {
+  white-space: pre-wrap;
+}
+
+.home-copy a {
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--accent);
+}
+
+.home-copy a:hover {
+  color: var(--accent);
+}
+
+.home-facts {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.home-photo {
+  margin-bottom: 1rem;
+}
+
+.home-photo img {
+  display: block;
+  width: 100%;
+  transition: opacity 0.3s ease;
+}
+
+.home-photo img:hover {
+  opacity: 0.9;
+}
+
+/* a slot whose file has not been added to the repo yet */
+.home-photo-placeholder {
+  aspect-ratio: 3 / 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px dashed var(--border);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.home-photo-placeholder code {
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .home-section {
+    padding: 3rem 5vw;
+  }
+
+  .home-intro {
+    padding-top: 7rem;
+  }
+
+  .home-section-header {
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+}

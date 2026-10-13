@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { HashRouter, Link, Routes, Route } from "react-router-dom";
 import ErrorBoundary from "./components/ErrorBoundary";
-import merchShopUrl from "./data/merch";
+import homeSections from "./data/homeSections";
 
 import Root from "./pages/Root";
 import Hello from "./pages/Hello";
@@ -40,54 +40,13 @@ function App() {
                 <span className="nav-toggle-bar" />
               </button>
               <ul className={`nav-links${menuOpen ? ' nav-links--open' : ''}`} id="nav-menu">
-                <li>
-                  <Link to="/gallery/fashion" className="nav-link" onClick={() => setMenuOpen(false)}>
-                    fashion
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/gallery/street" className="nav-link" onClick={() => setMenuOpen(false)}>
-                    street
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/gallery/travel" className="nav-link" onClick={() => setMenuOpen(false)}>
-                    travel
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/print-room" className="nav-link" onClick={() => setMenuOpen(false)}>
-                    print room
-                  </Link>
-                </li>
-                {merchShopUrl && (
-                  <li>
-                    <a
-                      href={merchShopUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="nav-link"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      merch
-                    </a>
+                {homeSections.map(({ id, label }) => (
+                  <li key={id}>
+                    <Link to={`/#${id}`} className="nav-link" onClick={() => setMenuOpen(false)}>
+                      {label}
+                    </Link>
                   </li>
-                )}
-                <li>
-                  <Link to="/contact" className="nav-link" onClick={() => setMenuOpen(false)}>
-                    contact
-                  </Link>
-                </li>
-                <li>
-                  <a
-                    href="https://instagram.com/outsidetheobvious"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="nav-link nav-social"
-                  >
-                    @
-                  </a>
-                </li>
+                ))}
               </ul>
             </nav>
             {menuOpen && (
