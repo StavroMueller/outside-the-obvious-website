@@ -1,5 +1,5 @@
-// Everything sold in the print room — events, shows, and any future
-// collections — one big list, each backed by a Pixieset client gallery.
+// Everything sold in the print room: events, shows, and any future
+// collections, one big list, each backed by a Pixieset client gallery.
 // When a Pixieset collection is ready, paste its share URL into galleryUrl.
 // A null galleryUrl shows a "gallery coming soon" state linking to /contact.
 const printRoomItems = [

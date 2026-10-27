@@ -33,11 +33,11 @@ test('homepage carries both bodies of work with anchors the services link to', (
   render(<App />);
   const headings = screen.getAllByRole('heading', { level: 3 }).map((h) => h.textContent);
   expect(headings.slice(0, 4)).toEqual(['backstage', 'at sea', 'hands', 'direction']);
-  expect(screen.getByRole('link', { name: /i crew these ships/ })).toHaveAttribute('href', '#/#night-watch');
+  expect(screen.getByRole('link', { name: /i stand the night watch/ })).toHaveAttribute('href', '#/#night-watch');
   for (const id of ['before-the-show', 'night-watch', 'hands', 'about', 'contact']) {
     expect(document.getElementById(id)).not.toBeNull();
   }
-  expect(screen.getByText(/the barque elissa/)).toBeInTheDocument();
+  expect(screen.getByText(/the elissa/)).toBeInTheDocument();
   expect(screen.getByText(/atelier actara/)).toBeInTheDocument();
   expect(screen.queryByText(/february 2025/)).not.toBeInTheDocument();
 });

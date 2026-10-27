@@ -30,7 +30,7 @@ const Root = () => {
 
   return (
     <>
-      <h1 className="sr-only">outside the obvious — backstage fashion & tall ship photography by julien clifford</h1>
+      <h1 className="sr-only">outside the obvious: julien clifford photographs fashion shows from backstage and life aboard tall ships</h1>
       {/* hero section with scattered poem */}
       <section className="hero-section" style={{ padding: 0 }}>
         <div className="hero-poem-container">
@@ -49,16 +49,16 @@ const Root = () => {
         </div>
       </section>
 
-      {/* currently / next — poetic status */}
+      {/* currently / next / poetic status */}
       <section className="now-section">
         <Link to="/print-room" className="now-content now-content-link">
           <span className="now-label">soon</span>
-          <span className="now-text">new york fashion week &mdash; the city that never stops looking</span>
+          <span className="now-text">new york fashion week, the city that never stops looking</span>
           <span className="now-cta">visit the print room &rarr;</span>
         </Link>
       </section>
 
-      {/* scrolling marquee — the two bodies of work */}
+      {/* scrolling marquee / the two bodies of work */}
       <div className="marquee-container">
         <div className="marquee">
           <span className="marquee-text">
@@ -70,7 +70,7 @@ const Root = () => {
         </div>
       </div>
 
-      {/* what i do — poetic, pointing at the two bodies of work */}
+      {/* what i do / poetic, pointing at the two bodies of work */}
       <RevealSection className="services-section">
         <h2 className="section-title ee-title">
           what i<br />
@@ -81,9 +81,9 @@ const Root = () => {
           <div className="service-item">
             <h3 className="service-title">backstage</h3>
             <p className="service-description ee-text">
-              the hour before<br />
-              the doors open<br />
-              &nbsp;&nbsp;(nobody is watching yet)
+              i shoot the hour<br />
+              before the doors open<br />
+              &nbsp;&nbsp;while nobody is watching
             </p>
           </div>
         </Link>
@@ -92,9 +92,9 @@ const Root = () => {
           <div className="service-item">
             <h3 className="service-title">at sea</h3>
             <p className="service-description ee-text">
-              i crew these ships<br />
-              i do not<br />
-              &nbsp;&nbsp;visit them
+              i stand the night watch<br />
+              on the ships<br />
+              &nbsp;&nbsp;i photograph
             </p>
           </div>
         </Link>
@@ -103,9 +103,9 @@ const Root = () => {
           <div className="service-item">
             <h3 className="service-title">hands</h3>
             <p className="service-description ee-text">
-              usually the<br />
-              honest part<br />
-              &nbsp;&nbsp;of the photograph
+              hands do the work<br />
+              so i photograph<br />
+              &nbsp;&nbsp;the hands
             </p>
           </div>
         </Link>
@@ -129,12 +129,12 @@ const Root = () => {
           <span style={{ display: 'block', marginLeft: '4rem' }}>(i carry it in</span>
           <span style={{ display: 'block', marginLeft: '6rem' }}>my heart)"</span>
           <span style={{ display: 'block', marginTop: '1.5rem', fontSize: '1rem', fontStyle: 'normal', color: 'var(--text-muted)', marginLeft: '3rem' }}>
-            — e.e. cummings
+            e.e. cummings
           </span>
         </blockquote>
       </RevealSection>
 
-      {/* before the show — backstage */}
+      {/* before the show / backstage */}
       <RevealSection id="before-the-show" className="home-section home-section--alt">
         <div style={{ marginBottom: '3rem', paddingLeft: '4vw' }}>
           <h2 className="section-title ee-title">
@@ -142,13 +142,14 @@ const Root = () => {
             &nbsp;&nbsp;the show
           </h2>
           <p className="body-text ee-text" style={{ marginTop: '1rem' }}>
-            fittings, makeup, last alterations<br />
-            models waiting in clothes<br />
+            someone pins a hem<br />
+            someone finishes an eye<br />
+            a model waits in a dress<br />
             &nbsp;&nbsp;they cannot sit down in<br />
             <br />
-            new york and houston<br />
-            &nbsp;&nbsp;since 2018<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;(or maybe they saw me)
+            i have shot this hour<br />
+            &nbsp;&nbsp;in new york and houston<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;since 2018
           </p>
         </div>
         <PhotoGallery images={beforeTheShowImages} />
@@ -162,7 +163,7 @@ const Root = () => {
         </div>
       </RevealSection>
 
-      {/* night watch — tall ships */}
+      {/* night watch / tall ships */}
       <RevealSection id="night-watch" className="home-section">
         <div style={{ marginBottom: '3rem', paddingLeft: '4vw' }}>
           <h2 className="section-title ee-title">
@@ -170,14 +171,13 @@ const Root = () => {
             &nbsp;&nbsp;watch
           </h2>
           <p className="body-text ee-text" style={{ marginTop: '1rem' }}>
-            make ready<br />
-            day sails out of galveston<br />
-            &nbsp;&nbsp;one long sail to new york<br />
+            we make ready<br />
+            we sail out of galveston for the day<br />
+            &nbsp;&nbsp;once we sailed all the way to new york<br />
             <br />
-            some of it shot on film<br />
-            developed by hand<br />
-            &nbsp;&nbsp;weeks after it happened<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;(the sea doesn't mind waiting)
+            i shoot some of it on film<br />
+            and develop it by hand<br />
+            &nbsp;&nbsp;weeks after it happened
           </p>
         </div>
         {/* TODO (missing assets): no tallship photographs are in the repo yet. These
@@ -186,19 +186,19 @@ const Root = () => {
         <PhotoGallery images={nightWatchImages} />
       </RevealSection>
 
-      {/* hands — the series that runs through both */}
+      {/* hands / the series that runs through both */}
       <RevealSection id="hands" className="home-section home-section--alt">
         <div style={{ marginBottom: '3rem', paddingLeft: '4vw' }}>
           <h2 className="section-title ee-title">
             hands
           </h2>
           <p className="body-text ee-text" style={{ marginTop: '1rem' }}>
-            hands pinning a hem<br />
-            hands on a line in the dark<br />
+            a hand pins a hem<br />
+            a hand hauls a line in the dark<br />
             <br />
-            the work is mostly done by hands<br />
-            &nbsp;&nbsp;and the hands<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;rarely lie
+            the hands do most of the work<br />
+            &nbsp;&nbsp;so i keep<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;photographing them
           </p>
         </div>
         <PhotoGallery images={handsImages} />
@@ -253,12 +253,12 @@ const Root = () => {
 
         <div style={{ marginTop: '3rem' }}>
           <Link to="/print-room" className="cta-button">
-            prints, too
+            see the prints
           </Link>
         </div>
       </RevealSection>
 
-      {/* experience / credentials — the flex */}
+      {/* experience / credentials / the flex */}
       <RevealSection className="experience-section">
         <div className="experience-item">
           <span className="experience-number">2018</span>
@@ -275,13 +275,13 @@ const Root = () => {
         <div className="experience-item">
           <span className="experience-number">3</span>
           <span className="experience-label">
-            published books<br />that people actually<br />&nbsp;&nbsp;bought
+            published books<br />that people<br />&nbsp;&nbsp;bought
           </span>
         </div>
         <div className="experience-item">
           <span className="experience-number">1877</span>
           <span className="experience-label">
-            the barque elissa<br />galveston<br />&nbsp;&nbsp;(crew, not passenger)
+            the year the elissa<br />was launched<br />&nbsp;&nbsp;(i crew her now)
           </span>
         </div>
       </RevealSection>
@@ -303,20 +303,19 @@ const Root = () => {
             &nbsp;&nbsp;&nbsp;&nbsp;and still counting<br />
             <br />
             i run atelier actara<br />
-            &nbsp;&nbsp;which produces the shows<br />
-            so the backstage photographs<br />
-            &nbsp;&nbsp;&nbsp;are taken from inside the work<br />
+            &nbsp;&nbsp;which produces fashion shows<br />
+            so i shoot backstage<br />
+            &nbsp;&nbsp;&nbsp;from inside the work<br />
             <br />
-            at sea i am crew<br />
-            &nbsp;&nbsp;not a passenger<br />
+            at sea i stand watches<br />
+            &nbsp;&nbsp;and haul lines<br />
             <br />
-            both are the same subject, in the end<br />
-            &nbsp;&nbsp;people getting something ready<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;that the audience<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will only see finished
+            in both, people get something ready<br />
+            &nbsp;&nbsp;that the audience<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;will only see finished
           </p>
           <p className="about-text" style={{ marginTop: '2rem', fontStyle: 'italic', color: 'var(--text-muted)' }}>
-            currently: somewhere between a runway and a night watch
+            currently: shooting in houston and sailing out of galveston
           </p>
         </div>
         <div>

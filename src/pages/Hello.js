@@ -10,10 +10,9 @@ const Hello = () => {
 
     you found me
       somewhere real
-        not just scrolling
-          but standing
-            touching
-              curious`;
+        standing
+          touching
+            curious`;
 
   const downloadVCard = () => {
     const vcard = `BEGIN:VCARD
@@ -117,7 +116,7 @@ END:VCARD`;
       <section className="hello-now">
         <span className="hello-now-label">currently</span>
         <span className="hello-now-text">
-          preparing for nyfw &mdash; february 2025
+          shooting in houston, sailing out of galveston
         </span>
       </section>
 

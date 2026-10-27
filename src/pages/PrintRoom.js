@@ -11,11 +11,11 @@ const PrintRoom = () => {
         <h1 className="gallery-title">the print room</h1>
         <PoemCanvas
           size="small"
-          poem="where moments become objects — take one home with you"
+          poem="where moments become objects. take one home with you"
           scatterIntensity={0.2}
         />
         <p className="gallery-subtitle">
-          prints & downloads from every show — find yourself in the crowd
+          prints & downloads from every show. find yourself in the crowd
         </p>
       </header>
 
@@ -24,7 +24,7 @@ const PrintRoom = () => {
           <div className="print-room-item" key={item.id}>
             <h2 className="print-room-title">{item.title}</h2>
             <p className="print-room-meta">
-              {item.date} &mdash; {item.location}
+              {item.date}, {item.location}
             </p>
             <p className="print-room-description">{item.description}</p>
             {item.galleryUrl ? (
@@ -38,7 +38,7 @@ const PrintRoom = () => {
               </a>
             ) : (
               <p className="print-room-coming-soon">
-                gallery coming soon &mdash;{' '}
+                gallery coming soon.{' '}
                 <Link to="/contact" className="print-room-inquire-link">
                   inquire
                 </Link>
@@ -51,7 +51,7 @@ const PrintRoom = () => {
       <div className="print-room-grid">
         <div className="print-room-item">
           <h2 className="print-room-title">the wearables</h2>
-          <p className="print-room-meta">shirts &mdash; hats &mdash; etc.</p>
+          <p className="print-room-meta">shirts, hats, etc.</p>
           <p className="print-room-description">
             take the pictures off the wall and put them on
           </p>
@@ -66,7 +66,7 @@ const PrintRoom = () => {
             </a>
           ) : (
             <p className="print-room-coming-soon">
-              merch shop coming soon &mdash;{' '}
+              merch shop coming soon.{' '}
               <Link to="/contact" className="print-room-inquire-link">
                 inquire
               </Link>
