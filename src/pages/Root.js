@@ -122,18 +122,6 @@ const Root = () => {
         </Link>
       </RevealSection>
 
-      {/* quote section */}
-      <RevealSection style={{ padding: '6rem 8vw', backgroundColor: 'var(--bg-primary)' }}>
-        <blockquote className="quote ee-quote">
-          <span style={{ display: 'block', marginLeft: '2rem' }}>"i carry your heart</span>
-          <span style={{ display: 'block', marginLeft: '4rem' }}>(i carry it in</span>
-          <span style={{ display: 'block', marginLeft: '6rem' }}>my heart)"</span>
-          <span style={{ display: 'block', marginTop: '1.5rem', fontSize: '1rem', fontStyle: 'normal', color: 'var(--text-muted)', marginLeft: '3rem' }}>
-            e.e. cummings
-          </span>
-        </blockquote>
-      </RevealSection>
-
       {/* before the show / backstage */}
       <RevealSection id="before-the-show" className="home-section home-section--alt">
         <div style={{ marginBottom: '3rem', paddingLeft: '4vw' }}>
