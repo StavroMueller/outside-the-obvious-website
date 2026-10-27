@@ -1,74 +1,52 @@
 import { render, screen, within } from '@testing-library/react';
 import App from './App';
-import { heroImages } from './data/homeImages';
+import { beforeTheShowImages } from './data/homeImages';
 
 afterEach(() => {
   window.location.hash = '';
 });
 
-test('top nav links to each homepage section in page order', () => {
+test('top nav links to the galleries, print room, merch and contact', () => {
   render(<App />);
   expect(screen.getByText('outside the obvious', { selector: '.nav-logo' })).toBeInTheDocument();
   const nav = screen.getByRole('navigation', { name: 'main navigation' });
-  const hrefs = within(nav).getAllByRole('link').slice(1).map((a) => a.getAttribute('href'));
-  expect(hrefs).toEqual([
-    '#/#intro',
-    '#/#before-the-show',
-    '#/#night-watch',
-    '#/#hands',
-    '#/#prints',
-    '#/#about',
-    '#/#contact',
-  ]);
-});
-
-test('homepage renders the sections in order with the intro copy', () => {
-  render(<App />);
-  const headings = screen.getAllByRole('heading').map((h) => h.textContent);
-  expect(headings).toEqual([
-    'julien clifford',
-    'before the show',
-    'night watch',
-    'hands',
-    'prints',
-    'about',
-    'contact',
-  ]);
-  // The copy is set as stepped lines, so compare it with whitespace collapsed.
-  expect(
-    screen.getByText(
-      'i photograph fashion shows from backstage, and life aboard tall ships. most of it happens before anyone is watching.'
-    )
-  ).toBeInTheDocument();
-  expect(screen.getByRole('link', { name: 'visit the print room' })).toHaveAttribute('href', '#/print-room');
-  const contact = document.getElementById('contact');
-  expect(within(contact).getByRole('link', { name: '@outsidetheobvious' })).toHaveAttribute(
+  expect(within(nav).getByRole('link', { name: 'fashion' })).toHaveAttribute('href', '#/gallery/fashion');
+  expect(within(nav).getByRole('link', { name: 'print room' })).toHaveAttribute('href', '#/print-room');
+  expect(within(nav).getByRole('link', { name: 'merch' })).toHaveAttribute(
     'href',
-    'https://www.instagram.com/outsidetheobvious'
+    'https://outside-the-obvious-shop.fourthwall.com'
   );
+  expect(within(nav).getByRole('link', { name: 'contact' })).toHaveAttribute('href', '#/contact');
 });
 
-// The masonry lays its items out column by column, so DOM order is not reading
-// order. The data list is the reading order, so that is what gets checked.
-test('hero gallery is the original six with the tallship frame second', () => {
-  expect(heroImages.map((image) => image.src)).toEqual([
-    '/gallery/fashion/1.jpg',
-    '/gallery/tallships/hero.jpg',
-    '/gallery/fashion/2.jpg',
-    '/gallery/fashion/3.jpg',
-    '/gallery/fashion/4.jpg',
-    '/gallery/fashion/5.jpg',
-    '/gallery/fashion/6.jpg',
-  ]);
-});
-
-test('retired homepage copy is gone', () => {
+test('homepage opens with the poem and keeps the poetic sections', () => {
   render(<App />);
-  expect(screen.queryByText(/somewhere between the shutter and the skin/)).not.toBeInTheDocument();
-  expect(screen.queryByText(/the almost-kiss/)).not.toBeInTheDocument();
-  expect(screen.queryByText(/i carry your heart/)).not.toBeInTheDocument();
-  expect(screen.queryByText(/midnight at main/)).not.toBeInTheDocument();
-  expect(screen.queryByText(/chances to blink/)).not.toBeInTheDocument();
+  // The poem canvas scatters each word into its own span, so check the hero as a whole.
+  expect(document.querySelector('.hero-poem-container').textContent).toMatch(/shutter/);
+  expect(screen.getByRole('link', { name: "let's talk" })).toHaveAttribute('href', '#/contact');
+  expect(screen.getAllByText(/i carry your heart/).length).toBeGreaterThan(0);
+  expect(screen.getByText('midnight at main')).toBeInTheDocument();
+  expect(screen.getByText(/chances to blink/)).toBeInTheDocument();
+});
+
+test('homepage carries both bodies of work with anchors the services link to', () => {
+  render(<App />);
+  const headings = screen.getAllByRole('heading', { level: 3 }).map((h) => h.textContent);
+  expect(headings.slice(0, 4)).toEqual(['backstage', 'at sea', 'hands', 'direction']);
+  expect(screen.getByRole('link', { name: /i crew these ships/ })).toHaveAttribute('href', '#/#night-watch');
+  for (const id of ['before-the-show', 'night-watch', 'hands', 'about', 'contact']) {
+    expect(document.getElementById(id)).not.toBeNull();
+  }
+  expect(screen.getByText(/the barque elissa/)).toBeInTheDocument();
+  expect(screen.getByText(/atelier actara/)).toBeInTheDocument();
+  expect(screen.queryByText(/february 2025/)).not.toBeInTheDocument();
+});
+
+test('backstage gallery is drawn from the catalogued frames with alt text', () => {
+  render(<App />);
+  const backstage = document.getElementById('before-the-show');
+  const alts = within(backstage).getAllByRole('img').map((img) => img.getAttribute('alt'));
+  expect(alts).toEqual(expect.arrayContaining(beforeTheShowImages.map((image) => image.alt)));
 });
 
 test('renders the print room page with coming-soon galleries', () => {
