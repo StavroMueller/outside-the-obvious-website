@@ -20,7 +20,7 @@ const useScrollToSection = () => {
 
 const Root = () => {
   useScrollToSection();
-  const poemImages = useMemo(() => wotoFinder('fashion', 6), []);
+  const poemImages = useMemo(() => wotoFinder('fashion', 4), []);
 
   const heroPoem = `somewhere between the shutter and the skin
     lives a truth that doesn't know its name

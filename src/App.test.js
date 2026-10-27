@@ -22,7 +22,7 @@ test('top nav links to the galleries, print room, merch and contact', () => {
 test('homepage opens with the poem and keeps the poetic sections', () => {
   render(<App />);
   // The poem canvas scatters each word into its own span, so check the hero as a whole.
-  expect(document.querySelector('.hero-poem-container').textContent).toMatch(/shutter/);
+  expect(document.querySelector('.hero-poem-container').textContent).toMatch(/shutter/i);
   expect(screen.getByRole('link', { name: "let's talk" })).toHaveAttribute('href', '#/contact');
   expect(screen.getByText('midnight at main')).toBeInTheDocument();
   expect(screen.getByText(/chances to blink/)).toBeInTheDocument();

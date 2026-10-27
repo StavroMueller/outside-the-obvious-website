@@ -1,30 +1,38 @@
 import React, { useEffect, useState, useMemo } from 'react';
 
+// Each size sets the type scale, how far lines may wander from the left
+// edge, and how much each word may tilt and bob.
 const sizeConfig = {
   small: {
-    height: '120px',
-    minHeight: '100px',
-    fontSize: 'clamp(0.85rem, 1.5vw, 1.1rem)',
-    verticalSpacing: 35,
-    startY: 20,
-    scatterMultiplier: 0.5
+    minHeight: '7rem',
+    fontSize: 'clamp(1rem, 1.6vw, 1.25rem)',
+    lineGap: '0.4em',
+    indentMin: 2,
+    indentMax: 14,
+    jitter: 0.5
   },
   medium: {
-    height: '200px',
-    minHeight: '180px',
-    fontSize: 'clamp(1rem, 2vw, 1.4rem)',
-    verticalSpacing: 30,
-    startY: 15,
-    scatterMultiplier: 0.7
+    minHeight: '14rem',
+    fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+    lineGap: '0.7em',
+    indentMin: 3,
+    indentMax: 20,
+    jitter: 0.7
   },
   large: {
-    height: '70vh',
-    minHeight: '500px',
-    fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
-    verticalSpacing: 14,
-    startY: 10,
-    scatterMultiplier: 1
+    minHeight: '72vh',
+    fontSize: 'clamp(1.3rem, 2.6vw, 2rem)',
+    lineGap: '1.1em',
+    indentMin: 4,
+    indentMax: 26,
+    jitter: 1
   }
+};
+
+// Seeded random so a given poem renders the same way every time.
+const seededRandom = (seed) => {
+  const x = Math.sin(seed * 9999) * 10000;
+  return x - Math.floor(x);
 };
 
 const PoemCanvas = ({
@@ -32,311 +40,217 @@ const PoemCanvas = ({
   images = [],
   className = '',
   size = 'large',
-  layout = 'cascade',
 
   // Timing
   fadeInDuration = 800,
   staggerDelay = 150,
 
-  // Word positioning
+  // How much words tilt, bob and drift. 0 is a tidy poem, 1 is a windy one.
   scatterIntensity = 0.3,
-  wordStartX = 15,
-  wordStartXRange = 30,
-  wordMinX = 8,
-  wordMaxX = 75,
-  wordDriftAmount = 15,
-  wordWaveFrequency = 0.7,
-  wordWaveAmplitude = 12,
-  wordJumpChance = 0.85,
-  wordJumpAmount = 25,
-  wordIndentRange = 8,
-  wordVerticalSpread = 80,
-  wordStartY = 8,
 
-  // Image positioning
-  imageLeftMin = 2,
-  imageLeftRange = 13,
-  imageRightMin = 78,
-  imageRightRange = 17,
-  imageVerticalSpread = 70,
-  imageVerticalOffset = 10,
-  imageVerticalRandomness = 15,
-  imageMinSize = 130,
+  // Images: pixel width at desktop, before the responsive clamp
+  imageMinSize = 230,
   imageSizeRange = 120,
-  imageMaxRotation = 12,
-  imageOpacity = 0.6,
+  imageMaxRotation = 7,
+  imageOpacity = 0.8,
   imageGrayscale = 30
 }) => {
   const [visibleWordCount, setVisibleWordCount] = useState(0);
   const [visibleImageCount, setVisibleImageCount] = useState(0);
   const config = sizeConfig[size] || sizeConfig.large;
 
-  // Seeded random for consistent renders
-  const seededRandom = (seed) => {
-    const x = Math.sin(seed * 9999) * 10000;
-    return x - Math.floor(x);
-  };
-
-  const words = useMemo(() => {
+  // Lines of words, each word carrying its index in the whole poem so the
+  // stagger runs in reading order.
+  const lines = useMemo(() => {
     if (!poem) return [];
-    return poem.split(/\s+/).filter(word => word.length > 0);
+    let index = 0;
+    return poem
+      .split('\n')
+      .map((line) => line.trim())
+      .filter((line) => line.length > 0)
+      .map((line) => line.split(/\s+/).map((word) => ({ word, index: index++ })));
   }, [poem]);
 
-  // Calculate image positions - scattered on left and right sides
+  const totalWords = useMemo(
+    () => lines.reduce((sum, line) => sum + line.length, 0),
+    [lines]
+  );
+
+  // Where each line starts and how each word leans within it.
+  const styledLines = useMemo(() => {
+    const scatter = scatterIntensity * config.jitter;
+    const indentRange = config.indentMax - config.indentMin;
+
+    return lines.map((line, lineIndex) => {
+      const seed = (lineIndex + 1) * 311;
+      const wave = (Math.sin(lineIndex * 0.9) + 1) / 2;
+      const indent =
+        config.indentMin + wave * indentRange * 0.7 + seededRandom(seed) * indentRange * 0.3;
+      const extraGap = seededRandom(seed + 1) * 0.8 * scatter;
+
+      const words = line.map(({ word, index }) => {
+        const wordSeed = index * 1000 + 7;
+        const caseRandom = seededRandom(wordSeed);
+        let text = word;
+        if (caseRandom > 0.75 && caseRandom <= 0.9) {
+          text = word.toLowerCase();
+        } else if (caseRandom > 0.9) {
+          text = word.toUpperCase();
+        }
+
+        return {
+          text,
+          index,
+          rotation: (seededRandom(wordSeed + 1) - 0.5) * 3 * scatter,
+          bob: (seededRandom(wordSeed + 2) - 0.5) * 0.5 * scatter,
+          scale: 0.96 + seededRandom(wordSeed + 3) * 0.08,
+          gap: 0.35 + seededRandom(wordSeed + 4) * 0.55 * scatter,
+          opacity: 0.82 + seededRandom(wordSeed + 5) * 0.18
+        };
+      });
+
+      return { words, indent, extraGap };
+    });
+  }, [lines, scatterIntensity, config]);
+
+  // Images sit in the margins, alternating left and right, each side spread
+  // evenly down the canvas so they overlap only a little.
   const imagePositions = useMemo(() => {
     if (images.length === 0) return [];
 
+    const perSide = [Math.ceil(images.length / 2), Math.floor(images.length / 2)];
+
     return images.map((url, i) => {
       const seed = (i + 1) * 7777;
-      const isLeft = i % 2 === 0;
-      const x = isLeft
-        ? imageLeftMin + seededRandom(seed) * imageLeftRange
-        : imageRightMin + seededRandom(seed) * imageRightRange;
+      const side = i % 2;
+      const slot = Math.floor(i / 2);
+      const count = perSide[side];
 
-      const baseY = (i / images.length) * imageVerticalSpread + imageVerticalOffset;
-      const y = baseY + (seededRandom(seed + 1) - 0.5) * imageVerticalRandomness;
-
+      const edge = 2 + seededRandom(seed) * 5;
       const rotation = (seededRandom(seed + 2) - 0.5) * imageMaxRotation;
-      const imgSize = imageMinSize + seededRandom(seed + 3) * imageSizeRange;
+      const width = Math.round(imageMinSize + seededRandom(seed + 3) * imageSizeRange);
+
+      // The first photograph in a column hangs from the top edge, the last
+      // stands on the bottom edge, so neither is ever clipped. Any in
+      // between take an even share of the height.
+      const jitter = (seededRandom(seed + 1) - 0.5) * 6;
+      let anchor = 'top';
+      let y = 3 + jitter;
+      if (count > 1 && slot === count - 1) {
+        anchor = 'bottom';
+      } else if (slot > 0) {
+        y = (slot / (count - 1)) * 60 + 10 + jitter;
+      }
 
       return {
         url,
-        x: Math.max(1, Math.min(85, x)),
-        y: Math.max(5, Math.min(85, y)),
+        side: side === 0 ? 'left' : 'right',
+        edge,
+        anchor,
+        y: Math.max(1, y),
         rotation,
-        size: imgSize
+        width
       };
     });
-  }, [images, imageLeftMin, imageLeftRange, imageRightMin, imageRightRange,
-      imageVerticalSpread, imageVerticalOffset, imageVerticalRandomness,
-      imageMaxRotation, imageMinSize, imageSizeRange]);
+  }, [images, imageMaxRotation, imageMinSize, imageSizeRange]);
 
-  const wordPositions = useMemo(() => {
-    if (words.length === 0) return [];
-
-    const positions = [];
-    const totalWords = words.length;
-
-    if (layout === 'cascade') {
-      const verticalStep = wordVerticalSpread / totalWords;
-      let currentX = wordStartX + seededRandom(42) * wordStartXRange;
-
-      words.forEach((word, i) => {
-        const seed = i * 1000;
-        const drift = (seededRandom(seed) - 0.5) * wordDriftAmount;
-        const waviness = Math.sin(i * wordWaveFrequency) * wordWaveAmplitude;
-        const jump = seededRandom(seed + 1) > wordJumpChance
-          ? (seededRandom(seed + 2) - 0.5) * wordJumpAmount
-          : 0;
-
-        currentX = currentX + drift * 0.3 + waviness * 0.2 + jump;
-        currentX = Math.max(wordMinX, Math.min(wordMaxX, currentX));
-
-        const indent = (seededRandom(seed + 3) - 0.3) * wordIndentRange;
-        const y = wordStartY + (i * verticalStep);
-        const x = currentX + indent;
-
-        const randomRotation = (seededRandom(seed + 4) - 0.5) * 2 * scatterIntensity;
-        const randomScale = 0.97 + seededRandom(seed + 5) * 0.06;
-        const caseRandom = seededRandom(seed + 6);
-
-        let formattedWord = word;
-        if (caseRandom > 0.75 && caseRandom <= 0.9) {
-          formattedWord = word.toLowerCase();
-        } else if (caseRandom > 0.9) {
-          formattedWord = word.toUpperCase();
-        }
-
-        positions[i] = {
-          word: formattedWord,
-          x: Math.max(5, Math.min(85, x)),
-          y: Math.max(3, Math.min(92, y)),
-          rotation: randomRotation,
-          scale: randomScale,
-          opacity: 0.85 + seededRandom(seed + 7) * 0.15
-        };
-      });
-    } else {
-      const rows = [];
-      let currentRow = [];
-      let currentRowWidth = 0;
-      const maxRowWidth = size === 'small' ? 90 : 70;
-
-      words.forEach((word, i) => {
-        const wordWidth = word.length * 3.5;
-        if (currentRowWidth + wordWidth > maxRowWidth && currentRow.length > 0) {
-          rows.push([...currentRow]);
-          currentRow = [];
-          currentRowWidth = 0;
-        }
-        currentRow.push({ word, index: i });
-        currentRowWidth += wordWidth + 5;
-      });
-
-      if (currentRow.length > 0) {
-        rows.push(currentRow);
-      }
-
-      const totalRows = rows.length;
-      const verticalSpacing = Math.min(config.verticalSpacing, 70 / totalRows);
-      const startY = config.startY;
-      const scatter = scatterIntensity * config.scatterMultiplier;
-
-      rows.forEach((row, rowIndex) => {
-        const baseY = startY + (rowIndex * verticalSpacing);
-        const rowWidth = 80;
-        const wordSpacing = rowWidth / (row.length + 1);
-
-        row.forEach((item, wordIndex) => {
-          const seed = item.index * 1000 + rowIndex;
-          const baseX = 10 + (wordIndex + 1) * wordSpacing - (wordSpacing / 2);
-
-          const randomOffsetX = (seededRandom(seed) - 0.5) * 8 * scatter;
-          const randomOffsetY = (seededRandom(seed + 1) - 0.5) * 4 * scatter;
-          const randomRotation = (seededRandom(seed + 2) - 0.5) * 4 * scatter;
-          const randomScale = 0.95 + seededRandom(seed + 3) * 0.1;
-          const caseRandom = seededRandom(seed + 4);
-
-          let formattedWord = item.word;
-          if (caseRandom > 0.7 && caseRandom <= 0.9) {
-            formattedWord = item.word.toLowerCase();
-          } else if (caseRandom > 0.9) {
-            formattedWord = item.word.toUpperCase();
-          }
-
-          positions[item.index] = {
-            word: formattedWord,
-            x: Math.max(5, Math.min(90, baseX + randomOffsetX)),
-            y: Math.max(5, Math.min(85, baseY + randomOffsetY)),
-            rotation: randomRotation,
-            scale: randomScale,
-            opacity: 0.8 + seededRandom(seed + 5) * 0.2
-          };
-        });
-      });
-    }
-
-    return positions;
-  }, [words, scatterIntensity, size, config, layout, wordStartX, wordStartXRange,
-      wordMinX, wordMaxX, wordDriftAmount, wordWaveFrequency, wordWaveAmplitude,
-      wordJumpChance, wordJumpAmount, wordIndentRange, wordVerticalSpread, wordStartY]);
+  const wordDelay = size === 'small' ? staggerDelay * 0.5 : staggerDelay * 0.6;
 
   // Stagger words appearing
   useEffect(() => {
-    if (words.length === 0) return;
+    if (totalWords === 0) return;
 
     setVisibleWordCount(0);
     const timers = [];
-    const baseDelay = size === 'small' ? staggerDelay * 0.5 : staggerDelay;
-    const delay = layout === 'cascade' ? baseDelay * 0.6 : baseDelay;
+    for (let i = 0; i < totalWords; i++) {
+      timers.push(setTimeout(() => setVisibleWordCount(i + 1), i * wordDelay));
+    }
 
-    words.forEach((_, index) => {
-      const timer = setTimeout(() => {
-        setVisibleWordCount(index + 1);
-      }, index * delay);
-      timers.push(timer);
-    });
+    return () => timers.forEach((timer) => clearTimeout(timer));
+  }, [totalWords, wordDelay]);
 
-    return () => timers.forEach(timer => clearTimeout(timer));
-  }, [words, staggerDelay, size, layout]);
-
-  // Stagger images appearing - interspersed with words
+  // Stagger images appearing, spaced through the run of words
   useEffect(() => {
     if (images.length === 0) return;
 
     setVisibleImageCount(0);
     const timers = [];
-    const baseDelay = size === 'small' ? staggerDelay * 0.5 : staggerDelay;
-    const wordDelay = layout === 'cascade' ? baseDelay * 0.6 : baseDelay;
-
-    const totalDuration = words.length * wordDelay;
-    const imageInterval = totalDuration / (images.length + 1);
+    const imageInterval = (totalWords * wordDelay) / (images.length + 1);
 
     images.forEach((_, index) => {
-      const timer = setTimeout(() => {
-        setVisibleImageCount(index + 1);
-      }, (index + 1) * imageInterval);
-      timers.push(timer);
+      timers.push(
+        setTimeout(() => setVisibleImageCount(index + 1), (index + 1) * imageInterval)
+      );
     });
 
-    return () => timers.forEach(timer => clearTimeout(timer));
-  }, [images, words.length, staggerDelay, size, layout]);
+    return () => timers.forEach((timer) => clearTimeout(timer));
+  }, [images, totalWords, wordDelay]);
 
-  if (!poem || words.length === 0) {
+  if (totalWords === 0) {
     return null;
   }
 
   return (
     <div
-      className={`poem-canvas ${className}`}
-      style={{
-        position: 'relative',
-        width: '100%',
-        height: config.height,
-        minHeight: config.minHeight,
-        overflow: 'hidden'
-      }}
+      className={`poem-canvas poem-canvas--${size} ${images.length > 0 ? 'poem-canvas--with-images' : ''} ${className}`}
+      style={{ minHeight: config.minHeight }}
     >
-      {/* Scattered images */}
-      {imagePositions.map((pos, index) => {
-        const responsiveSize = `calc(${Math.round(pos.size * 0.35)}px + ${(pos.size / 25).toFixed(1)}vw)`;
-        return (
-        <div
-          key={`img-${index}`}
-          className="poem-image"
-          style={{
-            position: 'absolute',
-            left: `${pos.x}%`,
-            top: `${pos.y}%`,
-            width: responsiveSize,
-            height: responsiveSize,
-            transform: `rotate(${pos.rotation}deg)`,
-            opacity: index < visibleImageCount ? imageOpacity : 0,
-            transition: `opacity ${fadeInDuration * 1.5}ms ease-out`,
-            overflow: 'hidden',
-            pointerEvents: 'none'
-          }}
-        >
-          <img
-            src={pos.url}
-            alt=""
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              filter: `grayscale(${imageGrayscale}%)`
-            }}
-          />
+      {imagePositions.length > 0 && (
+        <div className="poem-images" aria-hidden="true">
+          {imagePositions.map((pos, index) => (
+            <div
+              key={`img-${index}`}
+              className="poem-image"
+              style={{
+                [pos.side]: `${pos.edge.toFixed(1)}%`,
+                [pos.anchor]: `${pos.y.toFixed(1)}%`,
+                width: `clamp(${Math.round(pos.width * 0.45)}px, ${(pos.width / 14).toFixed(1)}vw, ${pos.width}px)`,
+                transform: `rotate(${pos.rotation.toFixed(2)}deg)`,
+                opacity: index < visibleImageCount ? 1 : 0,
+                transition: `opacity ${fadeInDuration * 1.5}ms ease-out`
+              }}
+            >
+              <img
+                src={pos.url}
+                alt=""
+                loading="lazy"
+                style={{
+                  filter: `grayscale(${imageGrayscale}%)`,
+                  '--poem-image-opacity': imageOpacity
+                }}
+              />
+            </div>
+          ))}
         </div>
-        );
-      })}
+      )}
 
-      {/* Words */}
-      {wordPositions.map((pos, index) => (
-        <span
-          key={index}
-          className="poem-word"
-          style={{
-            position: 'absolute',
-            left: `${pos.x}%`,
-            top: `${pos.y}%`,
-            transform: `rotate(${pos.rotation}deg) scale(${pos.scale})`,
-            opacity: index < visibleWordCount ? pos.opacity : 0,
-            transition: `opacity ${fadeInDuration}ms ease-out, transform 0.3s ease`,
-            fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontSize: config.fontSize,
-            fontWeight: 300,
-            letterSpacing: '0.05em',
-            color: size === 'small' ? 'var(--text-muted)' : 'var(--text-primary)',
-            whiteSpace: 'nowrap',
-            cursor: 'default',
-            userSelect: 'none',
-            zIndex: 1
-          }}
-        >
-          {pos.word}
-        </span>
-      ))}
+      <div className="poem-lines" style={{ fontSize: config.fontSize, gap: config.lineGap }}>
+        {styledLines.map((line, lineIndex) => (
+          <div
+            key={lineIndex}
+            className="poem-line"
+            style={{
+              marginLeft: `calc(${line.indent.toFixed(1)}% * var(--poem-indent-scale, 1))`,
+              marginTop: lineIndex === 0 ? 0 : `${line.extraGap.toFixed(2)}em`
+            }}
+          >
+            {line.words.map((word) => (
+              <span
+                key={word.index}
+                className="poem-word"
+                style={{
+                  transform: `translateY(${word.bob.toFixed(2)}em) rotate(${word.rotation.toFixed(2)}deg) scale(${word.scale.toFixed(2)})`,
+                  opacity: word.index < visibleWordCount ? word.opacity : 0,
+                  marginRight: `${word.gap.toFixed(2)}em`,
+                  transition: `opacity ${fadeInDuration}ms ease-out, transform 0.3s ease, color 0.3s ease`
+                }}
+              >
+                {word.text}
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
