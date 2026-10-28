@@ -165,9 +165,6 @@ const Root = () => {
             &nbsp;&nbsp;and develop it myself
           </p>
         </div>
-        {/* TODO (missing assets): no tallship photographs are in the repo yet. These
-            slots render as marked placeholders until public/gallery/tallships/1.jpg
-            to 6.jpg exist. See src/data/homeImages.js. */}
         <PhotoGallery images={nightWatchImages} />
       </RevealSection>
 

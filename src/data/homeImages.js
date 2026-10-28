@@ -19,21 +19,20 @@ const fashion = {
   13: { src: fashionPath(13), alt: 'Hem of a black dress and heeled sandals mid-step, colour' },
 };
 
-// TODO (missing asset): public/gallery/tallships/hero.jpg is not in the repo yet.
-// Until the file lands, the slot renders as a marked placeholder. Replace the
-// alt text with a plain description of the frame once it is chosen.
 const tallshipHero = {
   src: tallshipPath('hero'),
-  alt: 'Tall ship at night, photograph to be supplied',
+  alt: 'Coiled lines on the rail of Elissa at night, Lower Manhattan lit up across the water, black and white',
 };
 
-// TODO (missing assets): no tallship photographs are in the repo yet. These six
-// slots expect public/gallery/tallships/1.jpg through 6.jpg and render as marked
-// placeholders until the files exist. Give each one a plain alt description then.
-const tallships = [1, 2, 3, 4, 5, 6].map((n) => ({
-  src: tallshipPath(n),
-  alt: `Tall ship photograph ${n}, to be supplied`,
-}));
+const tallshipAlts = [
+  'An open hand held up in a dark doorway, fingers dusted with grit',
+  'The Kalmar Nyckel under way, flags flying, seen over the shoulders of two onlookers',
+  'Crew hoisting the Texas flag up the rigging against a clear sky',
+  'Three crew at the helm of Elissa under a grey sky, one at the wheel',
+  'Four crew on a wooden dock, one pointing, one handling a mooring line',
+  'Reflection of an orange and white hull in rippled blue water',
+];
+const tallships = tallshipAlts.map((alt, i) => ({ src: tallshipPath(i + 1), alt }));
 
 // Original opening images 1 to 6 in their original order, with the tallship
 // frame inserted second, straight after the green portrait.
