@@ -22,12 +22,20 @@ const Root = () => {
   useScrollToSection();
   const poemImages = useMemo(() => wotoFinder('fashion', 4), []);
 
-  const heroPoem = `i photograph fashion shows
-    from backstage
-    and tall ships
-    from the deck
-    houston, new york, galveston
-    since 2018`;
+  const heroPoem = `backstage(where an hour is
+    pins and hairspray and
+    hold still
+    and somebody's now)
+
+    a line comes in hand
+    over hand over
+    hand over
+    morning
+
+    i photograph the before
+    of things
+    while the after
+    is still getting dressed`;
 
   return (
     <>

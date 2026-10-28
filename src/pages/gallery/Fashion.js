@@ -13,7 +13,7 @@ const Fashion = () => {
         <h1 className="gallery-title">fashion</h1>
         <PoemCanvas
           size="small"
-          poem="runway and backstage, houston and new york, since 2018"
+          poem="pins&hems&one last look(going)gone"
           scatterIntensity={0.2}
         />
       </header>

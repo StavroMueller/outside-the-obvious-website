@@ -11,7 +11,7 @@ const PrintRoom = () => {
         <h1 className="gallery-title">the print room</h1>
         <PoemCanvas
           size="small"
-          poem="prints and downloads from the shows i have photographed"
+          poem="take one home(it was you anyway)"
           scatterIntensity={0.2}
         />
         <p className="gallery-subtitle">
