@@ -13,7 +13,7 @@ const Street = () => {
         <h1 className="gallery-title">street</h1>
         <PoemCanvas
           size="small"
-          poem="the city breathes in strangers passing through its veins"
+          poem="people in the street, houston and elsewhere"
           scatterIntensity={0.2}
         />
       </header>

@@ -8,7 +8,7 @@ const printRoomItems = [
     title: 'new york fashion week',
     date: 'february 2025',
     location: 'new york',
-    description: 'the city that never stops looking',
+    description: 'runway and backstage, february 2025',
     galleryUrl: null,
   },
   {
@@ -16,7 +16,7 @@ const printRoomItems = [
     title: 'houston runway',
     date: 'fall 2024',
     location: 'houston',
-    description: 'ninety shows of not blinking',
+    description: 'runway shows in houston, fall 2024',
     galleryUrl: null,
   },
   {
@@ -24,7 +24,7 @@ const printRoomItems = [
     title: 'midnight at main',
     date: '2024',
     location: 'downtown houston',
-    description: 'neon ghosts, 3am secrets',
+    description: 'downtown houston after midnight, from the book',
     galleryUrl: null,
   },
 ];

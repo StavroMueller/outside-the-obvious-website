@@ -22,11 +22,12 @@ const Root = () => {
   useScrollToSection();
   const poemImages = useMemo(() => wotoFinder('fashion', 4), []);
 
-  const heroPoem = `somewhere between the shutter and the skin
-    lives a truth that doesn't know its name
-    i wait for accidents
-    i photograph the space where you almost were
-    the light that forgot to leave`;
+  const heroPoem = `i photograph fashion shows
+    from backstage
+    and tall ships
+    from the deck
+    houston, new york, galveston
+    since 2018`;
 
   return (
     <>
@@ -52,8 +53,8 @@ const Root = () => {
       {/* currently / next / poetic status */}
       <section className="now-section">
         <Link to="/print-room" className="now-content now-content-link">
-          <span className="now-label">soon</span>
-          <span className="now-text">new york fashion week, the city that never stops looking</span>
+          <span className="now-label">prints</span>
+          <span className="now-text">prints and downloads from the shows i have photographed</span>
           <span className="now-cta">visit the print room &rarr;</span>
         </Link>
       </section>
@@ -62,10 +63,10 @@ const Root = () => {
       <div className="marquee-container">
         <div className="marquee">
           <span className="marquee-text">
-            nyfw · the space between poses · galveston · the almost-kiss · night watch · backstage whispers · make ready · the dress that breathes · a line in the dark · editorial · the unplanned miracle ·&nbsp;
+            new york fashion week · houston · backstage · runway · editorial · galveston · elissa · night watch · film · prints ·&nbsp;
           </span>
           <span className="marquee-text">
-            nyfw · the space between poses · galveston · the almost-kiss · night watch · backstage whispers · make ready · the dress that breathes · a line in the dark · editorial · the unplanned miracle ·&nbsp;
+            new york fashion week · houston · backstage · runway · editorial · galveston · elissa · night watch · film · prints ·&nbsp;
           </span>
         </div>
       </div>
@@ -83,7 +84,7 @@ const Root = () => {
             <p className="service-description ee-text">
               i shoot the hour<br />
               before the doors open<br />
-              &nbsp;&nbsp;while nobody is watching
+              &nbsp;&nbsp;fittings, makeup, the lineup
             </p>
           </div>
         </Link>
@@ -92,9 +93,9 @@ const Root = () => {
           <div className="service-item">
             <h3 className="service-title">at sea</h3>
             <p className="service-description ee-text">
-              i stand the night watch<br />
-              on the ships<br />
-              &nbsp;&nbsp;i photograph
+              i crew elissa<br />
+              out of galveston<br />
+              &nbsp;&nbsp;and photograph the watches
             </p>
           </div>
         </Link>
@@ -103,20 +104,20 @@ const Root = () => {
           <div className="service-item">
             <h3 className="service-title">hands</h3>
             <p className="service-description ee-text">
-              hands do the work<br />
-              so i photograph<br />
-              &nbsp;&nbsp;the hands
+              a small series<br />
+              of hands at work<br />
+              &nbsp;&nbsp;backstage and on deck
             </p>
           </div>
         </Link>
 
         <Link to="/contact" style={{ textDecoration: 'none' }}>
           <div className="service-item">
-            <h3 className="service-title">direction</h3>
+            <h3 className="service-title">editorial</h3>
             <p className="service-description ee-text">
-              building worlds<br />
-              from mood boards<br />
-              and maybes
+              shoots on commission<br />
+              for brands and magazines<br />
+              &nbsp;&nbsp;in houston and on location
             </p>
           </div>
         </Link>
@@ -132,8 +133,8 @@ const Root = () => {
           <p className="body-text ee-text" style={{ marginTop: '1rem' }}>
             someone pins a hem<br />
             someone finishes an eye<br />
-            a model waits in a dress<br />
-            &nbsp;&nbsp;they cannot sit down in<br />
+            the lineup forms<br />
+            &nbsp;&nbsp;at the curtain<br />
             <br />
             i have shot this hour<br />
             &nbsp;&nbsp;in new york and houston<br />
@@ -164,8 +165,7 @@ const Root = () => {
             &nbsp;&nbsp;once we sailed all the way to new york<br />
             <br />
             i shoot some of it on film<br />
-            and develop it by hand<br />
-            &nbsp;&nbsp;weeks after it happened
+            &nbsp;&nbsp;and develop it myself
           </p>
         </div>
         {/* TODO (missing assets): no tallship photographs are in the repo yet. These
@@ -181,12 +181,11 @@ const Root = () => {
             hands
           </h2>
           <p className="body-text ee-text" style={{ marginTop: '1rem' }}>
-            a hand pins a hem<br />
-            a hand hauls a line in the dark<br />
+            close frames of hands at work<br />
+            &nbsp;&nbsp;backstage and on deck<br />
             <br />
-            the hands do most of the work<br />
-            &nbsp;&nbsp;so i keep<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;photographing them
+            drawn from both sets<br />
+            &nbsp;&nbsp;and still growing
           </p>
         </div>
         <PhotoGallery images={handsImages} />
@@ -195,24 +194,22 @@ const Root = () => {
       {/* books section */}
       <RevealSection className="books-section">
         <h2 className="section-title ee-title">
-          words &<br />
-          &nbsp;&nbsp;&nbsp;pictures<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(married)
+          books
         </h2>
         <p className="body-text ee-text" style={{ marginBottom: '3rem' }}>
-          poems that became photographs<br />
-          photographs that became<br />
-          &nbsp;&nbsp;something else
+          three books of photographs and poems<br />
+          &nbsp;&nbsp;printed and sold<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;2022 to 2024
         </p>
 
         <div className="books-grid">
           <div className="book-item">
             <h3 className="book-title">midnight at main</h3>
             <p className="book-description ee-text">
-              neon ghosts<br />
+              main street<br />
               downtown houston<br />
-              3am knows all<br />
-              &nbsp;&nbsp;the secrets
+              after midnight<br />
+              &nbsp;&nbsp;photographs and one poem
             </p>
             <span className="book-year">2024</span>
           </div>
@@ -220,9 +217,9 @@ const Root = () => {
           <div className="book-item">
             <h3 className="book-title">a poem of lima</h3>
             <p className="book-description ee-text">
-              images that<br />
-              rhyme with<br />
-              &nbsp;&nbsp;longing
+              lima<br />
+              in photographs<br />
+              &nbsp;&nbsp;and one poem
             </p>
             <span className="book-year">2023</span>
           </div>
@@ -230,10 +227,9 @@ const Root = () => {
           <div className="book-item">
             <h3 className="book-title">mis</h3>
             <p className="book-description ee-text">
-              dining as<br />
-              &nbsp;&nbsp;performance<br />
-              hospitality as<br />
-              &nbsp;&nbsp;&nbsp;art
+              a book about dining<br />
+              &nbsp;&nbsp;the room, the table,<br />
+              &nbsp;&nbsp;&nbsp;the people who serve it
             </p>
             <span className="book-year">2022</span>
           </div>
@@ -246,49 +242,19 @@ const Root = () => {
         </div>
       </RevealSection>
 
-      {/* experience / credentials / the flex */}
-      <RevealSection className="experience-section">
-        <div className="experience-item">
-          <span className="experience-number">2018</span>
-          <span className="experience-label">
-            shooting fashion<br />before it was cool<br />(it was always cool)
-          </span>
-        </div>
-        <div className="experience-item">
-          <span className="experience-number">90+</span>
-          <span className="experience-label">
-            runway shows<br />90 chances to blink<br />&nbsp;&nbsp;(i didn't)
-          </span>
-        </div>
-        <div className="experience-item">
-          <span className="experience-number">3</span>
-          <span className="experience-label">
-            published books<br />that people<br />&nbsp;&nbsp;bought
-          </span>
-        </div>
-        <div className="experience-item">
-          <span className="experience-number">1877</span>
-          <span className="experience-label">
-            the year the elissa<br />was launched<br />&nbsp;&nbsp;(i crew her now)
-          </span>
-        </div>
-      </RevealSection>
-
       {/* about section */}
       <RevealSection id="about" className="about-section">
         <div>
           <h2 className="section-title ee-title">
-            who<br />
-            &nbsp;&nbsp;(i think<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;i am)
+            who
           </h2>
           <p className="about-text ee-text">
             julien clifford<br />
             houston, texas<br />
             <br />
             since 2018<br />
-            &nbsp;&nbsp;90+ runway shows<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;and still counting<br />
+            &nbsp;&nbsp;more than ninety runway shows<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;in houston and new york<br />
             <br />
             i run atelier actara<br />
             &nbsp;&nbsp;which produces fashion shows<br />
@@ -297,25 +263,20 @@ const Root = () => {
             <br />
             at sea i stand watches<br />
             &nbsp;&nbsp;and haul lines<br />
-            <br />
-            in both, people get something ready<br />
-            &nbsp;&nbsp;that the audience<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;will only see finished
+            &nbsp;&nbsp;&nbsp;&nbsp;aboard elissa, built 1877
           </p>
           <p className="about-text" style={{ marginTop: '2rem', fontStyle: 'italic', color: 'var(--text-muted)' }}>
             currently: shooting in houston and sailing out of galveston
           </p>
         </div>
         <div>
-          <p className="body-text-large ee-text" style={{ fontStyle: 'italic' }}>
-            "photography<br />
-            &nbsp;&nbsp;with teeth<br />
+          <p className="body-text-large ee-text">
+            <a href="mailto:contact@outsidetheobvious.com" className="poem-link">contact@outsidetheobvious.com</a><br />
+            &nbsp;&nbsp;<a href="https://instagram.com/outsidetheobvious" target="_blank" rel="noopener noreferrer" className="poem-link poem-link-ig">@outsidetheobvious</a><br />
             <br />
-            less about<br />
-            &nbsp;&nbsp;perfection<br />
-            <br />
-            more about<br />
-            &nbsp;&nbsp;presence"
+            leica m3, leica x2<br />
+            &nbsp;&nbsp;ricoh gr iii<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;olympus om-d e-m1x
           </p>
         </div>
       </RevealSection>
@@ -327,14 +288,14 @@ const Root = () => {
         textAlign: 'center'
       }}>
         <h2 className="section-title ee-title" style={{ marginBottom: '1.5rem' }}>
-          let's make<br />
-          &nbsp;&nbsp;something<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;that breathes
+          book<br />
+          &nbsp;&nbsp;a shoot
         </h2>
         <p className="body-text-large ee-text" style={{ maxWidth: '500px', margin: '0 auto 2rem' }}>
-          you have an idea<br />
-          i have a camera<br />
-          &nbsp;&nbsp;let's see what happens
+          runway, backstage, editorial<br />
+          &nbsp;&nbsp;and prints of all of it<br />
+          <br />
+          send the dates and the brief
         </p>
         <Link to="/contact" className="cta-button cta-button-accent">
           reach out

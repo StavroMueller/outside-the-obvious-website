@@ -23,7 +23,7 @@ ORG:Outside The Obvious
 TITLE:Fashion & Editorial Photographer
 URL:https://outsidetheobvious.com
 X-SOCIALPROFILE;TYPE=instagram:https://instagram.com/outsidetheobvious
-NOTE:Fashion photographer since 2018. 90+ runway shows. NYFW.
+NOTE:Fashion and editorial photographer, Houston. Runway and backstage since 2018.
 END:VCARD`;
 
     const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
@@ -53,8 +53,8 @@ END:VCARD`;
       <section className="hello-intro">
         <p className="hello-text ee-text">
           i'm julien<br />
-          &nbsp;&nbsp;i take pictures<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;that feel like something
+          &nbsp;&nbsp;i photograph fashion shows<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;from backstage
         </p>
         <div className="hello-buttons" style={{ marginTop: '2rem' }}>
           <Link to="/contact" className="cta-button">
@@ -82,7 +82,7 @@ END:VCARD`;
         <Link to="/gallery/fashion" className="hello-card">
           <span className="hello-card-title">fashion</span>
           <span className="hello-card-sub">
-            90+ runway shows<br />
+            runway and backstage<br />
             since 2018
           </span>
         </Link>
@@ -90,24 +90,24 @@ END:VCARD`;
         <Link to="/gallery/street" className="hello-card">
           <span className="hello-card-title">streets</span>
           <span className="hello-card-sub">
-            the city<br />
-            unposed
+            people<br />
+            in the street
           </span>
         </Link>
 
         <Link to="/gallery/travel" className="hello-card">
           <span className="hello-card-title">travel</span>
           <span className="hello-card-sub">
-            places that<br />
-            changed me
+            away<br />
+            from home
           </span>
         </Link>
 
         <Link to="/" className="hello-card">
           <span className="hello-card-title">books</span>
           <span className="hello-card-sub">
-            3 published<br />
-            (people bought them)
+            three<br />
+            2022 to 2024
           </span>
         </Link>
       </section>
@@ -123,8 +123,7 @@ END:VCARD`;
       {/* footer note */}
       <section className="hello-footer">
         <p className="hello-small">
-          thanks for scanning<br />
-          &nbsp;&nbsp;most people just walk by
+          thanks for scanning
         </p>
       </section>
     </div>

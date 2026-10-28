@@ -11,11 +11,11 @@ const PrintRoom = () => {
         <h1 className="gallery-title">the print room</h1>
         <PoemCanvas
           size="small"
-          poem="where moments become objects. take one home with you"
+          poem="prints and downloads from the shows i have photographed"
           scatterIntensity={0.2}
         />
         <p className="gallery-subtitle">
-          prints & downloads from every show. find yourself in the crowd
+          if you were at the show, you may be in here
         </p>
       </header>
 
@@ -53,7 +53,7 @@ const PrintRoom = () => {
           <h2 className="print-room-title">the wearables</h2>
           <p className="print-room-meta">shirts, hats, etc.</p>
           <p className="print-room-description">
-            take the pictures off the wall and put them on
+            the photographs, printed on shirts and hats
           </p>
           {merchShopUrl ? (
             <a

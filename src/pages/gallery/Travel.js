@@ -13,7 +13,7 @@ const Travel = () => {
         <h1 className="gallery-title">travel</h1>
         <PoemCanvas
           size="small"
-          poem="we leave ourselves scattered in places we have never been"
+          poem="photographs from away from home"
           scatterIntensity={0.2}
         />
       </header>
