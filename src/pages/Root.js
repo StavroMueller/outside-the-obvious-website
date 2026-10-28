@@ -4,7 +4,7 @@ import PhotoGallery from '../components/PhotoGallery';
 import PoemCanvas from '../components/PoemCanvas';
 import RevealSection from '../components/RevealSection';
 import wotoFinder from '../utilities/wotoFinder';
-import { beforeTheShowImages, nightWatchImages, handsImages } from '../data/homeImages';
+import { beforeTheShowImages, nightWatchImages } from '../data/homeImages';
 
 // The router owns the URL hash, so the browser never scrolls to #section on
 // its own. Do it by hand whenever the hash changes.
@@ -108,17 +108,6 @@ const Root = () => {
           </div>
         </Link>
 
-        <Link to="/#hands" style={{ textDecoration: 'none' }}>
-          <div className="service-item">
-            <h3 className="service-title">hands</h3>
-            <p className="service-description ee-text">
-              a small series<br />
-              of hands at work<br />
-              &nbsp;&nbsp;backstage and on deck
-            </p>
-          </div>
-        </Link>
-
         <Link to="/contact" style={{ textDecoration: 'none' }}>
           <div className="service-item">
             <h3 className="service-title">editorial</h3>
@@ -180,23 +169,6 @@ const Root = () => {
             slots render as marked placeholders until public/gallery/tallships/1.jpg
             to 6.jpg exist. See src/data/homeImages.js. */}
         <PhotoGallery images={nightWatchImages} />
-      </RevealSection>
-
-      {/* hands / the series that runs through both */}
-      <RevealSection id="hands" className="home-section home-section--alt">
-        <div style={{ marginBottom: '3rem', paddingLeft: '4vw' }}>
-          <h2 className="section-title ee-title">
-            hands
-          </h2>
-          <p className="body-text ee-text" style={{ marginTop: '1rem' }}>
-            close frames of hands at work<br />
-            &nbsp;&nbsp;backstage and on deck<br />
-            <br />
-            drawn from both sets<br />
-            &nbsp;&nbsp;and still growing
-          </p>
-        </div>
-        <PhotoGallery images={handsImages} />
       </RevealSection>
 
       {/* books section */}

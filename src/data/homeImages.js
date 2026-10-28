@@ -53,7 +53,3 @@ export const heroImages = [
 export const beforeTheShowImages = [2, 5, 6, 7, 10, 11, 12, 13].map((n) => fashion[n]);
 
 export const nightWatchImages = tallships;
-
-// Close frames of hands at work. Drawn from the fashion set for now;
-// add tallship frames of hands on lines here once those photographs exist.
-export const handsImages = [7, 2, 6, 11].map((n) => fashion[n]);
