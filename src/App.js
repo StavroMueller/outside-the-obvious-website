@@ -8,6 +8,7 @@ import Root from "./pages/Root";
 import Hello from "./pages/Hello";
 import Booking from "./pages/Booking";
 import Contact from "./pages/Contact";
+import Pricing from "./pages/Pricing";
 import PrintRoom from "./pages/PrintRoom";
 import Street from "./pages/gallery/Street";
 import Fashion from "./pages/gallery/Fashion";
@@ -74,6 +75,11 @@ function App() {
                   </li>
                 )}
                 <li>
+                  <Link to="/pricing" className="nav-link" onClick={() => setMenuOpen(false)}>
+                    pricing
+                  </Link>
+                </li>
+                <li>
                   <Link to="/contact" className="nav-link" onClick={() => setMenuOpen(false)}>
                     contact
                   </Link>
@@ -109,6 +115,7 @@ function App() {
               <Route path="/gallery/travel" element={<Travel />} />
               <Route path="/gallery/fine-art" element={<FineArt />} />
               <Route path="/booking" element={<Booking />} />
+              <Route path="/pricing" element={<Pricing />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </main>

@@ -55,3 +55,15 @@ test('renders the print room page with coming-soon galleries', () => {
   expect(screen.getByText('new york fashion week', { selector: '.print-room-title' })).toBeInTheDocument();
   expect(screen.getAllByText(/gallery coming soon/i).length).toBeGreaterThan(0);
 });
+
+test('renders the pricing page from the pricing data', () => {
+  window.location.hash = '#/pricing';
+  render(<App />);
+  expect(screen.getByRole('heading', { name: 'Runway and backstage' })).toBeInTheDocument();
+  expect(screen.getByText('From $500 per show')).toBeInTheDocument();
+  expect(screen.getByText('On request')).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: 'book by email' })).toHaveAttribute(
+    'href',
+    expect.stringContaining('mailto:contact@outsidetheobvious.com')
+  );
+});

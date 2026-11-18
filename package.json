@@ -16,7 +16,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "generate:llms": "node scripts/generate-llms.js",
+    "prestart": "npm run generate:llms",
     "start": "PUBLIC_URL=/ react-scripts start",
+    "prebuild": "npm run generate:llms",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

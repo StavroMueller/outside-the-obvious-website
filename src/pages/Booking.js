@@ -12,9 +12,14 @@ const Booking = () => {
         <br />
         send the dates and the brief
       </p>
-      <Link to="/contact" className="cta-button">
-        get in touch
-      </Link>
+      <div className="pricing-actions">
+        <Link to="/contact" className="cta-button">
+          get in touch
+        </Link>
+        <Link to="/pricing" className="cta-button">
+          see what it costs
+        </Link>
+      </div>
     </section>
   );
 };

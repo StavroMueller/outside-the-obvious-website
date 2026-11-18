@@ -1,0 +1,40 @@
+{
+  "services": [
+    {
+      "id": "runway-backstage",
+      "title": "Runway and backstage",
+      "price": "From $500 per show",
+      "summary": "One show, photographed from backstage and from the runway.",
+      "includes": [
+        "The hour before the doors open: fittings, makeup, the lineup",
+        "The runway",
+        "An edited gallery within 7 days"
+      ]
+    },
+    {
+      "id": "editorial",
+      "title": "Editorial",
+      "price": null,
+      "summary": "Shoots on commission for brands and magazines, in Houston and on location.",
+      "includes": [
+        "Quoted from the brief, the dates and the budget",
+        "An edited gallery within 7 days"
+      ]
+    },
+    {
+      "id": "prints",
+      "title": "Prints and downloads",
+      "price": "Priced in each gallery",
+      "summary": "Prints and digital downloads of the show photographs.",
+      "includes": [
+        "Ordered from the print room, show by show"
+      ]
+    }
+  ],
+  "terms": [
+    "A 50% deposit holds the date. The balance is due on delivery.",
+    "Edited galleries are delivered within 7 days of the shoot.",
+    "A commercial licence for your own channels is included in the price.",
+    "Travel outside Houston is billed at cost."
+  ]
+}

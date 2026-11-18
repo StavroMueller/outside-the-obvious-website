@@ -828,6 +828,97 @@ a:hover {
   color: var(--accent);
 }
 
+/* pricing page */
+.pricing-section {
+  padding: 8rem 8vw;
+  min-height: 80vh;
+}
+
+.pricing-list {
+  margin-top: 3rem;
+}
+
+.pricing-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.pricing-price {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: var(--accent);
+  margin: 0.5rem 0 0;
+}
+
+.pricing-detail {
+  max-width: 440px;
+  flex-shrink: 1;
+}
+
+.pricing-summary,
+.pricing-includes,
+.pricing-terms {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 300;
+  line-height: 1.8;
+  text-transform: lowercase;
+}
+
+.pricing-summary {
+  color: var(--text-secondary);
+  margin: 0 0 1rem;
+}
+
+.pricing-includes,
+.pricing-terms {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.pricing-terms-title {
+  margin-top: 6rem;
+}
+
+.pricing-terms {
+  color: var(--text-secondary);
+}
+
+.pricing-ask {
+  margin-top: 6rem;
+}
+
+.pricing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.5rem;
+}
+
+.pricing-actions--centered {
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .pricing-section {
+    padding: 6rem 6vw;
+  }
+
+  .pricing-item {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
 /* print room section */
 .print-room-grid {
   display: grid;

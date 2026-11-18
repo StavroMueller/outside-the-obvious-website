@@ -274,9 +274,14 @@ const Root = () => {
           <br />
           send the dates and the brief
         </p>
-        <Link to="/contact" className="cta-button cta-button-accent">
-          reach out
-        </Link>
+        <div className="pricing-actions pricing-actions--centered">
+          <Link to="/contact" className="cta-button cta-button-accent">
+            reach out
+          </Link>
+          <Link to="/pricing" className="cta-button">
+            see what it costs
+          </Link>
+        </div>
       </RevealSection>
     </>
   );
